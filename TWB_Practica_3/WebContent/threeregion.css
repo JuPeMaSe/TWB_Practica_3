@@ -1,0 +1,29 @@
+h1{color:blue; text-align:center}
+h2{color:red; font-style:italic; text-align:center}
+h3{font-weigth:bold; text-align:center}
+p{font-family:sans-serif}
+.heading{text-align:center}
+p.emphasis{font-weight:bold}
+#footer{font-family:sans-serif; font-weight:bold; font-style:italic; color:white; background-color:black; text-align:center}
+ul{list-style-type:square}
+ol{list-style-type:lower-roman}
+
+a:link{color: blue}
+a:visited{color: blue}
+a:hover{font-weight: bold}
+a:active{font-style:italic}
+#navigationbar {color: white; background-color: rgb(189,197,0)}
+#leftnavigation {float: left; height: 600px; color: white; background-color: rgb(189,143,0)}
+#content {
+	margin-left: 1.1em;
+	margin-right: 1.1em;
+	/*border: thick solid #000*/
+}
+/* #rightnavigation {float: right; height: 400px; color: white; background-color: rgb(204,255,51)}*/
+
+#pagefooter {clear: left}
+.topnavigationlink {clear: left; margin-left: 1em; font-size: 1.1em}
+.leftnavigationlink {font-size: 1em; margin-left: 1.1em; margin-right: 1.1em}
+/* .rightnavigationlink {font-size: 1em; margin-left: 1.1em; margin-right: 1.1em} */
+.companyname {font-family:"Comic Sans MS", cursive; color: rgb(0,255,0)}
+.errormessage {color:red}
