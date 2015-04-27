@@ -8,6 +8,9 @@
  		<form-bean name="loginBean" type="com.mistrutswebapp.beans.LoginBean" />
  		<form-bean name="usuarioBean" type="com.mistrutswebapp.beans.UsuarioBean" />
  		<form-bean name="perfilBean" type="com.mistrutswebapp.beans.PerfilBean" />
+ 		<form-bean name="titulacionBean" type="com.mistrutswebapp.beans.TitulacionBean" />
+ 		<form-bean name="tecnologiaBean" type="com.mistrutswebapp.beans.TecnologiaBean" />
+ 		<form-bean name="experienciaBean" type="com.mistrutswebapp.beans.ExperienciaBean" />
  	</form-beans>
 	<global-forwards type="org.apache.struts.action.ActionForward">
 		<forward name="home" path="/homePage.jsp" redirect="false"/>
@@ -68,6 +71,38 @@
  		   	input="/altaPage.jsp" >
  		   	<forward name="succes" path="/displaylogin.jsp" /> 
 <!-- 		   	<forward name="notfound" path="/notfound.jsp" /> -->
+ 		</action>
+ 		<action path="/processCrear"
+ 			type="com.mistrutswebapp.action.CrearAction"
+ 			name="perfilBean"
+ 			scope="request"
+ 			validate="true"
+ 			input="/crearPage.jsp">
+ 			<forward name="succes" path="/titulacionPage.jsp" />
+ 		</action>		
+ 		<action path="/processTitulacion"
+ 			type="com.mistrutswebapp.action.TitulacionAction"
+ 			name="titulacionBean"
+ 			scope="request"
+ 			validate="true"
+ 			input="/titulacionPage.jsp">
+ 			<forward name="succes" path="/tecnologiaPage.jsp" />
+ 		</action>	
+ 		<action path="/processTecnologia"
+ 			type="com.mistrutswebapp.action.TecnologiaAction"
+ 			name="tecnologiaBean"
+ 			scope="request"
+ 			validate="true"
+ 			input="/tecnologiaPage.jsp">
+ 			<forward name="succes" path="/experienciaPage.jsp" />
+ 		</action>	
+ 		<action path="/processExperiencia"
+ 			type="com.mistrutswebapp.action.ExperienciaAction"
+ 			name="experienciaBean"
+ 			scope="request"
+ 			validate="true"
+ 			input="/experienciaPage.jsp">
+ 			<forward name="succes" path="/homePage.jsp" />
  		</action>			
 		<action path="/creaBD"
 			type="com.mistrutswebapp.action.CreaBDAction"

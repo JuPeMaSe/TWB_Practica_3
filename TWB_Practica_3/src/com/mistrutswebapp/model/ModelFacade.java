@@ -29,9 +29,7 @@ public class ModelFacade {
 		}		
 		//escribimos el perfil en la base de datos
 		PerfilDAO perfilDAO = new PerfilDAO();
-		perfilDAO.crearPerfil(perfil);
-		
-		
+		perfilDAO.crearPerfil(perfil);		
 		return perfil;
 	}
 	

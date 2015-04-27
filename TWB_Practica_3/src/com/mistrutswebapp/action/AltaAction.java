@@ -43,24 +43,24 @@ public class AltaAction extends Action {
 
 	    usuarioBean = (UsuarioBean)form;
 		 HttpSession session= request.getSession();
-
-		if (usuarioBean.getUser_ID() == null)
-		{
-			log.info("In AltaAction: usuario no registrado");
-			return mapping.findForward("aborted");
-		}
-		else
-		{
+//
+//		if (usuarioBean.getUser_ID() == null)
+//		{
+//			log.info("In AltaAction: usuario no registrado");
+//			return mapping.findForward("aborted");
+//		}
+//		else
+//		{
 			//addUsuario();
 			ModelFacade.crearUsuario(usuarioBean);
-			compruebaAltaBD();
+			compruebaAltaBD(); //método a eliminar en el definitivo. Sólo muestra por log el alta realizada
 			log.info("In AltaAction: usuario registrado: "+usuarioBean.getUser_ID());
 			//pasamos la información al loginBean
 			LoginBean loginBean = (LoginBean)session.getAttribute("loginBean");
 			loginBean.setUser_ID(usuarioBean.getUser_ID());
 			loginBean.setPassword(usuarioBean.getPassword());
 			return mapping.findForward("succes");
-		}
+//		}
 		  
 	  }
 

@@ -27,39 +27,8 @@
 	  <h1>Formulario de registro</h1>
 <h1>Crea tu perfil</h1>
 			<!-- el action tendrá que ir hacia processCrear -->
-			<html:form action="/processlogin" enctype="multipartform-data">
+			<html:form action="/processCrear" enctype="multipartform-data">
 				<table>
-					<tr>
-						<td><label for="nombre_Tit">Titulacion:</label></td>
-						<td><html:text property="nombre_Tit" /></td>
-						<td><html:errors property="nombre_Tit" /></td>
-					</tr>
-					<tr>
-						<td><label for="nombre_Tec">Tecnología:</label></td>
-						<td><html:text property="nombre_Tec" /></td>
-						<td><html:errors property="nombre_Tec" /></td>
-					</tr>
-					<!-- Con la experiencia también se podrían poner los campos cargo, año de inicio y de fin, desactivados y activarlos con js -->
-					<tr>
-						<td><label for="empresa">Empresa:</label></td>
-						<td><html:text property="empresa" /></td>
-						<td><html:errors property="empresa" /></td>
-					</tr>
-					<tr>
-						<td><label for="cargo">Cargo:</label></td>
-						<td><html:text property="cargo" /></td>
-						<td><html:errors property="cargo" /></td>
-					</tr>
-					<tr>
-						<td><label for="a_Inicio">Año de inicio:</label></td>
-						<td><html:text property="a_Inicio" /></td>
-						<td><html:errors property="a_Inicio" /></td>
-					</tr>
-					<tr>
-						<td><label for="a_Fin">Año de finalización:</label></td>
-						<td><html:text property="a_Fin" /></td>
-						<td><html:errors property="a_Fin" /></td>
-					</tr>
 					<tr>
 						<td><label for="pais">País:</label></td>
 						<td><html:text property="pais" /></td>
