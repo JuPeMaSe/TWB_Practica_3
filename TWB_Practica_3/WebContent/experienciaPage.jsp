@@ -22,8 +22,8 @@
 			<jsp:getProperty property="user_ID" name="loginBean"/>
 		</p>  
   	
-		<h1>Página crear perfil.Saludos desde Github</h1>
-		<p>Aquí habrá que mostrar el formulario para rellenarlo.</p>
+<!-- 		<h1>Página crear perfil.Saludos desde Github</h1> -->
+<!-- 		<p>Aquí habrá que mostrar el formulario para rellenarlo.</p> -->
 	  <h1>Formulario de registro</h1>
 <h1>Añade tu experiencia</h1>
 			<!-- el action tendrá que ir hacia processCrear -->

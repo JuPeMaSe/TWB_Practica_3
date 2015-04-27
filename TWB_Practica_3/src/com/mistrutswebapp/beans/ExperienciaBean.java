@@ -11,7 +11,7 @@ import org.apache.struts.validator.ValidatorForm;
 
 public class ExperienciaBean extends ValidatorForm implements Serializable{
 	
-	private String exp_ID;//Campo Int en la base de datos
+	//private String exp_ID;//Campo Int en la base de datos
 	private String empresa;
 	private String cargo;
 	private String a_Inicio;//Campo Int en la base de datos
@@ -25,12 +25,12 @@ public class ExperienciaBean extends ValidatorForm implements Serializable{
 	/*Los campos Int, creo recordar que vi en el libro como controlarlos
 	 * Lo miraré y modificaré este bean.
 	 */
-	public String getExp_ID() {
-		return exp_ID;
-	}
-	public void setExp_ID(String exp_ID) {
-		this.exp_ID = exp_ID;
-	}
+//	public String getExp_ID() {
+//		return exp_ID;
+//	}
+//	public void setExp_ID(String exp_ID) {
+//		this.exp_ID = exp_ID;
+//	}
 	public String getEmpresa() {
 		return empresa;
 	}
@@ -58,9 +58,9 @@ public class ExperienciaBean extends ValidatorForm implements Serializable{
 	
 	public ActionErrors validate(ActionMapping mapping, HttpServletRequest request){
 		ActionErrors errors = new ActionErrors();
-		if(exp_ID == null || exp_ID.equals("")){
-			errors.add("exp_ID", new ActionMessage("error.exp_ID"));
-		}
+//		if(exp_ID == null || exp_ID.equals("")){
+//			errors.add("exp_ID", new ActionMessage("error.exp_ID"));
+//		}
 		//As� hay que implementar todos los posibles fallos del formulario
 		//complementado en WebContent/WEN-INF/classes/ApplicationResources.properties
 		//las distintas etiquetas error.loquesea = mensaje a aparecer

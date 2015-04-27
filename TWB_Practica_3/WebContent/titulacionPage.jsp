@@ -22,8 +22,8 @@
 			<jsp:getProperty property="user_ID" name="loginBean"/>
 		</p>  
   	
-		<h1>Página crear perfil.Saludos desde Github</h1>
-		<p>Aquí habrá que mostrar el formulario para rellenarlo.</p>
+<!-- 		<h1>Página crear perfil.Saludos desde Github</h1> -->
+<!-- 		<p>Aquí habrá que mostrar el formulario para rellenarlo.</p> -->
 	  <h1>Formulario de registro</h1>
 <h1>Añade tus titulaciones</h1>
 			<!-- el action tendrá que ir hacia processCrear -->
@@ -31,7 +31,12 @@
 				<table>
 					<tr>
 						<td><label for="nombre_Tit">Titulación:</label></td>
-						<td><html:text property="nombre_Tit" /></td>
+					<!-- 	<td><html:text property="nombre_Tit" /></td> -->
+					 <td><html:select property="nombre_Tit">
+					 		<html:option value="0">Selecciona Titulación</html:option>
+					 		<html:option value="1">Graduado Ingeniería Informática</html:option>
+					 		<html:option value="2">Graduado Ingeniería Tecnologías de la Informacion</html:option>
+					 		</html:select></td>  
 						<td><html:errors property="nombre_Tit" /></td>
 					</tr>
 					<tr>

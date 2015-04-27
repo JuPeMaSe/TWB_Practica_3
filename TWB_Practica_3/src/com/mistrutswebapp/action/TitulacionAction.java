@@ -15,7 +15,7 @@ import com.mistrutswebapp.beans.TitulacionBean;
 
 public class TitulacionAction extends Action {
 
-	private static Log log = LogFactory.getLog(AltaAction.class);
+	private static Log log = LogFactory.getLog(TitulacionAction.class);
 	private TitulacionBean titulacionBean;
 
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
