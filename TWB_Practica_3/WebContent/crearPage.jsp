@@ -30,16 +30,18 @@
 			<html:form action="/processCrear" enctype="multipartform-data">
 				<table>
 					<tr>
-						<td>País:</td>
+						
+						
+						<td><label for="pais">País:</label></td> 
 <!-- 						<td><html:text property="pais" /></td> -->
 				<td><html:select property="pais">
-				 <html:option value="ES">España</html:option>  
+				 	<html:option value="ES">España</html:option>  
 					  <html:option value="AF"> Afganistán </html:option>
 					  <html:option value="AL"> Albania </html:option>
 					  <html:option value="DE"> Alemania </html:option>
 					  <html:option value="AD"> Andorra </html:option>
 					
-					  <html:option value="AO"> Angola </html:option>
+<!-- 					  <html:option value="AO"> Angola </html:option>
 					  <html:option value="AI"> Anguilla </html:option>
 					  <html:option value="AQ"> Antártida </html:option>
 					  <html:option value="AG"> Antigua y Barbuda </html:option>
@@ -322,7 +324,7 @@
 					  <html:option value="DJ"> Yibuti </html:option>
 					  <html:option value="ZM"> Zambia </html:option>
 					
-					  <html:option value="ZW"> Zimbabue </html:option>
+					  <html:option value="ZW"> Zimbabue </html:option> -->
                  </html:select></td>
 						<td><html:errors property="pais" /></td>
 					</tr>

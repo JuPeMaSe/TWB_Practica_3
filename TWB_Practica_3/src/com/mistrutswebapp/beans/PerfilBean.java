@@ -20,6 +20,7 @@ public class PerfilBean extends ValidatorForm implements Serializable {
 	private String provincia;
 	private String pais;
 	private int cont_MeGusta;
+	
 	/**
 	 * @return the profile_ID
 	 */
@@ -163,4 +164,6 @@ public class PerfilBean extends ValidatorForm implements Serializable {
 		
 		return errors;
 	}
+
+
 }

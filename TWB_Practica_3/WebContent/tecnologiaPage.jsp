@@ -31,7 +31,6 @@
 				<table>
 					<tr>
 						<td><label for="nombre_Tec">Tecnología:</label></td>
-					<!-- 	<td><html:text property="nombre_Tec" /></td>	-->
 						 <td><html:select property="nombre_Tec">
 						 		<html:option value="0">Selecciona Tecnología</html:option>
 						 		<html:option value="1">Java 2</html:option>
