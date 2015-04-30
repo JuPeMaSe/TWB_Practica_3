@@ -10,7 +10,7 @@
  doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" />
  <html:html xhtml="true">
  <head> 
-<!-- 	Comentario añadido para probar Github -->
+<!-- 	Comentario quitado -->
 
    	<link href="threeregion.css" rel="stylesheet" type="text/css" />
    	   	<title>LinkUNEDin</title>  
