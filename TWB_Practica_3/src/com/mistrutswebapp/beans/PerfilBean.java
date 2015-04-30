@@ -1,6 +1,7 @@
 package com.mistrutswebapp.beans;
 
 import java.io.Serializable;
+import java.sql.Blob;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -12,7 +13,7 @@ import org.apache.struts.validator.ValidatorForm;
 public class PerfilBean extends ValidatorForm implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	private int profile_ID;
+	//private int profile_ID;
 	private String pdf; //a cambiar el tipo para almacenar pdf
 	private String fotografia;//a cambiar el tipo para almacenar jpeg, bmp...
 	private String direccion;
@@ -20,21 +21,23 @@ public class PerfilBean extends ValidatorForm implements Serializable {
 	private String provincia;
 	private String pais;
 	private int cont_MeGusta;
+	private String user_ID;
+//	
+//	/**
+//	 * @return the profile_ID
+//	 */
+//	public int getProfile_ID() {
+//		return profile_ID;
+//	}
+//
+//	/**
+//	 * @param profile_ID the profile_ID to set
+//	 */
+//	public void setProfile_ID(int profile_ID) {
+//		this.profile_ID = profile_ID;
+//	}
+
 	
-	/**
-	 * @return the profile_ID
-	 */
-	public int getProfile_ID() {
-		return profile_ID;
-	}
-
-	/**
-	 * @param profile_ID the profile_ID to set
-	 */
-	public void setProfile_ID(int profile_ID) {
-		this.profile_ID = profile_ID;
-	}
-
 	/**
 	 * @return the pdf
 	 */
@@ -63,13 +66,14 @@ public class PerfilBean extends ValidatorForm implements Serializable {
 		this.fotografia = fotografia;
 	}
 
+
 	/**
 	 * @return the direccion
 	 */
 	public String getDireccion() {
 		return direccion;
 	}
-
+	
 	/**
 	 * @param direccion the direccion to set
 	 */
@@ -147,7 +151,7 @@ public class PerfilBean extends ValidatorForm implements Serializable {
 		this.user_ID = user_ID;
 	}
 
-	private String user_ID;
+
 	
 	public PerfilBean(){
 		super();

@@ -64,15 +64,19 @@ public class CreaBDAction extends Action {
             //  log.info("In LoginAction despues de crear tabla Usuario");
               //Creamos la tabla Perfil
               sql="CREATE TABLE Perfil(" +
-              		"	profile_ID INTEGER NOT NULL PRIMARY KEY," +
-              		"	pdf BLOB," +
-              		"	fotografia BLOB," +
+              		//"	profile_ID INTEGER NOT NULL PRIMARY KEY," +
+              		//"	profile_ID SMALLINT NOT NULL AUTO_INCREMENT," +
+            		"   profile_ID INTEGER GENERATED ALWAYS AS IDENTITY(START WITH 1),"+
+              		"	pdf VARCHAR(100)," +
+              		"	fotografia VARCHAR(100)," +
               		"	direccion VARCHAR(40)," +
               		"	localidad VARCHAR(40)," +
               		"	provincia VARCHAR(40)," +
               		"	pais VARCHAR(40)," +
               		"	cont_MeGusta INTEGER," +
               		"	user_ID VARCHAR(30)" +
+              		//" PRIMARY KEY (profile_ID)"+
+              		//"   FOREIGN KEY (user_ID) REFERENCES Usuario(user_ID)"+
               		");";
               st.executeUpdate(sql);
              // log.info("In LoginAction despues de crear tabla Perfil");

@@ -1,6 +1,8 @@
 package com.mistrutswebapp.model;
 
+import java.io.File;
 import java.io.Serializable;
+import java.sql.Blob;
 
 public class Perfil implements Serializable {
 	private int profile_ID;
@@ -17,6 +19,35 @@ public class Perfil implements Serializable {
 		super();
 	}
 	
+
+	/**
+	 * @return the pdf
+	 */
+	public String getPdf() {
+		return pdf;
+	}
+
+	/**
+	 * @param pdf the pdf to set
+	 */
+	public void setPdf(String pdf) {
+		this.pdf = pdf;
+	}
+
+	/**
+	 * @return the fotografia
+	 */
+	public String getFotografia() {
+		return fotografia;
+	}
+
+	/**
+	 * @param fotografia the fotografia to set
+	 */
+	public void setFotografia(String fotografia) {
+		this.fotografia = fotografia;
+	}
+
 	public int getProfile_ID() {
 		return profile_ID;
 	}
@@ -25,21 +56,6 @@ public class Perfil implements Serializable {
 		this.profile_ID = profile_ID;
 	}
 
-	public String getPdf() {
-		return pdf;
-	}
-
-	public void setPdf(String pdf) {
-		this.pdf = pdf;
-	}
-
-	public String getFotografia() {
-		return fotografia;
-	}
-
-	public void setFotografia(String fotografia) {
-		this.fotografia = fotografia;
-	}
 
 	public String getDireccion() {
 		return direccion;

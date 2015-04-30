@@ -120,6 +120,12 @@
 			<forward name="Ok" path= "/creadaBD.jsp"/> 
 			<forward name="error" path= "/notfound.jsp"/> 
 		</action>
+		<action path="/mostrarBD"
+			type="com.mistrutswebapp.action.MostrarBDAction"
+			input= "/homePage.jsp">
+			<forward name="Ok" path= "/mostrarBD.jsp"/> 
+			<forward name="error" path= "/notfound.jsp"/> 
+		</action>
 	</action-mappings>	
  	<message-resources parameter="ApplicationResources" />
  	<plug-in className="org.apache.struts.validator.ValidatorPlugIn"> 

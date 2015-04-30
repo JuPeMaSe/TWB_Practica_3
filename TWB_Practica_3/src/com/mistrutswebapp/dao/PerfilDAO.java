@@ -1,5 +1,6 @@
 package com.mistrutswebapp.dao;
 
+import java.sql.Blob;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,8 +21,13 @@ public class PerfilDAO {
 	private ResultSet results = null;
 	private static final String DATASOURCE_NAME = "java:comp/env/jdbc/ConexionHSQLDS";
 	private static final String INSERT_STATEMENT = "INSERT INTO Perfil " +
-			"(profile_ID, pdf, fotografia, direccion, localidad, provincia, pais, cont_MeGusta, user_ID)" +
-			" VALUES (?,?,?,?,?,?,?,?,?)"; 
+			//"(profile_ID, pdf, fotografia, direccion, localidad, provincia, pais, cont_MeGusta, user_ID)" +
+			//" VALUES (?,?,?,?,?,?,?,?,?)"; 
+//			"(pdf, fotografia, direccion, localidad, provincia, pais, cont_MeGusta, user_ID)" +
+//			" VALUES (?,?,?,?,?,?,?,?)"; 
+			"(direccion, localidad, provincia, pais, user_ID, pdf,fotografia,cont_MeGusta)"+ 
+			//" VALUES (?,?,?,?,?,CAST(? AS BLOB)";
+			" VALUES (?,?,?,?,?,?,?,?)";
 
 	private void getConnection(){
 		if(connection == null){
@@ -41,21 +47,26 @@ public class PerfilDAO {
 		 try{
 			getConnection();
 		    prepStatement = connection.prepareStatement(INSERT_STATEMENT);
-		    prepStatement.setInt(0,perfil.getProfile_ID());
-		    prepStatement.setString(1, perfil.getPdf());
-		    prepStatement.setString(2, perfil.getFotografia());
-		    prepStatement.setString(3, perfil.getDireccion());
-		    prepStatement.setString(4, perfil.getLocalidad());
-		    prepStatement.setString(5, perfil.getProvincia());
-		    prepStatement.setString(6, perfil.getPais());
-		    prepStatement.setInt(7, perfil.getCont_MeGusta());
-		    prepStatement.setString(8, perfil.getUser_ID());
+		   // prepStatement.setInt(0,perfil.getProfile_ID());
+		   // prepStatement.setString(2, perfil.getPdf());
+		   // prepStatement.setString(3, perfil.getFotografia());
+		    prepStatement.setString(1, perfil.getDireccion());
+		    prepStatement.setString(2, perfil.getLocalidad());
+		    prepStatement.setString(3, perfil.getProvincia());
+		  //  System.out.println(perfil.getPais());
+		    prepStatement.setString(4, perfil.getPais());
+		  //  prepStatement.setInt(8, perfil.getCont_MeGusta());
+		    prepStatement.setString(5, perfil.getUser_ID());
+		    prepStatement.setString(6,perfil.getPdf());
+		    prepStatement.setString(7, perfil.getFotografia());
+		    prepStatement.setInt(8, perfil.getCont_MeGusta());
 		    prepStatement.executeUpdate();
 		    prepStatement.close();
 		    prepStatement = null;
 		    connection.close();
 		    connection = null;
 		 }catch(SQLException e){
+			 System.out.println("error  SQL Exception -->"+e.getMessage());
 			 e.printStackTrace();
 		 }finally{
 			cleanUp();
@@ -105,8 +116,8 @@ public class PerfilDAO {
 			   ResultSet results = statement.executeQuery("SELECT * FROM Perfil " + whereClause);
 			   int profile_ID;
 			   String pdf;
-			   String fotografia; //habrá que cambiar el tipo
-			   String direccion; //idem
+			   String fotografia;
+			   String direccion;
 			   String localidad;
 			   String provincia;
 			   String pais;

@@ -22,11 +22,15 @@ public class ModelFacade {
 		Perfil perfil= new Perfil();
 		try {
 			//pasamos las propiedades del PerfilBean al Perfil
-			PropertyUtils.copyProperties(perfilBean,  perfilBean);
+			PropertyUtils.copyProperties(perfil,  perfilBean);
 		} catch (IllegalAccessException | InvocationTargetException
 				| NoSuchMethodException e) {
 			log.error(e.getMessage());
-		}		
+		}	
+		//completamos las propiedades que faltan del perfil
+		perfil.setCont_MeGusta(0);
+		perfil.setUser_ID(perfilBean.getUser_ID());
+		
 		//escribimos el perfil en la base de datos
 		PerfilDAO perfilDAO = new PerfilDAO();
 		perfilDAO.crearPerfil(perfil);		

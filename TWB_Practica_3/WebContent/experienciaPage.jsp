@@ -12,6 +12,10 @@
 <html:html xhtml="true">
 <head>
 	<link href="threeregion.css" rel="stylesheet" type="text/css" />
+	<jsp:useBean id= "perfilBean" class="com.mistrutswebapp.beans.PerfilBean" scope="session"/>
+	<jsp:useBean id= "titulacionBean" class="com.mistrutswebapp.beans.TitulacionBean" scope="session"/>
+	<jsp:useBean id= "tecnologiaBean" class="com.mistrutswebapp.beans.TecnologiaBean" scope="session"/>
+	
 	<title>Crear perfil</title>
 </head>
 <body>
@@ -25,6 +29,36 @@
 <!-- 		<h1>Página crear perfil.Saludos desde Github</h1> -->
 <!-- 		<p>Aquí habrá que mostrar el formulario para rellenarlo.</p> -->
 	  <h1>Formulario de registro</h1>
+	  <table border="0">
+					<tr>
+						<td>Dirección</td>
+						<td><jsp:getProperty name="perfilBean" property="direccion"/></td>
+					</tr>
+					<tr>
+						<td>Provincia</td>
+						<td><jsp:getProperty name="perfilBean" property="provincia"/></td>
+					</tr>
+					<tr>
+						<td>Pais</td>
+						<td><jsp:getProperty name="perfilBean" property="pais"/></td>
+					</tr>
+					<tr>
+						<td>Pdf</td>
+						<td><jsp:getProperty name="perfilBean" property="pdf"/></td>
+					</tr>
+					<tr>
+						<td>Fotografía</td>
+						<td><jsp:getProperty name="perfilBean" property="fotografia"/></td>
+					</tr>
+					<tr>
+						<td>Titulación</td>
+						<td><jsp:getProperty name="titulacionBean" property="nombre_Tit"/></td>
+					</tr>
+					<tr>
+						<td>Tecnología</td>
+						<td><jsp:getProperty name="tecnologiaBean" property="nombre_Tec"/></td>
+					</tr>
+				</table>
 <h1>Añade tu experiencia</h1>
 			<!-- el action tendrá que ir hacia processCrear -->
 			<html:form action="/processExperiencia" enctype="multipartform-data">

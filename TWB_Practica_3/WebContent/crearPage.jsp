@@ -18,6 +18,7 @@
  	<jsp:directive.include file="header.jsp" /> 
  	<jsp:useBean id="loginBean" class= "com.mistrutswebapp.beans.LoginBean" scope="session"></jsp:useBean> 
  	<div id="content">
+
    		<p align="right">Usuario: 
 			<jsp:getProperty property="user_ID" name="loginBean"/>
 		</p>  
@@ -28,18 +29,28 @@
 <h1>Crea tu perfil</h1>
 			<!-- el action tendrá que ir hacia processCrear -->
 			<html:form action="/processCrear" enctype="multipartform-data">
+			
+			
 				<table>
+				
+				<tr>
+					<td><label for="user_ID">User_ID</label></td>
+					<td><label property="user_ID"><jsp:getProperty property="user_ID" name="loginBean"/></label></td>
+					<td><html:errors property="user_ID" /></td>
+				</tr>
 					<tr>
 						
 						
 						<td><label for="pais">País:</label></td> 
-<!-- 						<td><html:text property="pais" /></td> -->
-				<td><html:select property="pais">
+<!--  						<td><html:text property="pais" /></td>    --> 
+
+ 				<td><html:select property="pais">
 				 	<html:option value="ES">España</html:option>  
 					  <html:option value="AF"> Afganistán </html:option>
 					  <html:option value="AL"> Albania </html:option>
 					  <html:option value="DE"> Alemania </html:option>
-					  <html:option value="AD"> Andorra </html:option>
+					  <html:option value="AD"> Andorra </html:option> 
+-->
 					
 <!-- 					  <html:option value="AO"> Angola </html:option>
 					  <html:option value="AI"> Anguilla </html:option>
@@ -325,7 +336,7 @@
 					  <html:option value="ZM"> Zambia </html:option>
 					
 					  <html:option value="ZW"> Zimbabue </html:option> -->
-                 </html:select></td>
+                  </html:select></td>    
 						<td><html:errors property="pais" /></td>
 					</tr>
 					<tr>

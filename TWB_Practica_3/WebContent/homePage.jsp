@@ -34,6 +34,7 @@
 	    <p><html:link action="fromhomeeliminar.do">Eliminar un perfil</html:link></p>
 	    <p><html:link action="fromhomecrear.do">Crear un perfil</html:link></p>
 	    <p><html:link action="fromhomeadministrar.do">Administrar web</html:link></p>
+	    <p><html:link action="mostrarBD.do">Mostrar Base de Datos</html:link></p>
 	    
    </div>
  

@@ -11,6 +11,7 @@
  doctype-system="http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd" />
 <html:html xhtml="true">
 <head>
+	<jsp:useBean id= "perfilBean" class="com.mistrutswebapp.beans.PerfilBean" scope="request"/>
 	<link href="threeregion.css" rel="stylesheet" type="text/css" />
 	<title>Añadir Titulación</title>
 </head>
@@ -25,9 +26,35 @@
 <!-- 		<h1>Página crear perfil.Saludos desde Github</h1> -->
 <!-- 		<p>Aquí habrá que mostrar el formulario para rellenarlo.</p> -->
 	  <h1>Formulario de registro</h1>
+	  
+	  <table border="0">
+					<tr>
+						<td>Dirección</td>
+						<td><jsp:getProperty name="perfilBean" property="direccion"/></td>
+					</tr>
+					<tr>
+						<td>Provincia</td>
+						<td><jsp:getProperty name="perfilBean" property="provincia"/></td>
+					</tr>
+					<tr>
+						<td>Pais</td>
+						<td><jsp:getProperty name="perfilBean" property="pais"/></td>
+					</tr>
+					<tr>
+						<td>Pdf</td>
+						<td><jsp:getProperty name="perfilBean" property="pdf"/></td>
+					</tr>
+					<tr>
+						<td>Fotografía</td>
+						<td><jsp:getProperty name="perfilBean" property="fotografia"/></td>
+					</tr>
+				
+				</table>
 <h1>Añade tus titulaciones</h1>
+	
 			<!-- el action tendrá que ir hacia processCrear -->
 			<html:form action="/processTitulacion" enctype="multipartform-data">
+			 
 				<table>
 					<tr>
 						<td><label for="nombre_Tit">Titulación:</label></td>
@@ -43,7 +70,7 @@
 						<td><html:submit>Submit</html:submit></td>
 					</tr>
 				</table>
-
+				
 
 			</html:form>
 
