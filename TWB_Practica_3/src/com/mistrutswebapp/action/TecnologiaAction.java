@@ -2,6 +2,7 @@ package com.mistrutswebapp.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -20,9 +21,12 @@ public class TecnologiaAction extends Action {
 
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
-		if (log.isInfoEnabled()) {
-			log.info("In TecnologiaAction");
-		}
+//		if (log.isInfoEnabled()) {
+//			log.info("In TecnologiaAction");
+//		}
+		tecnologiaBean = (TecnologiaBean)form;
+		HttpSession sesion = request.getSession();
+		sesion.setAttribute("tecnologiaBean", tecnologiaBean);
 		return mapping.findForward("succes");
 	}
 

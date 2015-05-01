@@ -2,7 +2,8 @@
 <!-- File: home.jsp -->
 <jsp:root xmlns:jsp="http://java.sun.com/JSP/Page"	
    xmlns:html="http://struts.apache.org/tags-html" 
-   xmlns:bean="http://struts.apache.org/tags-bean"		
+   xmlns:bean="http://struts.apache.org/tags-bean"
+     xmlns:c="http://java.sun.com/jstl/core_rt"		
    version="2.0">
 <jsp:directive.page contentType="text/html"/>   
 <jsp:output omit-xml-declaration="false"
@@ -55,10 +56,11 @@
 				 	<td><html:checkbox property="chkTecnologia"></html:checkbox></td>
 					<td><label for="nombre_Tec">Tecnología:</label></td>
 					<td><html:select property="nombre_Tec">
-					 		<html:option value="0">Selecciona Tecnología</html:option>
-					 		<html:option value="1">Java 2</html:option>
-					 		<html:option value="2">C++</html:option>
-					 		</html:select></td>  
+					 		<c:forEach var="tecn"  items="${listaTecnologias}" >
+					 		<c:set var="tecn_ID" scope="page" value= "${tecn.tecnologia_ID}"/>
+					 		<html:option value="${tecn_ID}">${tecn.nombre_Tec}</html:option>					 
+							</c:forEach> 
+					 	</html:select></td>  
 					<td><html:errors property="nombre_Tec" /></td>
 				</tr>
 				<tr>
@@ -66,9 +68,10 @@
 					<td><label for="nombre_Tit">Titulación:</label></td>
 				<!-- 	<td><html:text property="nombre_Tit" /></td> -->
 					<td><html:select property="nombre_Tit">
-				 		<html:option value="0">Selecciona Titulación</html:option>
-					 	<html:option value="1">Graduado Ingeniería Informática</html:option>
-				 		<html:option value="2">Graduado Ingeniería Tecnologías de la Informacion</html:option>
+				 		 <c:forEach var="titu"  items="${listaTitulaciones}" >
+					 		<c:set var="titu_ID" scope="page" value= "${titu.titulacion_ID}"/>
+					 		<html:option value="${titu_ID}">${titu.nombre_Tit}</html:option>					 
+					 	</c:forEach> 
 				 		</html:select></td>  
 					<td><html:errors property="nombre_Tit" /></td>
 				</tr>

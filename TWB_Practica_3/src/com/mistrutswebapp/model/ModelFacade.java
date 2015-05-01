@@ -91,4 +91,19 @@ public class ModelFacade {
 		  Collection<Perfil> perfilCollection = pdao.leerPerfiles(whereClause);
 		  return perfilCollection;
 	}
+	
+	/**
+	 * Añade una tecnología a un perfil
+	 */
+	public static void linkTecToPerfil (){
+		
+	}
+	
+	/**
+	 * Obtiene una lista de Tecnologías
+	 */
+	public static Collection<Tecnologia> getTecnologias(){
+		return null;
+		
+	}
 }

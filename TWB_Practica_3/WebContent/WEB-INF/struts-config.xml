@@ -12,6 +12,7 @@
  		<form-bean name="tecnologiaBean" type="com.mistrutswebapp.beans.TecnologiaBean" />
  		<form-bean name="experienciaBean" type="com.mistrutswebapp.beans.ExperienciaBean" />
  		<form-bean name="consultaBean" type="com.mistrutswebapp.beans.ConsultaBean" />
+ 		<form-bean name="mostrarPerfilCreadoBean" type="com.mistrutswebapp.beans.MostrarPerfilCreadoBean" />
  	</form-beans>
 	<global-forwards type="org.apache.struts.action.ActionForward">
 		<forward name="home" path="/homePage.jsp" redirect="false"/>
@@ -112,8 +113,16 @@
  			scope="request"
  			validate="true"
  			input="/experienciaPage.jsp">
+ 			<forward name="succes" path="/mostrarPerfilCreado.jsp" />
+ 		</action>	
+ 		<action path="/processGrabar"
+ 			type="com.mistrutswebapp.action.MostrarPerfilCreadoAction"
+ 			name="mostrarPerfilCreadoBean"
+ 			scope="request"
+ 			validate="true"
+ 			input="/mostrarPerfilCreadoPage.jsp">
  			<forward name="succes" path="/homePage.jsp" />
- 		</action>			
+ 		</action>				
 		<action path="/creaBD"
 			type="com.mistrutswebapp.action.CreaBDAction"
 			input= "/homePage.jsp">

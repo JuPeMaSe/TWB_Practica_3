@@ -20,9 +20,9 @@ public class ExperienciaAction extends Action{
 
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
 			HttpServletRequest request, HttpServletResponse response) {
-		if (log.isInfoEnabled()) {
-			log.info("In ExperienciaAction");
-		}
+//		if (log.isInfoEnabled()) {
+//			log.info("In ExperienciaAction");
+//		}
 		return mapping.findForward("succes");
 	}
 }

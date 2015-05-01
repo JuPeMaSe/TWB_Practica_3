@@ -4,6 +4,7 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
 import org.apache.commons.logging.Log;
@@ -13,7 +14,11 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import com.mistrutswebapp.model.Tecnologia;
+import com.mistrutswebapp.model.Titulacion;
+
 import java.sql.*;  
+import java.util.ArrayList;
 
 public class CreaBDAction extends Action {
 	 private static Log log = LogFactory.getLog(LoginAction.class);
@@ -24,6 +29,7 @@ public class CreaBDAction extends Action {
 		  { 
 		   log.info("In CreaBDAction");
 		  }
+		  HttpSession sesion = request.getSession();
 		  Connection con = null;  
           Statement  st   = null;  
           String     sql  = null;  
@@ -127,12 +133,65 @@ public class CreaBDAction extends Action {
 //              		"VALUES ('jpms', '4367',  'Juan Pedro', 'Marquez Sevilla','', '','adm')");
 //              //st.executeUpdate("INSERT INTO Usuario (User_ID, Password, Nombre) VALUES ('jpms', '4367',  'Juan Pedro')");
 //              st.executeUpdate("INSERT INTO Usuario (user_ID, password, nombre) VALUES ('ja', '5367',  'Jose Angel')");  
-//      			st.executeUpdate("INSERT INTO Usuario (user_ID, password, nombre) VALUES ('jj', '6367',  'Juan Jose')");  
+//      			st.executeUpdate("INSERT INTO Usuario (user_ID, password, nombre) VALUES ('jj', '6367',  'Juan Jose')");
+              //Introducimos varias titulaciones
+              st.executeUpdate("INSERT INTO Titulacion (titulacion_ID,nombre_Tit) " +
+              		"VALUES (0,'Sin titulación')");
+              st.executeUpdate("INSERT INTO Titulacion (titulacion_ID,nombre_Tit) " +
+            		"VALUES (1,'Graduado Ingenieria Informatica')");
+              st.executeUpdate("INSERT INTO Titulacion (titulacion_ID, nombre_Tit) " +
+              		"VALUES (2,'Graduado Ingenieria Tecnologías de la Información')");
+              st.executeUpdate("INSERT INTO Titulacion (titulacion_ID, nombre_Tit) " +
+              		"VALUES (3,'Graduado Física')");
+              st.executeUpdate("INSERT INTO Titulacion (titulacion_ID, nombre_Tit) " +
+              		"VALUES (4,'Graduado Matemáticas')");
+              //Introducimos varias tecnologías
+              st.executeUpdate("INSERT INTO Tecnologia (tecnologia_ID, nombre_Tec) " +
+                		"VALUES (0,'N/A')");
+              st.executeUpdate("INSERT INTO Tecnologia (tecnologia_ID, nombre_Tec) " +
+              		"VALUES (1,'Java2')");
+              st.executeUpdate("INSERT INTO Tecnologia (tecnologia_ID, nombre_Tec) " +
+                	"VALUES (2,'C++')");
+              st.executeUpdate("INSERT INTO Tecnologia (tecnologia_ID, nombre_Tec) " +
+                	"VALUES (3,'SQL')");
+              st.executeUpdate("INSERT INTO Tecnologia (tecnologia_ID, nombre_Tec) " +
+                    "VALUES (4,'Struts')");
 	// Mostramos por pantalla todos los usuarios de la tabla  
             rst1 = st.executeQuery("SELECT * FROM Usuario");  
             while (rst1.next()){  
-                log.info("In CreaBDAction --> "+ rst1.getString("user_ID") + " " + rst1.getString("password") + " " + rst1.getString("nombre") );  
+                log.info("In CreaBDAction --> Tabla Usuario: "+ rst1.getString("user_ID") + " " + rst1.getString("password") + " " + rst1.getString("nombre"));
+                  
             }  
+            
+            //Creamos la listaTitulaciones con scope=session
+            rst1 = st.executeQuery("SELECT * FROM Titulacion");
+            ArrayList<Titulacion> listaTitulaciones = new ArrayList<Titulacion>();
+            log.info("In CreaBDAction --> ");
+            while (rst1.next()){ 
+            	Titulacion tit = new Titulacion();
+            	int ID = rst1.getInt("titulacion_ID");
+            	String nom = rst1.getString("nombre_Tit"); 
+            	tit.setTitulacion_ID(ID);
+            	tit.setNombre_Tit(nom);
+            	listaTitulaciones.add(tit);
+                log.info("Tabla Titulación: "+	ID + " "+nom);  
+            }
+            sesion.setAttribute("listaTitulaciones",listaTitulaciones);
+            
+            
+            rst1 = st.executeQuery("SELECT * FROM Tecnologia");
+            ArrayList<Tecnologia> listaTecnologias = new ArrayList<Tecnologia>();
+            log.info("In CreaBDAction --> ");
+            while (rst1.next()){ 
+            	Tecnologia tec = new Tecnologia();
+            	int ID = rst1.getInt("tecnologia_ID");
+            	String nom = rst1.getString("nombre_Tec"); 
+            	tec.setTecnologia_ID(ID);
+            	tec.setNombre_Tec(nom);
+            	listaTecnologias.add(tec);
+                log.info("Tabla Tecnología: "+	ID + " "+nom);  
+            }
+            sesion.setAttribute("listaTecnologias",listaTecnologias);
               // Enviamos el comando para que salve todos los datos temporales de forma permanente  
  //             st = con.createStatement();  
  //             st.executeUpdate("SHUTDOWN");  
