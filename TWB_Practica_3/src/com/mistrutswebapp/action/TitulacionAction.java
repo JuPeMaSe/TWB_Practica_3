@@ -1,5 +1,7 @@
 package com.mistrutswebapp.action;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -24,11 +26,14 @@ public class TitulacionAction extends Action {
 			HttpServletRequest request, HttpServletResponse response) {
 		titulacionBean = (TitulacionBean)form;
 		HttpSession sesion = request.getSession();
+		int t= Integer.parseInt(request.getParameter("titulacion_ID"));
+		titulacionBean.setTitulacion_ID(request.getParameter("titulacion_ID"));
+		//System.out.println("Nombre titulacion = "+ request.getParameter("titu_nombre"));
 		perfilBean = (PerfilBean)sesion.getAttribute("perfilBean");
+		ArrayList<Integer> listaTit = new ArrayList<Integer>();
+		listaTit.add(t);
+		perfilBean.setListaTit(listaTit);
 		
-//		if (log.isInfoEnabled()) {
-//			log.info("In TitulacionAction");
-//		}
 		sesion.setAttribute("titulacionBean", titulacionBean);
 		return mapping.findForward("succes");
 	}

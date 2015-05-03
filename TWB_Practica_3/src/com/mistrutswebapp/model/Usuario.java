@@ -18,11 +18,11 @@ public class Usuario implements Serializable {
 	private String tfno;
 	private String email;
 	private String userType; //Está limitado a 3 caracteres en la BD
-	//private Collection<Perfil> perfiles;
+	private Collection<Perfil> perfiles;
 	
 	public Usuario(){
 		super();
-		//perfiles=new ArrayList<Perfil>();
+		perfiles=new ArrayList<Perfil>();
 	}
 	
 	/**
@@ -142,19 +142,19 @@ public class Usuario implements Serializable {
 		this.userType = userType;
 	}
 
-//	/**
-//	 * @return the perfiles
-//	 */
-//	public Collection<Perfil> getPerfiles() {
-//		return perfiles;
-//	}
-//
-//	/**
-//	 * @param perfiles the perfiles to set
-//	 */
-//	public void setPerfiles(Collection<Perfil> perfiles) {
-//		this.perfiles = perfiles;
-//	}
+	/**
+	 * @return the perfiles
+	 */
+	public Collection<Perfil> getPerfiles() {
+		return perfiles;
+	}
+
+	/**
+	 * @param perfiles the perfiles to set
+	 */
+	public void setPerfiles(Collection<Perfil> perfiles) {
+		this.perfiles = perfiles;
+	}
 //
 //	/**
 //	 * 

@@ -19,6 +19,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import com.mistrutswebapp.action.PageHomeAction;
+import com.mistrutswebapp.model.Perfil;
 import com.mistrutswebapp.model.Usuario;
 
 public class UsuarioDAO {
@@ -69,12 +70,12 @@ public class UsuarioDAO {
 	public Collection<Usuario> leerUsuarios(String whereClause){
 		//log.info("In UsuarioDAO -->leerUsuarios(clause)");
 		Collection<Usuario> usuarios = new ArrayList<Usuario>();
+		Collection<Perfil> perfiles = new ArrayList<Perfil>();
 		try{
 			getConnection();
 			Statement st = connection.createStatement();
 			//log.info("In UsuarioDAO -->leerUsuarios(clause)-->try --> st = "+st.getFetchSize());
 			ResultSet results = st.executeQuery("SELECT * FROM Usuario " + whereClause);
-			//ResultSet results = st.executeQuery("SELECT * FROM Usuario");
 			String strUser_ID = null;
 			String strPassword= null;
 			String strNombre= null;
@@ -82,7 +83,8 @@ public class UsuarioDAO {
 			//Date fe_Nac= null;
 			String strTfno= null;
 			String strEmail= null;
-			String strUserType= null; 
+			String strUserType= null;
+			PerfilDAO perfilDAO = new PerfilDAO();
 			Usuario usuario = null;
 			//log.info("In UsuarioDAO -->leerUsuarios(clause)-->try --> results = "+results.getFetchSize());
 			
@@ -105,6 +107,7 @@ public class UsuarioDAO {
 				usuario.setTfno(strTfno);
 				usuario.setEmail(strEmail);
 				usuario.setUserType(strUserType);
+				usuario.setPerfiles(perfilDAO.leerPerfiles("where user_ID = '"+strUser_ID+"'"));
 				usuarios.add(usuario);
 				System.out.println("leido usuario -->"+strUser_ID);
 			}

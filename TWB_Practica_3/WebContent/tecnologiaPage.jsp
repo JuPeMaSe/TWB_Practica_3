@@ -52,7 +52,7 @@
 					</tr>
 					<tr>
 						<td>Titulacion</td>
-						<td><jsp:getProperty name="titulacionBean" property="nombre_Tit"/></td>
+						<td><jsp:getProperty name="titulacionBean" property="titulacion_ID"/></td>
 					</tr>
 				</table>
 <h1>Añade tecnologías</h1>
@@ -60,8 +60,8 @@
 			<html:form action="/processTecnologia" enctype="multipartform-data">
 				<table>
 					<tr>
-						<td><label for="nombre_Tec">Tecnología:</label></td>
-						 <td><html:select property="nombre_Tec">
+						<td><label for="tecnologia_ID">Tecnología:</label></td>
+						 <td><html:select property="tecnologia_ID">
 						  	<c:forEach var="tecn"  items="${listaTecnologias}" >
 					 		<c:set var="tecn_ID" scope="page" value= "${tecn.tecnologia_ID}"/>
 					 		<html:option value="${tecn_ID}">${tecn.nombre_Tec}</html:option>					 

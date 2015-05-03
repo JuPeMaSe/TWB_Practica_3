@@ -52,11 +52,11 @@
 					</tr>
 					<tr>
 						<td>Titulación</td>
-						<td><jsp:getProperty name="titulacionBean" property="nombre_Tit"/></td>
+						<td><jsp:getProperty name="titulacionBean" property="titulacion_ID"/></td>
 					</tr>
 					<tr>
 						<td>Tecnología</td>
-						<td><jsp:getProperty name="tecnologiaBean" property="nombre_Tec"/></td>
+						<td><jsp:getProperty name="tecnologiaBean" property="tecnologia_ID"/></td>
 					</tr>
 				</table>
 <h1>Añade tu experiencia</h1>

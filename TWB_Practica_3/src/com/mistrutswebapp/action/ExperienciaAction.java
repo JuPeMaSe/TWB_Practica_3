@@ -2,6 +2,7 @@ package com.mistrutswebapp.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -23,6 +24,9 @@ public class ExperienciaAction extends Action{
 //		if (log.isInfoEnabled()) {
 //			log.info("In ExperienciaAction");
 //		}
+		experienciaBean= (ExperienciaBean)form;
+		HttpSession sesion = request.getSession();
+		sesion.setAttribute("experienciaBean",experienciaBean);
 		return mapping.findForward("succes");
 	}
 }

@@ -7,8 +7,8 @@ public class Experiencia implements Serializable{
 	int exp_ID;
 	String empresa;
 	String cargo;
-	int a_Inicio;
-	int a_Fin;
+	String a_Inicio;
+	String a_Fin;
 	int profile_ID;
 	
 	public Experiencia(){
@@ -60,28 +60,28 @@ public class Experiencia implements Serializable{
 	/**
 	 * @return the a_Inicio
 	 */
-	public int getA_Inicio() {
+	public String getA_Inicio() {
 		return a_Inicio;
 	}
 
 	/**
 	 * @param a_Inicio the a_Inicio to set
 	 */
-	public void setA_Inicio(int a_Inicio) {
+	public void setA_Inicio(String a_Inicio) {
 		this.a_Inicio = a_Inicio;
 	}
 
 	/**
 	 * @return the a_Fin
 	 */
-	public int getA_Fin() {
+	public String getA_Fin() {
 		return a_Fin;
 	}
 
 	/**
 	 * @param a_Fin the a_Fin to set
 	 */
-	public void setA_Fin(int a_Fin) {
+	public void setA_Fin(String a_Fin) {
 		this.a_Fin = a_Fin;
 	}
 
@@ -98,5 +98,7 @@ public class Experiencia implements Serializable{
 	public void setProfile_ID(int profile_ID) {
 		this.profile_ID = profile_ID;
 	}
+
+
 	
 }

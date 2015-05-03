@@ -17,7 +17,48 @@
 
 	<jsp:useBean id= "perfilBean" class="com.mistrutswebapp.beans.PerfilBean" scope="request"/>
 	<link href="threeregion.css" rel="stylesheet" type="text/css" />
+	
+	
+ <SCRIPT type="text/javascript">
+	function newTitulacion(nombre){
+		var posicion=document.getElementById("posicionActual");
+ 		var nuevaTabla = document.createElement('TABLE');
+ 		var LineaTr = document.createElement('TR');
+   		var LineaTd=document.createElement('TD');
+		var lbl=document.createElement('label');
+ 		var texto=document.createTextNode("Titulacion: ");
+ 		lbl.appendChild(texto);
+ 		LineaTd.appendChild(lbl);
+ 		LineaTr.appendChild(LineaTd);
+ 		LineaTd=document.createElement('TD');
+		lbl=document.createElement('label');
+ 		texto=document.createTextNode(nombre);
+ 		lbl.appendChild(texto);
+ 		LineaTd.appendChild(lbl);
+ 		LineaTr.appendChild(LineaTd);
+ 		nuevaTabla.appendChild(LineaTr);
+ 		nuevaTabla.setAttribute("border","0");
+ 		posicion.appendChild(nuevaTabla);
+//   		LineaTd=document.appendChild(texto);
+//   		LineaTr.appendChild(LineaTd);
+//   		nuevaTabla.appendChild(LineaTr);
+//  		posicion.appendChild(nuevaTabla);	
+	}
+	
+	function devolverTitulacion(){
+		var posicion = document.getElementById("posicionActual");
+		var lbl = document.createElement('LABEL');
+		var texto = document.createTextNode("Nuevo");
+		lbl.appendChild(texto);
+		posicion.appendChild(lbl);
+	}
+	
+	</SCRIPT> 
+	
+	
+<!-- 	<script src="funcionesJS.js" language="JavaScript" type="text/javascript"></script> -->
 	<title>Añadir Titulación</title>
+	
 </head>
 <body>
  	<jsp:directive.include file="header.jsp" /> 
@@ -60,30 +101,33 @@
 			<html:form action="/processTitulacion" enctype="multipartform-data">
 		 
 		
-			 	
+			 <fieldset id="posicionActual"><legend>Titulaciones</legend>	
 				<table>
  					<tr>
-						<td><label for="nombre_Tit">Titulación:</label></td>
+						<td><label for="titulacion_ID">Titulación:</label></td>
 <!-- 					 	<td><html:text property="nombre_Tit" /></td>      -->					 
 					
-					 <td><html:select property="nombre_Tit">
-					 <c:forEach var="titu"  items="${listaTitulaciones}" >
-					 <c:set var="titu_ID" scope="page" value= "${titu.titulacion_ID}"/>
-					 	<html:option value="${titu_ID}">${titu.nombre_Tit}</html:option>					 
-					 </c:forEach> 
-					
-<!--  					 		
-					 		<html:option value="1">Graduado Ingeniería Informática</html:option>
-					 		<html:option value="2">Graduado Ingeniería Tecnologías de la Informacion</html:option>
--->					 		</html:select></td>  
-						<td><html:errors property="nombre_Tit" /></td>
+					 <td><html:select property="titulacion_ID" >
+						 <c:forEach var="titu"  items="${listaTitulaciones}" >
+						 <c:set var="titu_ID" scope="request" value= "${titu.titulacion_ID}"/>
+						 <c:set var="titu_nombre" scope="request" value="${titu.nombre_Tit}"/>
+						 	<html:option value="${titu_ID}">${titu_nombre}</html:option>					 
+						 </c:forEach> 					
+				 		</html:select></td>  
+				 <!--   		<html:text property="nombre_Tit"><c:out value="${titu_nombre}"/></html:text>  -->   
+						<td><html:errors property="titulacion_ID" /></td>
+						<td><A HREF="javascript:newTitulacion('${titu_nombre}')">Agregar otra Titulación</A></td>
 					</tr>
 					<tr>
-						<td><html:submit>Submit</html:submit></td>
+ 					 
+<!--    						<td><html:button property="" onclick="newTitulacion()" value="Añadir Titulación"></html:button></td> -->  
+					
 					</tr>
 				</table>
 				
-
+				
+			 </fieldset>
+				<td><html:submit>Submit</html:submit></td>
 			</html:form>
 
 

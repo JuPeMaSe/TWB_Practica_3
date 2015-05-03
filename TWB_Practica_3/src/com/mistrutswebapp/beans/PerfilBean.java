@@ -2,6 +2,7 @@ package com.mistrutswebapp.beans;
 
 import java.io.Serializable;
 import java.sql.Blob;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -22,6 +23,18 @@ public class PerfilBean extends ValidatorForm implements Serializable {
 	private String pais;
 	private int cont_MeGusta;
 	private String user_ID;
+	private ArrayList<Integer> listaTit;
+	private ArrayList<Integer> listaExp;
+	private ArrayList<Integer> listaTec;
+	
+	
+	public PerfilBean(){
+		super();
+		listaTit=new ArrayList<Integer>();
+		listaTec=new ArrayList<Integer>();
+		listaExp=new ArrayList<Integer>();
+	}
+	
 //	
 //	/**
 //	 * @return the profile_ID
@@ -153,10 +166,49 @@ public class PerfilBean extends ValidatorForm implements Serializable {
 
 
 	
-	public PerfilBean(){
-		super();
-	}
 	
+	/**
+	 * @return the listaTit
+	 */
+	public ArrayList<Integer> getListaTit() {
+		return listaTit;
+	}
+
+	/**
+	 * @param listaTit the listaTit to set
+	 */
+	public void setListaTit(ArrayList<Integer> listaTit) {
+		this.listaTit = listaTit;
+	}
+
+	/**
+	 * @return the listaExp
+	 */
+	public ArrayList<Integer> getListaExp() {
+		return listaExp;
+	}
+
+	/**
+	 * @param listaExp the listaExp to set
+	 */
+	public void setListaExp(ArrayList<Integer> listaExp) {
+		this.listaExp = listaExp;
+	}
+
+	/**
+	 * @return the listaTec
+	 */
+	public ArrayList<Integer> getListaTec() {
+		return listaTec;
+	}
+
+	/**
+	 * @param listaTec the listaTec to set
+	 */
+	public void setListaTec(ArrayList<Integer> listaTec) {
+		this.listaTec = listaTec;
+	}
+
 	public ActionErrors validate(ActionMapping mapping, HttpServletRequest request){
 		ActionErrors errors = new ActionErrors();
 		

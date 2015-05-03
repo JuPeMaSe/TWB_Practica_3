@@ -80,7 +80,8 @@ public class CreaBDAction extends Action {
               		"	provincia VARCHAR(40)," +
               		"	pais VARCHAR(40)," +
               		"	cont_MeGusta INTEGER," +
-              		"	user_ID VARCHAR(30)" +
+              		"	user_ID VARCHAR(30)," +
+              		"	reference VARCHAR(40)" +
               		//" PRIMARY KEY (profile_ID)"+
               		//"   FOREIGN KEY (user_ID) REFERENCES Usuario(user_ID)"+
               		");";
@@ -116,11 +117,11 @@ public class CreaBDAction extends Action {
               //log.info("In LoginAction despues de crear tabla Perfil_Tit");
               //Creamos la tabla Experiencia
               sql="CREATE TABLE Experiencia(" +
-              		"	exp_ID INTEGER NOT NULL PRIMARY KEY," +
+              		"	exp_ID INTEGER GENERATED ALWAYS AS IDENTITY(START WITH 1)," +
               		"	empresa VARCHAR(60)," +
               		"	cargo VARCHAR(50)," +
-              		"	a_Inicio INTEGER," +
-              		"	a_Fin INTEGER," +
+              		"	a_Inicio VARCHAR(10)," +
+              		"	a_Fin VARCHAR(10)," +
               		"	profile_ID INTEGER" +
               		");";
               st.executeUpdate(sql);

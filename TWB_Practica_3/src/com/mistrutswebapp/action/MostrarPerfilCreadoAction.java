@@ -1,5 +1,7 @@
 package com.mistrutswebapp.action;
 
+import java.util.ArrayList;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -30,8 +32,31 @@ public class MostrarPerfilCreadoAction extends Action {
 		tecnologiaBean = (TecnologiaBean) sesion.getAttribute("tecnologiaBean");
 		experienciaBean=(ExperienciaBean) sesion.getAttribute("experienciaBean");
 		
+		ArrayList<Integer> listaTit= new ArrayList<Integer>();
+		//System.out.println("En MostrarPerfilCreado: titulacion--> "+titulacionBean.getTitulacion_ID()+titulacionBean.getNombre_Tit());
+		int t = perfilBean.getListaTit().size();
+		for(int i=0; i<t; i++){
+			listaTit= perfilBean.getListaTit();
+			System.out.println("En MostrarPerfilCreado: perfilBean.listaTitulacion.item --> "+listaTit.get(i));		
+		}
 		
-		ModelFacade.crearPerfil(perfilBean);
+		
+		
+		//listaTit.add(t);		
+		//perfilBean.setListaTit(listaTit);
+		//System.out.println(perfilBean.getListaTit().get(0).toString());
+		
+		ArrayList<Integer> listaTec= new ArrayList<Integer>();
+		listaTec.add(tecnologiaBean.getTecnologia_ID());		
+		perfilBean.setListaTec(listaTec);
+		//System.out.println(perfilBean.getListaTec().get(0).toString());
+		
+		//ArrayList<Integer> listaExp= new ArrayList<Integer>();
+				
+		
+		
+		
+		ModelFacade.crearPerfil(perfilBean,experienciaBean);
 		
 		return mapping.findForward("succes");
 	}

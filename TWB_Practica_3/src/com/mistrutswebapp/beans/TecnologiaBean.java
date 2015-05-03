@@ -10,18 +10,18 @@ import org.apache.struts.validator.ValidatorForm;
 
 public class TecnologiaBean extends ValidatorForm implements Serializable{	
 	private static final long serialVersionUID = 1L;
-	private String tecnologia_ID;
+	private int tecnologia_ID;
 	private String nombre_Tec;
 	
 	public TecnologiaBean(){
 		super();
 	}
 	
-	public String getTecnologia_ID() {
+	public int getTecnologia_ID() {
 		return tecnologia_ID;
 	}
 	public void setTecnologia_ID(String tecnologia_ID) {
-		this.tecnologia_ID = tecnologia_ID;
+		this.tecnologia_ID = Integer.parseInt(tecnologia_ID);
 	}
 	public String getNombre_Tec() {
 		return nombre_Tec;

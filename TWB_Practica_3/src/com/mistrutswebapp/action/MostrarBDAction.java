@@ -51,6 +51,19 @@ public class MostrarBDAction extends Action {
                 		  " " + rst1.getString("provincia") + " " + rst1.getString("pais")+" " + rst1.getString("pdf") + " " + rst1.getString("fotografia")+
                 		  " " + rst1.getInt("cont_MeGusta") + " " + rst1.getString("user_ID"));  
               }  
+              rst1 = st.executeQuery("SELECT * FROM Perfil_Tit");  
+              while (rst1.next()){  
+                  log.info("In MostrarBDAction Perfil_Tit--> "+ rst1.getString("titulacion_ID") + " " + rst1.getString("Profile_ID")  );  
+              } 
+              rst1 = st.executeQuery("SELECT * FROM Perfil_Tec");  
+              while (rst1.next()){  
+                  log.info("In MostrarBDAction Perfil_Tec--> "+ rst1.getString("tecnologia_ID") + " " + rst1.getString("Profile_ID")  );  
+              } 
+              rst1 = st.executeQuery("SELECT * FROM Experiencia");  
+              while (rst1.next()){  
+                  log.info("In MostrarBDAction Experiencia--> "+ rst1.getString("exp_ID") + " "+rst1.getString("empresa") + " "+rst1.getString("cargo") + 
+                		 " " +rst1.getString("a_Inicio")+" "+rst1.getString("a_Fin") + " "+ rst1.getString("Profile_ID")  );  
+              } 
               
           } catch (Exception ex){  
               log.error("BD error --> "+ ex.getMessage());

@@ -10,18 +10,18 @@ import org.apache.struts.validator.ValidatorForm;
 public class TitulacionBean extends ValidatorForm implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-	private String titulacion_ID;
+	private int titulacion_ID;
 	private String nombre_Tit;
 	
 	public TitulacionBean(){
 		super();
 	}
 	
-	public String getTitulacion_ID() {
+	public int getTitulacion_ID() {
 		return titulacion_ID;
 	}
 	public void setTitulacion_ID(String titulacion_ID) {
-		this.titulacion_ID = titulacion_ID;
+		this.titulacion_ID = Integer.parseInt(titulacion_ID);
 	}
 	public String getNombre_Tit() {
 		return nombre_Tit;

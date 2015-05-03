@@ -3,6 +3,7 @@ package com.mistrutswebapp.model;
 import java.io.File;
 import java.io.Serializable;
 import java.sql.Blob;
+import java.util.ArrayList;
 
 public class Perfil implements Serializable {
 	private int profile_ID;
@@ -14,9 +15,17 @@ public class Perfil implements Serializable {
 	private String pais;
 	private int cont_MeGusta;
 	private String user_ID;
+	private String reference;
+	private ArrayList<Integer> listaTit;
+	private ArrayList<Integer> listaExp;
+	private ArrayList<Integer> listaTec;
+	
 	
 	public Perfil(){
 		super();
+		listaTit=new ArrayList<Integer>();
+		listaTec=new ArrayList<Integer>();
+		listaExp=new ArrayList<Integer>();
 	}
 	
 
@@ -103,6 +112,70 @@ public class Perfil implements Serializable {
 
 	public void setUser_ID(String user_ID) {
 		this.user_ID = user_ID;
+	}
+
+
+	/**
+	 * @return the listaTit
+	 */
+	public ArrayList<Integer> getListaTit() {
+		return listaTit;
+	}
+
+
+	/**
+	 * @param listaTit the listaTit to set
+	 */
+	public void setListaTit(ArrayList<Integer> listaTit) {
+		this.listaTit = listaTit;
+	}
+
+
+	/**
+	 * @return the listaExp
+	 */
+	public ArrayList<Integer> getListaExp() {
+		return listaExp;
+	}
+
+
+	/**
+	 * @param listaExp the listaExp to set
+	 */
+	public void setListaExp(ArrayList<Integer> listaExp) {
+		this.listaExp = listaExp;
+	}
+
+
+	/**
+	 * @return the listaTec
+	 */
+	public ArrayList<Integer> getListaTec() {
+		return listaTec;
+	}
+
+
+	/**
+	 * @param listaTec the listaTec to set
+	 */
+	public void setListaTec(ArrayList<Integer> listaTec) {
+		this.listaTec = listaTec;
+	}
+
+
+	/**
+	 * @return the reference
+	 */
+	public String getReference() {
+		return reference;
+	}
+
+
+	/**
+	 * @param reference the reference to set
+	 */
+	public void setReference(String reference) {
+		this.reference = reference;
 	}
 
 	

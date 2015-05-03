@@ -80,7 +80,7 @@
  		   	scope="request"
  		   	validate="true"
  		   	input="/altaPage.jsp" >
- 		   	<forward name="succes" path="/displaylogin.jsp" /> 
+ 		   	<forward name="succes" path="/crearPage.jsp" /> 
 <!-- 		   	<forward name="notfound" path="/notfound.jsp" /> -->
  		</action>
  		<action path="/processCrear"
