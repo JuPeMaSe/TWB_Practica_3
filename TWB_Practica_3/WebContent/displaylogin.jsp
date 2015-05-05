@@ -12,15 +12,14 @@
 <html:html xhtml="true">
 <head>
  	<link href="threeregion.css" rel="stylesheet" type="text/css" />
+ 	<jsp:useBean id="loginBean" class= "com.mistrutswebapp.beans.LoginBean" scope="session"></jsp:useBean>
 	<title>Login Correcto</title>
 </head>
 <body>
 	<jsp:directive.include file="header.jsp" />
-	<jsp:useBean id="loginBean" class= "com.mistrutswebapp.beans.LoginBean" scope="session"></jsp:useBean>
+	
 	<div id="content"> 
-		<p align="right">Usuario: 
-			<jsp:getProperty property="user_ID" name="loginBean"/>
-		</p>
+		
 		<h1>Usuario <jsp:getProperty property="user_ID" name="loginBean"/> registrado correctamente</h1>
 		
 		<p>Si el navegador no le muestra la pantalla de inicio, pulse: 

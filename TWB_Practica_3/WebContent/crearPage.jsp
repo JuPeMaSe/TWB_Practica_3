@@ -12,21 +12,17 @@
 <html:html xhtml="true">
 <head>
 	<link href="threeregion.css" rel="stylesheet" type="text/css" />
+	<jsp:useBean id="loginBean" class= "com.mistrutswebapp.beans.LoginBean" scope="session"></jsp:useBean>
 	<title>Crear perfil</title>
 </head>
 <body>
  	<jsp:directive.include file="header.jsp" /> 
- 	<jsp:useBean id="loginBean" class= "com.mistrutswebapp.beans.LoginBean" scope="session"></jsp:useBean> 
- 	<div id="content">
-
-   		<p align="right">Usuario: 
-			<jsp:getProperty property="user_ID" name="loginBean"/>
-		</p>  
+ 	 <div id="content">
   	
 <!-- 		<h1>Página crear perfil.Saludos desde Github</h1> -->
 <!-- 		<p>Aquí habrá que mostrar el formulario para rellenarlo.</p> -->
-	  <h1>Formulario de registro</h1>
-<h1>Crea tu perfil</h1>
+	<h1>Formulario de registro</h1>
+	<h1>Crea tu perfil</h1>
 			<!-- el action tendrá que ir hacia processCrear -->
 			<html:form action="/processCrear" enctype="multipartform-data">
 			
@@ -50,7 +46,6 @@
 					  <html:option value="AL"> Albania </html:option>
 					  <html:option value="DE"> Alemania </html:option>
 					  <html:option value="AD"> Andorra </html:option> 
--->
 					
 <!-- 					  <html:option value="AO"> Angola </html:option>
 					  <html:option value="AI"> Anguilla </html:option>

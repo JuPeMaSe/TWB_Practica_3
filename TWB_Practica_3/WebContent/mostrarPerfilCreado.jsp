@@ -15,6 +15,7 @@
 <html:html xhtml="true">
 <head>
 	<link href="threeregion.css" rel="stylesheet" type="text/css" />
+	<jsp:useBean id="loginBean" class= "com.mistrutswebapp.beans.LoginBean" scope="session"></jsp:useBean>
 	<jsp:useBean id= "perfilBean" class="com.mistrutswebapp.beans.PerfilBean" scope="session"/>
 	<jsp:useBean id= "titulacionBean" class="com.mistrutswebapp.beans.TitulacionBean" scope="session"/>
 	<jsp:useBean id= "tecnologiaBean" class="com.mistrutswebapp.beans.TecnologiaBean" scope="session"/>
@@ -24,11 +25,9 @@
 </head>
 <body>
  	<jsp:directive.include file="header.jsp" /> 
- 	<jsp:useBean id="loginBean" class= "com.mistrutswebapp.beans.LoginBean" scope="session"></jsp:useBean> 
+ 	 
  	<div id="content">
-   		<p align="right">Usuario: 
-			<jsp:getProperty property="user_ID" name="loginBean"/>
-		</p>
+   		
 		<h1>Formulario de registro</h1>
 		<html:form action="/processGrabar" enctype="multipartform-data">
 	  <table border="0">

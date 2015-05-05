@@ -12,15 +12,14 @@
  <html:html xhtml="true">
 <head>
 	<link href="threeregion.css" rel="stylesheet" type="text/css" />
+	<jsp:useBean id="loginBean" class= "com.mistrutswebapp.beans.LoginBean" scope="session"></jsp:useBean>
 	<title>Eliminar Perfil</title>
 </head>
 <body>
  	<jsp:directive.include file="header.jsp" />   
- 	<jsp:useBean id="loginBean" class= "com.mistrutswebapp.beans.LoginBean" scope="session"></jsp:useBean>
+ 	
  	<div id="content"> 
-   		<p align="right">Usuario: 
-			<jsp:getProperty property="user_ID" name="loginBean"/>
-		</p>
+   		
 		<h1>Página eliminar perfil</h1>
 		<p>Aquí habrá que mostrar el perfil o los perfiles a eliminar</p>
 		<html:link action="home"><bean:message key="tohome.link" /></html:link>

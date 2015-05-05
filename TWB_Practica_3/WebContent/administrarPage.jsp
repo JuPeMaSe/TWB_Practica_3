@@ -12,15 +12,13 @@
 <html:html xhtml="true">
 <head>
 	<link href="threeregion.css" rel="stylesheet" type="text/css" />
+	<jsp:useBean id="loginBean" class= "com.mistrutswebapp.beans.LoginBean" scope="session"></jsp:useBean>
 	<title>Administrador</title>
 </head>
 <body>
-	<jsp:directive.include file="header.jsp" />
-	<jsp:useBean id="loginBean" class= "com.mistrutswebapp.beans.LoginBean" scope="session"></jsp:useBean> 
+	<jsp:directive.include file="header.jsp" /> 
    	<div id="content">
-   		<p align="right">Usuario: 
-			<jsp:getProperty property="user_ID" name="loginBean"/>
-		</p>
+   		
 		<h1>Página administrador</h1>
 		<p>Aquí habrá que mostrar las posibles modificaciones para el administrador</p>
 		<html:link action="home"><bean:message key="tohome.link" /></html:link>

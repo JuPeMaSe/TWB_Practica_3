@@ -13,19 +13,17 @@
 <html:html xhtml="true">
 <head>
 	<link href="threeregion.css" rel="stylesheet" type="text/css" />
+	<jsp:useBean id="loginBean" class= "com.mistrutswebapp.beans.LoginBean" scope="session"></jsp:useBean>
 	<jsp:useBean id= "perfilBean" class="com.mistrutswebapp.beans.PerfilBean" scope="session"/>
 	<jsp:useBean id= "titulacionBean" class="com.mistrutswebapp.beans.TitulacionBean" scope="session"/>
 	<title>Crear perfil</title>
 </head>
 <body>
  	<jsp:directive.include file="header.jsp" /> 
- 	<jsp:useBean id="loginBean" class= "com.mistrutswebapp.beans.LoginBean" scope="session"></jsp:useBean> 
+ 	 
  	
  	<div id="content">
-   		<p align="right">Usuario: 
-			<jsp:getProperty property="user_ID" name="loginBean"/>
-		</p>  
-  	
+   		  	
 <!-- 		<h1>Página crear perfil.Saludos desde Github</h1> -->
 <!-- 		<p>Aquí habrá que mostrar el formulario para rellenarlo.</p> -->
 	  <h1>Formulario de registro</h1>

@@ -12,16 +12,14 @@
 <html:html xhtml="true">
 <head>
 	<link href="threeregion.css" rel="stylesheet" type="text/css" />
+	<jsp:useBean id="loginBean" class= "com.mistrutswebapp.beans.LoginBean" scope="session"></jsp:useBean>
 	<title>Página de Baja</title>
 </head>
 <body>
 	<jsp:directive.include file="header.jsp" />
- 	<jsp:useBean id="loginBean" class= "com.mistrutswebapp.beans.LoginBean" scope="session"></jsp:useBean> 
+ 	 
 	<div id="content"> 
-	  	<p align="right">Usuario: 
-			<jsp:getProperty property="user_ID" name="loginBean"/>
-		</p>
-		<h1>Página de Baja</h1>
+	  	<h1>Página de Baja</h1>
 		<html:link action="home"><bean:message key="tohome.link" /></html:link>
 	</div>
 	<jsp:directive.include file="footer.jsp" />

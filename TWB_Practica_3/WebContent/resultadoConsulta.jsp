@@ -14,14 +14,14 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html" />
 	<link href="threeregion.css" rel="stylesheet" type="text/css" />
+	<jsp:useBean id="loginBean" class= "com.mistrutswebapp.beans.LoginBean" scope="session"></jsp:useBean>
 	<title>Alta de usuario</title>
 </head>
 <body>
 	<jsp:directive.include file="header.jsp" />
-	<jsp:useBean id="loginBean" class= "com.mistrutswebapp.beans.LoginBean" scope="session"></jsp:useBean> 
+	 
 	<!-- <div id="content"> --> 
-	<p align="right">Usuario:<jsp:getProperty property="user_ID" name="loginBean"/>
-	</p>
+	
 	<h1>Resultado de la Consulta</h1>
 	<p>Aquí hay que mostrar el resultado de la consulta</p>
 		

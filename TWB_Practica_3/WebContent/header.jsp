@@ -1,3 +1,7 @@
+<%@ taglib uri="http://struts.apache.org/tags-bean" prefix="bean" %>
+<%@ taglib uri="http://struts.apache.org/tags-logic" prefix="logic" %>
+<%@ taglib uri="http://struts.apache.org/tags-html" prefix="html" %>
+
 <div id="navigationbar">
  <a href="homePage.jsp">
   <img src="webhomelogo.gif" alt="Web logo" />
@@ -26,17 +30,59 @@
   <a href="more.htm">M&aacute;s info</a>
  </div>
 </div>
-<!-- <div id="rightnavigation"> -->
-<!--  <div class="rigthnavigationlink"> -->
-<!--   <a href="build.htm">buildings cover</a> -->
+
+
+<p align="right">Usuario:
+	 <logic:notEmpty name="loginBean" property="user_ID">			
+		<bean:write name="loginBean" property="user_ID"/>
+		<p><html:link page="/logout.jsp">Terminar Sesion</html:link></p>	
+	</logic:notEmpty>
+	<logic:empty name="loginBean" property="user_ID">
+		Anónimo
+	</logic:empty>
+	
+</p>
+
+<!-- <div id="navigationbar"> -->
+<!--  <a href="homePage.jsp"> -->
+<!--   <img src="webhomelogo.gif" alt="Web logo" /> -->
+<!--  </a> -->
+<!--  <span class="topnavigationlink"> -->
+<!--   <a href="homePage.jsp">Home</a> -->
+<!--  </span> -->
+<!--  <span class="topnavigationlink"> -->
+<!--   <a href="consultaPage.jsp">P&aacute;gina Consulta</a> -->
+<!--  </span> -->
+<!--  <span class="topnavigationlink"> -->
+<!--   <a href="contactoPage.htm">Contacta con nosotros</a> -->
+<!--  </span> -->
+<!-- </div> -->
+<!-- <div id="leftnavigation"> -->
+<!--  <div class="leftnavigationlink"> -->
+<!--   <a href="ayudaPage.htm">Ayuda</a> -->
 <!--  </div> -->
-<!--  <div class="rightnavigationlink"> -->
-<!--   <a href="content.htm">contents cover</a> -->
+<!--  <div class="leftnavigationlink"> -->
+<!--   <a href="content.htm">Qui&eacute;nes somos</a> -->
 <!--  </div> -->
-<!--  <div class="rightnavigationlink"> -->
-<!--   <a href="deal.htm">special deals</a> -->
+<!--  <div class="leftnavigationlink"> -->
+<!--   <a href="deal.htm">Mapa de Navegaci&oacute;n</a> -->
 <!--  </div> -->
-<!--  <div class="rightnavigationlink"> -->
-<!--   <a href="more.htm">more info</a> -->
+<!--  <div class="leftnavigationlink"> -->
+<!--   <a href="more.htm">M&aacute;s info</a> -->
 <!--  </div> -->
 <!-- </div> -->
+<!-- <!-- <div id="rightnavigation"> --> 
+<!-- <!--  <div class="rigthnavigationlink"> --> 
+<!-- <!--   <a href="build.htm">buildings cover</a> -->
+<!-- <!--  </div> --> 
+<!-- <!--  <div class="rightnavigationlink"> --> 
+<!-- <!--   <a href="content.htm">contents cover</a> -->
+<!-- <!--  </div> --> 
+<!-- <!--  <div class="rightnavigationlink"> --> 
+<!-- <!--   <a href="deal.htm">special deals</a> --> 
+<!-- <!--  </div> --> 
+<!-- <!--  <div class="rightnavigationlink"> --> 
+<!-- <!--   <a href="more.htm">more info</a> --> 
+<!-- <!--  </div> --> 
+<!-- <!-- </div> --> 
+

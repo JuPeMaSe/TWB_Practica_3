@@ -13,15 +13,14 @@
 <!-- 	Comentario añadido para probar Github -->
 
    	<link href="threeregion.css" rel="stylesheet" type="text/css" />
+   	<jsp:useBean id="loginBean" class= "com.mistrutswebapp.beans.LoginBean" scope="session"></jsp:useBean>
    	   	<title>LinkUNEDin</title>  
  </head>
   <body> 	
   	<jsp:directive.include file="header.jsp" />
-  	<jsp:useBean id="loginBean" class= "com.mistrutswebapp.beans.LoginBean" scope="session"></jsp:useBean> 
+   
   <div id="content">  
-  		<p align="right">Usuario: 
-			<jsp:getProperty property="user_ID" name="loginBean"/>
-		</p>
+  		
 	    <h1>LinkUNEDin</h1>
 	    <h3>Página de inicio del portal</h3>
 	    <p>Este portal se ha creado para aquellos profesionales que decidan compartir con nosotros su currículo, así como, permitir una mejor entrada en el mercado laboral</p>
