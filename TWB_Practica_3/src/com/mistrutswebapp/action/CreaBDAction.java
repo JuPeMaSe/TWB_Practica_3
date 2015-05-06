@@ -130,8 +130,8 @@ public class CreaBDAction extends Action {
               //Borramos los usuarios que existiesen en la tabla Usuario  
               st.executeUpdate("DELETE FROM Usuario");  
 //           // Varios usuarios de prueba  
-//              st.executeUpdate("INSERT INTO Usuario (user_ID, password, nombre, apellidos, tfno, email, userType) " +
-//              		"VALUES ('jpms', '4367',  'Juan Pedro', 'Marquez Sevilla','', '','adm')");
+              st.executeUpdate("INSERT INTO Usuario (user_ID, password, nombre, apellidos, tfno, email, userType) " +
+              		"VALUES ('admin', 'admin',  'Juan Pedro', 'Marquez Sevilla','', '','adm')");
 //              //st.executeUpdate("INSERT INTO Usuario (User_ID, Password, Nombre) VALUES ('jpms', '4367',  'Juan Pedro')");
 //              st.executeUpdate("INSERT INTO Usuario (user_ID, password, nombre) VALUES ('ja', '5367',  'Jose Angel')");  
 //      			st.executeUpdate("INSERT INTO Usuario (user_ID, password, nombre) VALUES ('jj', '6367',  'Juan Jose')");
@@ -179,7 +179,7 @@ public class CreaBDAction extends Action {
             }
             sesion.setAttribute("listaTitulaciones",listaTitulaciones);
             
-            
+            //Creamos la listaTecnologias con scope=session
             rst1 = st.executeQuery("SELECT * FROM Tecnologia");
             ArrayList<Tecnologia> listaTecnologias = new ArrayList<Tecnologia>();
             log.info("In CreaBDAction --> ");
@@ -193,10 +193,10 @@ public class CreaBDAction extends Action {
                 log.info("Tabla Tecnología: "+	ID + " "+nom);  
             }
             sesion.setAttribute("listaTecnologias",listaTecnologias);
-              // Enviamos el comando para que salve todos los datos temporales de forma permanente  
- //             st = con.createStatement();  
- //             st.executeUpdate("SHUTDOWN");  
-              
+      
+
+            
+            
               // Liberamos recursos y cerramos la conexion  
              st.close();  
               con.close();  

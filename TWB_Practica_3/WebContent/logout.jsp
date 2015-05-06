@@ -25,11 +25,7 @@
   	<%session.removeAttribute("loginBean"); %> 
 	    </logic:notEmpty>
 	    
-	    
    </div>
- 
- 	
- 		
  
     <jsp:directive.include file="footer.jsp" />
 </body>

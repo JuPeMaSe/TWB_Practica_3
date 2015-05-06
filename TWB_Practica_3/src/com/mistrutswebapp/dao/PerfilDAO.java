@@ -233,7 +233,7 @@ public class PerfilDAO {
 			   String reference;
 			   ArrayList<Integer> listaTit;
 			   ArrayList<Integer> listaTec;
-			   ArrayList<Integer> listaExp;
+			   ArrayList<Experiencia> listaExp;
 			   
 			   Perfil perfil = null;
 			   while(results.next()){
@@ -257,10 +257,17 @@ public class PerfilDAO {
 				 while (resTec.next()){
 					 listaTec.add(resTec.getInt("tecnologia_ID"));
 				 }
-				 listaExp= new ArrayList<Integer>();			   	 
+				 listaExp= new ArrayList<Experiencia>();			   	 
 				 resExp = stExp.executeQuery("SELECT * FROM Experiencia where profile_ID ='" +profile_ID+"'");
 				 while (resExp.next()){
-					 listaExp.add(resExp.getInt("exp_ID"));
+					 Experiencia exp = new Experiencia();
+					 exp.setEmpresa(resExp.getString("empresa"));
+					 exp.setCargo(resExp.getString("cargo"));
+					 exp.setA_Fin(resExp.getString("a_Fin"));
+					 exp.setA_Inicio(resExp.getString("a_Inicio"));
+					 exp.setExp_ID(resExp.getInt("exp_ID"));
+					 exp.setProfile_ID(resExp.getInt("profile_ID"));
+					 listaExp.add(exp);
 				 }
 				 
 			   	 perfil=new Perfil();

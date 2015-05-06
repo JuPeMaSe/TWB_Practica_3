@@ -17,7 +17,7 @@ public class Perfil implements Serializable {
 	private String user_ID;
 	private String reference;
 	private ArrayList<Integer> listaTit;
-	private ArrayList<Integer> listaExp;
+	private ArrayList<Experiencia> listaExp;
 	private ArrayList<Integer> listaTec;
 	
 	
@@ -25,7 +25,7 @@ public class Perfil implements Serializable {
 		super();
 		listaTit=new ArrayList<Integer>();
 		listaTec=new ArrayList<Integer>();
-		listaExp=new ArrayList<Integer>();
+		listaExp=new ArrayList<Experiencia>();
 	}
 	
 
@@ -134,7 +134,7 @@ public class Perfil implements Serializable {
 	/**
 	 * @return the listaExp
 	 */
-	public ArrayList<Integer> getListaExp() {
+	public ArrayList<Experiencia> getListaExp() {
 		return listaExp;
 	}
 
@@ -142,7 +142,7 @@ public class Perfil implements Serializable {
 	/**
 	 * @param listaExp the listaExp to set
 	 */
-	public void setListaExp(ArrayList<Integer> listaExp) {
+	public void setListaExp(ArrayList<Experiencia> listaExp) {
 		this.listaExp = listaExp;
 	}
 

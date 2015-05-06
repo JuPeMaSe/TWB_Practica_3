@@ -11,6 +11,8 @@ import org.apache.struts.action.ActionMapping;
 import org.apache.struts.action.ActionMessage;
 import org.apache.struts.validator.ValidatorForm;
 
+import com.mistrutswebapp.model.Experiencia;
+
 public class PerfilBean extends ValidatorForm implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
@@ -24,15 +26,15 @@ public class PerfilBean extends ValidatorForm implements Serializable {
 	private int cont_MeGusta;
 	private String user_ID;
 	private ArrayList<Integer> listaTit;
-	private ArrayList<Integer> listaExp;
 	private ArrayList<Integer> listaTec;
+	private ArrayList<Experiencia> listaExp;
 	
 	
 	public PerfilBean(){
 		super();
 		listaTit=new ArrayList<Integer>();
 		listaTec=new ArrayList<Integer>();
-		listaExp=new ArrayList<Integer>();
+		listaExp=new ArrayList<Experiencia>();
 	}
 	
 //	
@@ -184,14 +186,14 @@ public class PerfilBean extends ValidatorForm implements Serializable {
 	/**
 	 * @return the listaExp
 	 */
-	public ArrayList<Integer> getListaExp() {
+	public ArrayList<Experiencia> getListaExp() {
 		return listaExp;
 	}
 
 	/**
 	 * @param listaExp the listaExp to set
 	 */
-	public void setListaExp(ArrayList<Integer> listaExp) {
+	public void setListaExp(ArrayList<Experiencia> listaExp) {
 		this.listaExp = listaExp;
 	}
 

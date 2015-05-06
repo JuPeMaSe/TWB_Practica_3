@@ -107,7 +107,10 @@ public class UsuarioDAO {
 				usuario.setTfno(strTfno);
 				usuario.setEmail(strEmail);
 				usuario.setUserType(strUserType);
-				usuario.setPerfiles(perfilDAO.leerPerfiles("where user_ID = '"+strUser_ID+"'"));
+				if(!strUserType.equals("adm")){
+					usuario.setPerfiles(perfilDAO.leerPerfiles("where user_ID = '"+strUser_ID+"'"));	
+				}
+				
 				usuarios.add(usuario);
 				System.out.println("leido usuario -->"+strUser_ID);
 			}
