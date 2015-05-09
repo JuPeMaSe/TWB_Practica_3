@@ -1,6 +1,7 @@
 package com.mistrutswebapp.model;
 
 import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
 import java.util.Collection;
 import org.apache.commons.beanutils.PropertyUtils;
 import org.apache.commons.logging.Log;
@@ -20,13 +21,14 @@ public class ModelFacade {
 	 * @param perfilBean
 	 * @return Perfil
 	 */
-	public static Perfil crearPerfil(PerfilBean perfilBean, ExperienciaBean experienciaBean){
+	public static Perfil crearPerfil(PerfilBean perfilBean){
 		Perfil perfil= new Perfil();
 		Experiencia experiencia = new Experiencia();
+		ArrayList<Experiencia> listaExp = new ArrayList<Experiencia>();
 		try {
 			//pasamos las propiedades del PerfilBean al Perfil
 			PropertyUtils.copyProperties(perfil,  perfilBean);
-			PropertyUtils.copyProperties(experiencia, experienciaBean);
+			//PropertyUtils.copyProperties(experiencia, experienciaBean);
 		} catch (IllegalAccessException | InvocationTargetException
 				| NoSuchMethodException e) {
 			log.error(e.getMessage());
@@ -45,9 +47,15 @@ public class ModelFacade {
 //		System.out.println("en ModelFacade: Perfil profile_ID --> "+ intProfile_ID);		
 		perfilDAO.addTitulacion(intProfile_ID, perfil);
 		perfilDAO.addTecnologia(intProfile_ID, perfil);
-		if(experiencia.getEmpresa()!=null){
-			perfilDAO.addExperiencia(intProfile_ID, experiencia);
+//		if(experiencia.getEmpresa()!=null){
+//			perfilDAO.addExperiencia(intProfile_ID, experiencia);
+//		}
+		
+		listaExp = perfilBean.getListaExp();
+		for(int i=0;i<listaExp.size();i++){
+			perfilDAO.addExperiencia(intProfile_ID, listaExp.get(i));
 		}
+		
 		
 		return perfil;
 	}

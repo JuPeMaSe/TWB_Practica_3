@@ -28,19 +28,19 @@ public class TecnologiaAction extends Action {
 
 		tecnologiaBean = (TecnologiaBean)form;
 		HttpSession sesion = request.getSession();
+
+		tecnologiaBean.setTecnologia_var(request.getParameterValues("tecnologia_var"));
+		ArrayList<Integer> listaTec = new ArrayList<Integer>();
+		String tecValues[] = request.getParameterValues("tecnologia_var");
 		
-		int t= Integer.parseInt(request.getParameter("tecnologia_ID"));
-		tecnologiaBean.setTecnologia_ID(request.getParameter("tecnologia_ID"));
-		
-		sesion.setAttribute("tecnologiaBean", tecnologiaBean);
+		for (int i =0; i< tecValues.length;i ++){
+			int t = Integer.parseInt(tecValues[i]);
+			listaTec.add(t);
+		}
 		
 		perfilBean = (PerfilBean)sesion.getAttribute("perfilBean");
-		ArrayList<Integer> listaTec = new ArrayList<Integer>();
-		listaTec.add(t);
 		perfilBean.setListaTec(listaTec);
-		
-		
+		sesion.setAttribute("tecnologiaBean", tecnologiaBean);
 		return mapping.findForward("succes");
 	}
-
 }

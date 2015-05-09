@@ -48,18 +48,21 @@
 						<td>Fotografía</td>
 						<td><jsp:getProperty name="perfilBean" property="fotografia"/></td>
 					</tr>
+					 <jsp:setProperty name="titulacionBean" property="titulacion_var" param="titulacion_var" /> 
+						<c:forEach var="titu" items="${titulacionBean.titulacion_var}">
 					<tr>
 						<td>Titulacion</td>
-						<td><jsp:getProperty name="titulacionBean" property="titulacion_ID"/></td>
+						<td><c:out value="${titu}"/></td>
 					</tr>
+					</c:forEach>
 				</table>
 <h1>Añade tecnologías</h1>
 			<!-- el action tendrá que ir hacia processCrear -->
 			<html:form action="/processTecnologia" enctype="multipartform-data">
 				<table>
 					<tr>
-						<td><label for="tecnologia_ID">Tecnología:</label></td>
-						 <td><html:select property="tecnologia_ID">
+						<td><label for="tecnologia_var">Tecnología:</label></td>
+						 <td><html:select property="tecnologia_var" multiple= "multiple">
 						  	<c:forEach var="tecn"  items="${listaTecnologias}" >
 					 		<c:set var="tecn_ID" scope="page" value= "${tecn.tecnologia_ID}"/>
 					 		<html:option value="${tecn_ID}">${tecn.nombre_Tec}</html:option>					 

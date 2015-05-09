@@ -26,12 +26,15 @@ public class TitulacionAction extends Action {
 			HttpServletRequest request, HttpServletResponse response) {
 		titulacionBean = (TitulacionBean)form;
 		HttpSession sesion = request.getSession();
-		int t= Integer.parseInt(request.getParameter("titulacion_ID"));
-		titulacionBean.setTitulacion_ID(request.getParameter("titulacion_ID"));
-		//System.out.println("Nombre titulacion = "+ request.getParameter("titu_nombre"));
-		perfilBean = (PerfilBean)sesion.getAttribute("perfilBean");
+		titulacionBean.setTitulacion_var(request.getParameterValues("titulacion_var"));
 		ArrayList<Integer> listaTit = new ArrayList<Integer>();
-		listaTit.add(t);
+		String titValues[] = request.getParameterValues("titulacion_var");
+		
+		for (int i =0; i< titValues.length;i ++){
+			int t = Integer.parseInt(titValues[i]);
+			listaTit.add(t);
+		}
+		perfilBean = (PerfilBean)sesion.getAttribute("perfilBean");
 		perfilBean.setListaTit(listaTit);
 		
 		sesion.setAttribute("titulacionBean", titulacionBean);

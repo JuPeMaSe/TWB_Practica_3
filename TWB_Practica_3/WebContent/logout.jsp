@@ -21,8 +21,12 @@
   		<logic:notEmpty name="loginBean" property="user_ID">  
   			<p>Hasta la próxima <bean:write name="loginBean" property="user_ID"/></p>	
   	<%--  	<% session.invalidate(); %> --%>
-  	<%session.removeAttribute("perfilBean"); %>
-  	<%session.removeAttribute("loginBean"); %> 
+  	<%-- <%session.removeAttribute("perfilBean"); %>
+  	<%session.removeAttribute("loginBean"); %>  --%>  	
+		  	<jsp:scriptlet>
+		  		session.removeAttribute("perfilBean"); 
+		  		session.removeAttribute("loginBean");
+		  	</jsp:scriptlet>
 	    </logic:notEmpty>
 	    
    </div>

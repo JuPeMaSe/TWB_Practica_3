@@ -51,33 +51,44 @@
 						<td>Fotografía</td>
 						<td><jsp:getProperty name="perfilBean" property="fotografia"/></td>
 					</tr>
-					<tr>
-						<td>Titulación</td>
-						<td><jsp:getProperty name="titulacionBean" property="titulacion_ID"/></td>
-					</tr>
-					<tr>
-						<td>Tecnología</td>
-						<td><jsp:getProperty name="tecnologiaBean" property="tecnologia_ID"/></td>
-					</tr>
+					<jsp:setProperty name="titulacionBean" property="titulacion_var" param="titulacion_var" /> 
+					<c:forEach var="titu" items="${titulacionBean.titulacion_var}">
+						<tr>
+							<td>Titulacion</td>
+							<td><c:out value="${titu}"/></td>
+						</tr>
+					</c:forEach>
+					
+					<jsp:setProperty name="tecnologiaBean" property="tecnologia_var" param="tecnologia_var"/>
+					<c:forEach var="tecn" items="${tecnologiaBean.tecnologia_var}" >
+						<tr>
+							<td>Tecnología</td>
+							<td><c:out value="${tecn}" /></td>
+						</tr>
+					</c:forEach>
+					<jsp:setProperty name="perfilBean" property="listaExp" param="listaExp"/>
+					<c:forEach var="expe" items="${perfilBean.listaExp}">
+					
 					<tr>
 						<td>Empresa</td>
-						<td><jsp:getProperty name="experienciaBean" property="empresa"/></td>
+						<td><c:out value="${expe.empresa}"/></td>
 					</tr>
 					<tr>
 						<td>Cargo</td>
-						<td><jsp:getProperty name="experienciaBean" property="cargo"/></td>
+						<td><c:out value="${expe.cargo}"/></td>
 					</tr>
 					<tr>
 						<td>Año de Inicio</td>
-						<td><jsp:getProperty name="experienciaBean" property="a_Inicio"/></td>
+						<td><c:out value="${expe.a_Inicio}"/></td>
 					</tr>
 					<tr>
 						<td>Año de Finalización</td>
-						<td><jsp:getProperty name="experienciaBean" property="a_Fin"/></td>
+						<td><c:out value="${expe.a_Fin}"/></td>
 					</tr>
 					<tr>
 						<td><html:submit>Submit</html:submit></td>
 					</tr>
+					</c:forEach>
 				</table>
 		</html:form>
 		

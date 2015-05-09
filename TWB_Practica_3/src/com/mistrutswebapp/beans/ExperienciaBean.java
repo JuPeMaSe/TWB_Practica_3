@@ -14,6 +14,10 @@ public class ExperienciaBean extends ActionForm implements Serializable{
 	private String cargo;
 	private String a_Inicio;
 	private String a_Fin;
+	private String empresa_var[];
+	private String cargo_var[];
+	private String a_Inicio_var[];
+	private String a_Fin_var[];
 	/**
 	 * @return the a_Inicio
 	 */
@@ -64,25 +68,76 @@ public class ExperienciaBean extends ActionForm implements Serializable{
 		this.cargo = cargo;
 	}
 	
+
+	/**
+	 * @return the empresa_var
+	 */
+	public String[] getEmpresa_var() {
+		return empresa_var;
+	}
+	/**
+	 * @param empresa_var the empresa_var to set
+	 */
+	public void setEmpresa_var(String[] empresa_var) {
+		this.empresa_var = empresa_var;
+	}
+	/**
+	 * @return the cargo_var
+	 */
+	public String[] getCargo_var() {
+		return cargo_var;
+	}
+	/**
+	 * @param cargo_var the cargo_var to set
+	 */
+	public void setCargo_var(String[] cargo_var) {
+		this.cargo_var = cargo_var;
+	}
+	/**
+	 * @return the a_Inicio_var
+	 */
+	public String[] getA_Inicio_var() {
+		return a_Inicio_var;
+	}
+	/**
+	 * @param a_Inicio_var the a_Inicio_var to set
+	 */
+	public void setA_Inicio_var(String[] a_Inicio_var) {
+		this.a_Inicio_var = a_Inicio_var;
+	}
+	/**
+	 * @return the a_Fin_var
+	 */
+	public String[] getA_Fin_var() {
+		return a_Fin_var;
+	}
+	/**
+	 * @param a_Fin_var the a_Fin_var to set
+	 */
+	public void setA_Fin_var(String[] a_Fin_var) {
+		this.a_Fin_var = a_Fin_var;
+	}
+	
+	
 	public ActionErrors validate(ActionMapping mapping, HttpServletRequest request){
 		ActionErrors errors = new ActionErrors();
 		
-		if(a_Inicio != null || !a_Inicio.equals("")){
-			try{
-				Integer.parseInt(a_Inicio);
-			}catch(Exception e){
-				errors.add("a_Inicio", new ActionMessage("error.a_Inicio"));	
-			}
-			
-		}
-		if(a_Fin != null || !a_Fin.equals("")){
-			try{
-				Integer.parseInt(a_Fin);
-			}catch(Exception e){
-				errors.add("a_Fin", new ActionMessage("error.a_Fin"));	
-			}
-			
-		}
+//		if(a_Inicio != null || !a_Inicio.equals("")){
+//			try{
+//				Integer.parseInt(a_Inicio);
+//			}catch(Exception e){
+//				errors.add("a_Inicio", new ActionMessage("error.a_Inicio"));	
+//			}
+//			
+//		}
+//		if(a_Fin != null || !a_Fin.equals("")){
+//			try{
+//				Integer.parseInt(a_Fin);
+//			}catch(Exception e){
+//				errors.add("a_Fin", new ActionMessage("error.a_Fin"));	
+//			}
+//			
+//		}
 		//Aquí hay que implementar todos los posibles fallos del formulario
 		//complementado en WebContent/WEN-INF/classes/ApplicationResources.properties
 		//las distintas etiquetas error.loquesea = mensaje a aparecer
@@ -91,5 +146,4 @@ public class ExperienciaBean extends ActionForm implements Serializable{
 		
 		return errors;
 	}
-
 }

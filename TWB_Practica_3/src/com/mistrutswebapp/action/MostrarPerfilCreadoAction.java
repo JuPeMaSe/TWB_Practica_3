@@ -34,29 +34,22 @@ public class MostrarPerfilCreadoAction extends Action {
 		
 		ArrayList<Integer> listaTit= new ArrayList<Integer>();
 		//System.out.println("En MostrarPerfilCreado: titulacion--> "+titulacionBean.getTitulacion_ID()+titulacionBean.getNombre_Tit());
-		int t = perfilBean.getListaTit().size();
-		for(int i=0; i<t; i++){
-			listaTit= perfilBean.getListaTit();
+		
+		listaTit= perfilBean.getListaTit();
+		int t= listaTit.size();
+		for(int i=0; i<t; i++){			
 			System.out.println("En MostrarPerfilCreado: perfilBean.listaTitulacion.item --> "+listaTit.get(i));		
 		}
 		
+		ArrayList<Integer> listaTec = new ArrayList<Integer>();
+		listaTec=perfilBean.getListaTec();
+		int z = listaTec.size();
+		for(int i=0;i<z;i++){
+			System.out.println("En MostrarPerfilCreado: perfilBean.listaTecnologia.item --> "+listaTec.get(i));
+		}
+			
 		
-		
-		//listaTit.add(t);		
-		//perfilBean.setListaTit(listaTit);
-		//System.out.println(perfilBean.getListaTit().get(0).toString());
-		
-		ArrayList<Integer> listaTec= new ArrayList<Integer>();
-		listaTec.add(tecnologiaBean.getTecnologia_ID());		
-		perfilBean.setListaTec(listaTec);
-		//System.out.println(perfilBean.getListaTec().get(0).toString());
-		
-		//ArrayList<Integer> listaExp= new ArrayList<Integer>();
-				
-		
-		
-		
-		ModelFacade.crearPerfil(perfilBean,experienciaBean);
+		ModelFacade.crearPerfil(perfilBean);
 		
 		return mapping.findForward("succes");
 	}

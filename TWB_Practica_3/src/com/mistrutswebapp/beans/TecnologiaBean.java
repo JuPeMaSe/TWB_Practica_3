@@ -12,16 +12,31 @@ public class TecnologiaBean extends ValidatorForm implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private int tecnologia_ID;
 	private String nombre_Tec;
+	private String tecnologia_var[];
 	
 	public TecnologiaBean(){
 		super();
 	}
 	
+	/**
+	 * @return the tecnologia_var
+	 */
+	public String[] getTecnologia_var() {
+		return tecnologia_var;
+	}
+
+	/**
+	 * @param tecnologia_var the tecnologia_var to set
+	 */
+	public void setTecnologia_var(String[] tecnologia_var) {
+		this.tecnologia_var = tecnologia_var;
+	}
+
 	public int getTecnologia_ID() {
 		return tecnologia_ID;
 	}
-	public void setTecnologia_ID(String tecnologia_ID) {
-		this.tecnologia_ID = Integer.parseInt(tecnologia_ID);
+	public void setTecnologia_ID(int tecnologia_ID) {
+		this.tecnologia_ID = tecnologia_ID;
 	}
 	public String getNombre_Tec() {
 		return nombre_Tec;
