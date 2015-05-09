@@ -121,28 +121,40 @@ public class ExperienciaBean extends ActionForm implements Serializable{
 	
 	public ActionErrors validate(ActionMapping mapping, HttpServletRequest request){
 		ActionErrors errors = new ActionErrors();
-		
-//		if(a_Inicio != null || !a_Inicio.equals("")){
-//			try{
-//				Integer.parseInt(a_Inicio);
-//			}catch(Exception e){
-//				errors.add("a_Inicio", new ActionMessage("error.a_Inicio"));	
-//			}
-//			
-//		}
-//		if(a_Fin != null || !a_Fin.equals("")){
-//			try{
-//				Integer.parseInt(a_Fin);
-//			}catch(Exception e){
-//				errors.add("a_Fin", new ActionMessage("error.a_Fin"));	
-//			}
-//			
-//		}
-		//Aquí hay que implementar todos los posibles fallos del formulario
-		//complementado en WebContent/WEN-INF/classes/ApplicationResources.properties
-		//las distintas etiquetas error.loquesea = mensaje a aparecer
-		//Si no hay errores, este método devolverá null, con lo que el formulario
-		//se considerará correcto y el servidor pasará al Action
+		if (empresa.isEmpty() && cargo.isEmpty()) {
+			// si la empresa está vacía y el cargo también, no deben almacenarse las fechas
+			if(!a_Inicio.isEmpty() || !a_Fin.isEmpty()){
+				errors.add("empresa",new ActionMessage("error.empresa"));
+			}
+
+		}
+
+		else if (empresa.isEmpty() && !cargo.isEmpty()) {
+
+			errors.add("empresa", new ActionMessage("error.empresa"));
+		} else if (!empresa.isEmpty() && cargo.isEmpty()) {
+			errors.add("cargo", new ActionMessage("error.cargo"));
+		}
+
+		else {
+
+			if (a_Inicio != null || !a_Inicio.equals("")) {
+				try {
+					Integer.parseInt(a_Inicio);
+				} catch (Exception e) {
+					errors.add("a_Inicio", new ActionMessage("error.a_Inicio"));
+				}
+
+			}
+			if (a_Fin != null || !a_Fin.equals("")) {
+				try {
+					Integer.parseInt(a_Fin);
+				} catch (Exception e) {
+					errors.add("a_Fin", new ActionMessage("error.a_Fin"));
+				}
+
+			}
+		}
 		
 		return errors;
 	}

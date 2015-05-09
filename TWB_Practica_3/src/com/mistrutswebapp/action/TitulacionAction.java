@@ -28,11 +28,15 @@ public class TitulacionAction extends Action {
 		HttpSession sesion = request.getSession();
 		titulacionBean.setTitulacion_var(request.getParameterValues("titulacion_var"));
 		ArrayList<Integer> listaTit = new ArrayList<Integer>();
-		String titValues[] = request.getParameterValues("titulacion_var");
 		
-		for (int i =0; i< titValues.length;i ++){
-			int t = Integer.parseInt(titValues[i]);
-			listaTit.add(t);
+		if(request.getParameterValues("titulacion_var")==null){
+			listaTit.add(0);
+		}else{
+			String titValues[] = request.getParameterValues("titulacion_var");
+			for (int i =0; i< titValues.length;i ++){
+				int t = Integer.parseInt(titValues[i]);
+				listaTit.add(t);
+			}
 		}
 		perfilBean = (PerfilBean)sesion.getAttribute("perfilBean");
 		perfilBean.setListaTit(listaTit);

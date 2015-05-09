@@ -21,19 +21,19 @@
    
   <div id="content">  
   		
-	    <h1>LinkUNEDin</h1>
+	    <h1>LINKUNEDin</h1>
 	    <h3>Página de inicio del portal</h3>
 	    <p>Este portal se ha creado para aquellos profesionales que decidan compartir con nosotros su currículo, así como, permitir una mejor entrada en el mercado laboral</p>
 	    <p><html:link action="creaBD.do">Crear base de datos automática </html:link>(Crea la estructura de la base de datos para las pruebas).</p>
 	    <p> Es la primera acción a realizar antes de utilizar las demás, para evitar errores por no haberse creado ninguna Base de Datos</p>
-	    <p><html:link action="fromhomeconsulta.do">Hacer una consulta </html:link></p>
-	    <p><html:link action="fromhomealta.do">Darse de alta como usuario</html:link></p>
-	    <p><html:link action="fromhomebaja.do">Darse de baja como usuario</html:link></p>
-	    <p><html:link action="fromhomemodificar.do">Modificar un perfil</html:link></p>
-	    <p><html:link action="fromhomeeliminar.do">Eliminar un perfil</html:link></p>
-	    <p><html:link action="fromhomecrear.do">Crear un perfil</html:link></p>
-	    <p><html:link action="fromhomeadministrar.do">Administrar web</html:link></p>
-	    <p><html:link action="mostrarBD.do">Mostrar Base de Datos</html:link></p>
+	    <p class="hp"><html:link action="fromhomeconsulta.do">Hacer una consulta </html:link></p>
+	    <p class="hp"><html:link action="fromhomealta.do">Darse de alta como usuario</html:link></p>
+	    <p class="hp"><html:link action="fromhomebaja.do">Darse de baja como usuario</html:link></p>
+	    <p class="hp"><html:link action="fromhomemodificar.do">Modificar un perfil</html:link></p>
+	    <p class="hp"><html:link action="fromhomeeliminar.do">Eliminar un perfil</html:link></p>
+	    <p class="hp"><html:link action="fromhomecrear.do">Crear un perfil</html:link></p>
+	    <p class="hp"><html:link action="fromhomeadministrar.do">Administrar web</html:link></p>
+	    <p class="hp"><html:link action="mostrarBD.do">Mostrar Base de Datos</html:link></p>
 	    
    </div>
  

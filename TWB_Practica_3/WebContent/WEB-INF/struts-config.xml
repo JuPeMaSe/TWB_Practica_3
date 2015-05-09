@@ -62,8 +62,9 @@
  		   	scope="request"
  		   	validate="true"
  		   	input="/consultaPage.jsp" >
- 		   	<forward name="succes" path="/resultadoConsulta.jsp" /> 
-<!-- 		   	<forward name="notfound" path="/notfound.jsp" /> -->
+<!--  		   	<forward name="succes" path="/resultadoConsulta.jsp" />    -->
+			<forward name="succes" path="/resultadoConsulta.jsp" /> 
+ 		   	<forward name="notfound" path="/notfound.jsp" />
 		</action>
 		<action path="/processlogin"
 	   		type="com.mistrutswebapp.action.LoginAction"

@@ -19,8 +19,14 @@ import com.mistrutswebapp.model.Perfil;
 public class PerfilDAO {
 	private Connection connection = null;
 	private Statement statement = null;
-	private PreparedStatement prepStatement = null;
+	private Statement stTit =null;
+	private Statement stTec=null;
+	private Statement stExp = null;
 	private ResultSet results = null;
+	private ResultSet resTit= null;
+	private ResultSet resTec= null;
+	private ResultSet resExp= null;
+	private PreparedStatement prepStatement = null;
 	private static final String DATASOURCE_NAME = "java:comp/env/jdbc/ConexionHSQLDS";
 	private static final String INSERT_STATEMENT_PERFIL = "INSERT INTO Perfil " +
 			//"(profile_ID, pdf, fotografia, direccion, localidad, provincia, pais, cont_MeGusta, user_ID)" +
@@ -87,8 +93,8 @@ public class PerfilDAO {
 		    try {
 				statement = connection.createStatement();			
 			    results= statement.executeQuery("Select * FROM Perfil WHERE reference = '"+perfil.getReference()+"'");
-			    System.out.println("QUERY =Select * from PERFIL where reference='"+perfil.getReference()+"'" );
-			    System.out.println("results tamaño= "+results.getFetchSize());			   
+//			    System.out.println("QUERY =Select * from PERFIL where reference='"+perfil.getReference()+"'" );
+//			    System.out.println("results tamaño= "+results.getFetchSize());			   
 			    while(results.next()){
 				    if(results.getString("reference")!= null){
 				    	intProfile_ID = results.getInt("profile_ID");				    	
@@ -104,7 +110,7 @@ public class PerfilDAO {
 	 
 	 public void addTitulacion(int profile_ID, Perfil perfil){
 		 ArrayList<Integer> listaTit = perfil.getListaTit();
-		 System.out.println("En perfilDAO: addTitulacion --> listaTit.size == " + listaTit.size());
+		// System.out.println("En perfilDAO: addTitulacion --> listaTit.size == " + listaTit.size());
 		 try {
 			 getConnection();
 			prepStatement= connection.prepareStatement(INSERT_STATEMENT_PERFIL_TIT);
@@ -173,54 +179,18 @@ public class PerfilDAO {
 		 
 		 
 	 }
-	   
-//	   public void linkToPolicy(Claim claim, Policy policy)
-//	   {
-//	   	String reference = claim.getReference();
-//	   	String policyNumber = policy.getPolicyNumber();
-//	    try
-//	   	{
-//	     getConnection();
-//	     Statement statement = connection.createStatement();
-//	     ResultSet results = statement.executeQuery("SELECT policyID_PK FROM policy WHERE policyNumber=\'" + policyNumber + "\'");
-//	     int key = 0;
-//	     while(results.next())
-//	     {
-//	   	  key = results.getInt("policyID_PK");
-//	     }
-//	     results.close();
-//	     results = null;
-//	     statement.close();
-//	     statement = null;
-//	   	 statement = connection.createStatement();
-//	     statement.executeUpdate("UPDATE claim SET claim.policyID_FK = " + key + " WHERE claim.reference=\'" + reference + "\'");
-//	     statement.close();
-//	     statement = null;
-//	     connection.close();
-//	     connection = null;
-//	    }
-//	    catch(SQLException e)
-//	    {
-//	     e.printStackTrace();
-//	    }
-//	    finally
-//	    {
-//	     cleanUp();
-//	    }
-//	   }
+
 
 	 public Collection<Perfil> leerPerfiles(String whereClause){
 		   Collection<Perfil> perfiles = new ArrayList<Perfil>();
 		   try{
 			   getConnection();
-			   Statement stTit = connection.createStatement();//Se podría eliminar sin afectar al funcionamiento ?????
-			   Statement stTec = connection.createStatement();//Idem
-			   Statement stExp = connection.createStatement();//Idem
-			   ResultSet resTit= null;
-			   ResultSet resTec= null;
-			   ResultSet resExp= null;
-			   Statement statement = connection.createStatement();
-			   ResultSet results = statement.executeQuery("SELECT * FROM Perfil " + whereClause);
+			   stTit = connection.createStatement();//Se podría eliminar sin afectar al funcionamiento ????? Parece que no
+			   stTec = connection.createStatement();//Idem
+			   stExp = connection.createStatement();//Idem
+			   statement = connection.createStatement();
+			   results = statement.executeQuery("SELECT * FROM Perfil " + whereClause);
+			   System.out.println("En PerfilDAO.leerPerfiles. Claúsula --> "+ "SELECT * FROM Perfil " + whereClause);
 			   int profile_ID;
 			   String pdf;
 			   String fotografia;
@@ -249,10 +219,10 @@ public class PerfilDAO {
 			   	 reference=results.getString("reference");
 			   	 listaTit= new ArrayList<Integer>();			   	 
 				 resTit = stTit.executeQuery("SELECT * FROM Perfil_Tit where profile_ID ='" +profile_ID+"'");
-				 while (resTit.next()){
+			   	while (resTit.next()){
 					 listaTit.add(resTit.getInt("titulacion_ID"));
 				 }
-				 listaTec= new ArrayList<Integer>();			   	
+				 listaTec= new ArrayList<Integer>();
 				 resTec = stTec.executeQuery("SELECT * FROM Perfil_Tec where profile_ID ='" +profile_ID+"'");
 				 while (resTec.next()){
 					 listaTec.add(resTec.getInt("tecnologia_ID"));
@@ -288,24 +258,24 @@ public class PerfilDAO {
 			   	 perfiles.add(perfil);
 			   	System.out.println("leido perfil -->"+profile_ID);
 			 }
-		     results.close();
-		     results = null;
-		     resTit.close();
-		     resTit = null;
-		     resTec.close();
-		     resTec = null;
-		     resExp.close();
-		     resExp = null;
-		     statement.close();
-		     statement = null;
-		     stTit.close();
-		     stTit=null;
-		     stTec.close();
-		     stTec=null;
-		     stExp.close();
-		     stExp=null;
-		     connection.close();
-		     connection = null;
+//		     results.close();
+//		     results = null;
+//		     resTit.close();
+//		     resTit = null;
+//		     resTec.close();
+//		     resTec = null;
+//		     resExp.close();
+//		     resExp = null;
+//		     statement.close();
+//		     statement = null;
+//		     stTit.close();
+//		     stTit=null;
+//		     stTec.close();
+//		     stTec=null;
+//		     stExp.close();
+//		     stExp=null;
+//		     connection.close();
+//		     connection = null;
 	    }catch(SQLException e){
 	    	e.printStackTrace();
 	    }finally{
@@ -324,6 +294,30 @@ public class PerfilDAO {
 			}
 			 results = null;
 		 }
+		 if(resTit != null){
+				try{
+					resTit.close();
+				}catch(SQLException e){
+					e.printStackTrace();
+				}
+				 resTit = null;
+			 }
+		 if(resTec != null){
+				try{
+					resTec.close();
+				}catch(SQLException e){
+					e.printStackTrace();
+				}
+				 resTec = null;
+			 }
+		 if(resExp != null){
+				try{
+					resExp.close();
+				}catch(SQLException e){
+					e.printStackTrace();
+				}
+				 resExp = null;
+			 }
 		 if(statement != null){
 			try{
 				statement.close();
@@ -332,6 +326,22 @@ public class PerfilDAO {
 			}
 			 statement = null;
 		 }
+		 if(stTit != null){
+				try{
+					stTit.close();
+				}catch(SQLException e){
+					e.printStackTrace();
+				}
+				 stTit = null;
+		}
+		 if(stTec != null){
+				try{
+					stTec.close();
+				}catch(SQLException e){
+					e.printStackTrace();
+				}
+				 stTec = null;
+		}
 		 if(prepStatement != null){
 			try{
 				prepStatement.close();

@@ -31,11 +31,15 @@ public class TecnologiaAction extends Action {
 
 		tecnologiaBean.setTecnologia_var(request.getParameterValues("tecnologia_var"));
 		ArrayList<Integer> listaTec = new ArrayList<Integer>();
-		String tecValues[] = request.getParameterValues("tecnologia_var");
 		
-		for (int i =0; i< tecValues.length;i ++){
-			int t = Integer.parseInt(tecValues[i]);
-			listaTec.add(t);
+		if(request.getParameterValues("tecnologia_var")==null){
+			listaTec.add(0);
+		}else{
+			String tecValues[] = request.getParameterValues("tecnologia_var");
+			for (int i =0; i< tecValues.length;i ++){
+				int t = Integer.parseInt(tecValues[i]);
+				listaTec.add(t);
+			}
 		}
 		
 		perfilBean = (PerfilBean)sesion.getAttribute("perfilBean");
