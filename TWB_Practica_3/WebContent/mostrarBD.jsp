@@ -28,13 +28,14 @@
 	 	<c:forEach var="usuario" items="${listaUsuarios}">
 	 		<fieldset><LEGEND>Usuario:</LEGEND>
 	 		<table border="1">
-	 				<tr><td>user_ID</td><td>${usuario.user_ID}</td><td> </td>
-	 				<td>contraseña</td><td>${usuario.password}</td></tr>
-	 				<tr><td>nombre</td><td>${usuario.nombre}</td><td> </td>
-	 				<td>apellidos</td><td>${usuario.apellidos}</td></tr>
-	 				<tr><td>tfno</td><td>${usuario.tfno}</td><td> </td>
-	 				<td>email</td><td>${usuario.email}</td></tr>
-	 				<tr><td>userType</td><td>${usuario.userType}</td><td></td><td></td></tr>
+	 		<tr><th>user_ID</th><th>contraseña</th><th>nombre</th><th>apellidos</th><th>tfno</th><th>email</th><th>userType</th></tr>
+	 				<tr><td>${usuario.user_ID}</td>
+	 				<td>${usuario.password}</td>
+	 				<td>${usuario.nombre}</td>
+	 				<td>${usuario.apellidos}</td>
+	 				<td>${usuario.tfno}</td>
+	 				<td>${usuario.email}</td>
+	 				<td>${usuario.userType}</td></tr>
 	 		
 	 		</table>
 	 		
@@ -49,7 +50,9 @@
 			<table><tr><td>
 				<fieldset><legend>Perfil</legend>	
 					<table border="1">
-	 					<tr><td>profile_ID</td><td>${perfil.profile_ID}</td><td> </td>
+						<tr><th>pofile_ID</th><th>dirección</th><th>localidad</th><th>provincia</th><th>pais</th>
+						<th>Me gusta</th><th>pdf(url)</th><th>fotografia</th><th>user_ID</th></tr>
+	 		<!-- 			<tr><td>profile_ID</td><td>${perfil.profile_ID}</td><td> </td>
 	 						<td>dirección</td><td>${perfil.direccion}</td></tr>
 	 					<tr><td>localidad</td><td>${perfil.localidad}</td><td> </td>
 	 						<td>provincia</td><td>${perfil.provincia}</td></tr>
@@ -57,7 +60,16 @@
 	 						<td>cont_MeGusta</td><td>${perfil.cont_MeGusta}</td></tr>
 	 					<tr><td>pdf (url)</td><td>${perfil.pdf}</td><td> </td>
 	 						<td>fotografia</td><td>${perfil.fotografia}</td></tr>
-	 					<tr><td>user_ID</td><td>${perfil.user_ID}</td></tr>
+	 					<tr><td>user_ID</td><td>${perfil.user_ID}</td></tr>  -->
+	 					<tr><td>${perfil.profile_ID}</td>
+	 					<td>${perfil.direccion}</td>
+	 					<td>${perfil.localidad}</td>
+	 					<td>${perfil.provincia}</td>
+	 					<td>${perfil.pais}</td>
+	 					<td>${perfil.cont_MeGusta}</td>
+	 					<td>${perfil.pdf}</td>
+	 					<td>${perfil.fotografia}</td>
+	 					<td>${perfil.user_ID}</td></tr>
 	 					
 	 				</table>
  				</fieldset>
@@ -78,11 +90,18 @@
  				<fieldset><legend>Experiencia: </legend>
  					<c:forEach var="expe" items="${perfil.listaExp}">
  						<table border="1">
-	 						<tr><td>exp_ID</td><td>${expe.exp_ID}</td><td> </td><td>profile_ID</td><td>${expe.profile_ID}</td></tr>
+ 						<tr><th>exp_ID</th><th>profile_ID</th><th>empresa</th><th>cargo</th><th>a_Inicio</th><th>a_Fin</th></tr>
+ 						<tr><td>${expe.exp_ID}</td>
+ 							<td>${expe.profile_ID}</td>
+	 						<td>${expe.empresa}</td>
+	 						<td>${expe.cargo}</td>
+	 						<td>${expe.a_Inicio}</td>
+	 						<td>${expe.a_Fin}</td></tr>
+	 			<!-- 		<tr><td>exp_ID</td><td>${expe.exp_ID}</td><td> </td><td>profile_ID</td><td>${expe.profile_ID}</td></tr>
 	 						<tr><td>empresa</td><td>${expe.empresa}</td> <td></td>
 	 							<td>cargo</td><td>${expe.cargo}</td></tr>
 	 						<tr><td>a_Inicio</td><td>${expe.a_Inicio}</td> <td></td>
-	 							<td>a_Fin</td><td>${expe.a_Fin}</td></tr>
+	 							<td>a_Fin</td><td>${expe.a_Fin}</td></tr> -->
 	 						
 	 					</table>
 	 				</c:forEach>

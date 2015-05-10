@@ -42,6 +42,9 @@ a:link {
 a:visited {
 	color: blue
 }
+th{
+	color:blue
+}
 
 .a {
 	text-decoration: none;
@@ -145,4 +148,5 @@ a:visited {
 
 .errormessage {
 	color: red
-}ssage {color:red}
+}
+

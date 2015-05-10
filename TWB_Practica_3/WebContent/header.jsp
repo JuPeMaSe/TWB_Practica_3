@@ -38,10 +38,11 @@
 <p align="right">Usuario:
 	 <logic:notEmpty name="loginBean" property="user_ID">			
 		<bean:write name="loginBean" property="user_ID"/>
-		<p><html:link page="/logout.jsp">Terminar Sesion</html:link></p>	
+		<p align="right"><html:link page="/logout.jsp">Terminar Sesion</html:link></p>	
 	</logic:notEmpty>
 	<logic:empty name="loginBean" property="user_ID">
 		Anónimo
+		<p align="right"><html:link page="/loginform.jsp">Iniciar Sesión</html:link>
 	</logic:empty>
 	
 </p>

@@ -13,6 +13,7 @@
  		<form-bean name="experienciaBean" type="com.mistrutswebapp.beans.ExperienciaBean" />
  		<form-bean name="consultaBean" type="com.mistrutswebapp.beans.ConsultaBean" />
  		<form-bean name="mostrarPerfilCreadoBean" type="com.mistrutswebapp.beans.MostrarPerfilCreadoBean" />
+ 		<form-bean name="administrarBean" type="com.mistrutswebapp.beans.AdministrarBean" />
  	</form-beans>
 	<global-forwards type="org.apache.struts.action.ActionForward">
 		<forward name="home" path="/homePage.jsp" redirect="false"/>
@@ -136,6 +137,12 @@
 			<forward name="Ok" path= "/mostrarBD.jsp"/> 
 			<forward name="error" path= "/notfound.jsp"/> 
 		</action>
+		<action path="/processAdministrar"
+ 			type="com.mistrutswebapp.action.AdministrarAction"
+ 			name="administrarBean"
+ 			scope="request"
+ 			input="/administrarPage.jsp"> 			
+ 		</action>
 	</action-mappings>	
  	<message-resources parameter="ApplicationResources" />
  	<plug-in className="org.apache.struts.validator.ValidatorPlugIn"> 
