@@ -16,6 +16,7 @@ import com.mistrutswebapp.beans.PerfilBean;
 import com.mistrutswebapp.beans.TecnologiaBean;
 import com.mistrutswebapp.beans.TitulacionBean;
 import com.mistrutswebapp.model.ModelFacade;
+import com.mistrutswebapp.model.Perfil;
 
 public class MostrarPerfilCreadoAction extends Action {
 	public ActionForward execute(ActionMapping mapping, ActionForm form,
@@ -50,6 +51,10 @@ public class MostrarPerfilCreadoAction extends Action {
 			
 		
 		ModelFacade.crearPerfil(perfilBean);
+		
+			ArrayList<Perfil> listaPerfiles = new ArrayList<Perfil>();;
+			listaPerfiles = (ArrayList<Perfil>)ModelFacade.getPerfiles("WHERE user_ID = '"+perfilBean.getUser_ID() + "'");
+			sesion.setAttribute("listaPerfiles", listaPerfiles);
 		
 		return mapping.findForward("succes");
 	}

@@ -12,6 +12,7 @@
  		<form-bean name="tecnologiaBean" type="com.mistrutswebapp.beans.TecnologiaBean" />
  		<form-bean name="experienciaBean" type="com.mistrutswebapp.beans.ExperienciaBean" />
  		<form-bean name="consultaBean" type="com.mistrutswebapp.beans.ConsultaBean" />
+ 		<form-bean name="resultadoConsultaBean" type="com.mistrutswebapp.beans.ResultadoConsultaBean" />
  		<form-bean name="mostrarPerfilCreadoBean" type="com.mistrutswebapp.beans.MostrarPerfilCreadoBean" />
  		<form-bean name="administrarBean" type="com.mistrutswebapp.beans.AdministrarBean" />
  	</form-beans>
@@ -65,6 +66,15 @@
  		   	input="/consultaPage.jsp" >
 <!--  		   	<forward name="succes" path="/resultadoConsulta.jsp" />    -->
 			<forward name="succes" path="/resultadoConsulta.jsp" /> 
+ 		   	<forward name="notfound" path="/notfound.jsp" />
+		</action>
+		<action path="/mostrarPerfilSelected" 
+ 	   		type="com.mistrutswebapp.action.ResultadoConsultaAction" 
+ 	   		name="resultadoConsultaBean"
+ 		   	scope="request"
+ 		   	validate="true"
+ 		   	input="/resultadoConsulta.jsp" >
+			<forward name="success" path="/mostrarPerfilSeleccionado.jsp" /> 
  		   	<forward name="notfound" path="/notfound.jsp" />
 		</action>
 		<action path="/processlogin"
@@ -127,9 +137,9 @@
  		</action>				
 		<action path="/creaBD"
 			type="com.mistrutswebapp.action.CreaBDAction"
-			input= "/homePage.jsp">
-			<forward name="Ok" path= "/creadaBD.jsp"/> 
-			<forward name="error" path= "/notfound.jsp"/> 
+			input= "/inicioPage.jsp">
+			<forward name="Ok" path= "/homePage.jsp"/> 
+			<!-- <forward name="error" path= "/notfound.jsp"/>--> 
 		</action>
 		<action path="/mostrarBD"
 			type="com.mistrutswebapp.action.MostrarBDAction"
@@ -142,6 +152,10 @@
  			name="administrarBean"
  			scope="request"
  			input="/administrarPage.jsp"> 			
+ 		</action>
+ 		<action path="/processBaja"
+ 		    type="com.mistrutswebapp.action.BajaAction">
+			<forward name="sucess" path="/bajaConfirmada.jsp"/> 		    
  		</action>
 	</action-mappings>	
  	<message-resources parameter="ApplicationResources" />

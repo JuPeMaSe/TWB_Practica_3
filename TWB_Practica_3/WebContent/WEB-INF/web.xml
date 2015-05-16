@@ -21,10 +21,13 @@
    <url-pattern>*.do</url-pattern>
   </servlet-mapping>
   
- <welcome-file-list>
+ <!-- <welcome-file-list>
   <welcome-file>/homePage.jsp</welcome-file>
- </welcome-file-list>
+ </welcome-file-list>   -->
  
+ <welcome-file-list>
+  <welcome-file>/inicioPage.jsp</welcome-file>
+ </welcome-file-list>   
  
  <resource-ref>
     <description>DB Connection</description>

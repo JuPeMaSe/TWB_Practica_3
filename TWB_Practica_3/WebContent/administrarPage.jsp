@@ -23,7 +23,8 @@
    	<div id="content">
    		
 		<h1>Página administrador</h1>
-		<p>Deshabilitar las siguientes funciones para todos los usuarios.  Unchecked = habilitado. Checked = deshabilitado.</p>
+		<p align="center">Deshabilitar las siguientes funciones para todos los usuarios.</p>
+		<p align="center">  Unchecked = habilitado. Checked = deshabilitado.</p>
 		<html:form action="/processAdministrar">		
 			
 			<!-- 
@@ -103,8 +104,9 @@
 			 </logic:equal>
 			 <label for="adConsultar">Eliminar un perfil</label><br/>
 			 </fieldset>
-			
-			<html:submit>Confimar cambios</html:submit>				
+			<p></p>
+			<html:submit>Confimar cambios</html:submit>	
+			<p></p>			
 		</html:form>
 		
 		<html:link action="home"><bean:message key="tohome.link" /></html:link>

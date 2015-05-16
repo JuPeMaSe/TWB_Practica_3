@@ -27,6 +27,12 @@ public class PerfilDAO {
 	private ResultSet resTec= null;
 	private ResultSet resExp= null;
 	private PreparedStatement prepStatement = null;
+	private String strQuery="";
+	boolean bolPerfil=false;
+	boolean bolTitulos=false;
+	boolean bolTecnologias= false;
+	boolean bolExperiencias=false;
+	
 	private static final String DATASOURCE_NAME = "java:comp/env/jdbc/ConexionHSQLDS";
 	private static final String INSERT_STATEMENT_PERFIL = "INSERT INTO Perfil " +
 			//"(profile_ID, pdf, fotografia, direccion, localidad, provincia, pais, cont_MeGusta, user_ID)" +
@@ -161,8 +167,8 @@ public class PerfilDAO {
 			prepStatement = connection.prepareStatement(INSERT_STATEMENT_EXPERIENCIA);
 			prepStatement.setString(1,experiencia.getEmpresa());
 			prepStatement.setString(2,experiencia.getCargo());
-			prepStatement.setString(3, experiencia.getA_Inicio());
-			prepStatement.setString(4,experiencia.getA_Fin());
+			prepStatement.setInt(3, experiencia.getA_Inicio());
+			prepStatement.setInt(4,experiencia.getA_Fin());
 			prepStatement.setInt(5,profile_ID);
 			prepStatement.executeUpdate();
 			prepStatement.close();
@@ -207,75 +213,56 @@ public class PerfilDAO {
 			   
 			   Perfil perfil = null;
 			   while(results.next()){
-			  	 profile_ID = results.getInt("profile_ID"); 
-			   	 pdf= results.getString("pdf");
-			   	 fotografia=results.getString("fotografia");
-			   	 direccion=results.getString("direccion");
-			   	 localidad=results.getString("localidad");
-			   	 provincia=results.getString("provincia");
-			   	 pais=results.getString("pais");
-			   	 cont_MeGusta = results.getInt("cont_MeGusta");
-			   	 user_ID=results.getString("user_ID");
-			   	 reference=results.getString("reference");
-			   	 listaTit= new ArrayList<Integer>();			   	 
-				 resTit = stTit.executeQuery("SELECT * FROM Perfil_Tit where profile_ID ='" +profile_ID+"'");
-			   	while (resTit.next()){
-					 listaTit.add(resTit.getInt("titulacion_ID"));
-				 }
-				 listaTec= new ArrayList<Integer>();
-				 resTec = stTec.executeQuery("SELECT * FROM Perfil_Tec where profile_ID ='" +profile_ID+"'");
-				 while (resTec.next()){
-					 listaTec.add(resTec.getInt("tecnologia_ID"));
-				 }
-				 listaExp= new ArrayList<Experiencia>();			   	 
-				 resExp = stExp.executeQuery("SELECT * FROM Experiencia where profile_ID ='" +profile_ID+"'");
-				 while (resExp.next()){
-					 Experiencia exp = new Experiencia();
-					 exp.setEmpresa(resExp.getString("empresa"));
-					 exp.setCargo(resExp.getString("cargo"));
-					 exp.setA_Fin(resExp.getString("a_Fin"));
-					 exp.setA_Inicio(resExp.getString("a_Inicio"));
-					 exp.setExp_ID(resExp.getInt("exp_ID"));
-					 exp.setProfile_ID(resExp.getInt("profile_ID"));
-					 listaExp.add(exp);
-				 }
-				 
-			   	 perfil=new Perfil();
-			   	 perfil.setProfile_ID(profile_ID);
-			   	 perfil.setPdf(pdf);
-			   	 perfil.setFotografia(fotografia);
-			   	 perfil.setDireccion(direccion);
-			   	 perfil.setLocalidad(localidad);
-			   	 perfil.setProvincia(provincia);
-			   	 perfil.setPais(pais);
-			   	 perfil.setCont_MeGusta(cont_MeGusta);
-			   	 perfil.setUser_ID(user_ID);
-			   	 perfil.setReference(reference);
-			   	 perfil.setListaTit(listaTit);
-			   	 perfil.setListaTec(listaTec);
-			   	 perfil.setListaExp(listaExp);			   	 
-			   	 
-			   	 perfiles.add(perfil);
-			   	System.out.println("leido perfil -->"+profile_ID);
+				  	 profile_ID = results.getInt("profile_ID"); 
+				   	 pdf= results.getString("pdf");
+				   	 fotografia=results.getString("fotografia");
+				   	 direccion=results.getString("direccion");
+				   	 localidad=results.getString("localidad");
+				   	 provincia=results.getString("provincia");
+				   	 pais=results.getString("pais");
+				   	 cont_MeGusta = results.getInt("cont_MeGusta");
+				   	 user_ID=results.getString("user_ID");
+				   	 reference=results.getString("reference");
+				   	 listaTit= new ArrayList<Integer>();			   	 
+					 resTit = stTit.executeQuery("SELECT * FROM Perfil_Tit where profile_ID ='" +profile_ID+"'");
+				   	 while (resTit.next()){
+						 listaTit.add(resTit.getInt("titulacion_ID"));
+					 }
+					 listaTec= new ArrayList<Integer>();
+					 resTec = stTec.executeQuery("SELECT * FROM Perfil_Tec where profile_ID ='" +profile_ID+"'");
+					 while (resTec.next()){
+						 listaTec.add(resTec.getInt("tecnologia_ID"));
+					 }
+					 listaExp= new ArrayList<Experiencia>();			   	 
+					 resExp = stExp.executeQuery("SELECT * FROM Experiencia where profile_ID ='" +profile_ID+"'");
+					 while (resExp.next()){
+						 Experiencia exp = new Experiencia();
+						 exp.setEmpresa(resExp.getString("empresa"));
+						 exp.setCargo(resExp.getString("cargo"));
+						 exp.setA_Fin(resExp.getInt("a_Fin"));
+						 exp.setA_Inicio(resExp.getInt("a_Inicio"));
+						 exp.setExp_ID(resExp.getInt("exp_ID"));
+						 exp.setProfile_ID(resExp.getInt("profile_ID"));
+						 listaExp.add(exp);
+					 }					 
+				   	 perfil=new Perfil();
+				   	 perfil.setProfile_ID(profile_ID);
+				   	 perfil.setPdf(pdf);
+				   	 perfil.setFotografia(fotografia);
+				   	 perfil.setDireccion(direccion);
+				   	 perfil.setLocalidad(localidad);
+				   	 perfil.setProvincia(provincia);
+				   	 perfil.setPais(pais);
+				   	 perfil.setCont_MeGusta(cont_MeGusta);
+				   	 perfil.setUser_ID(user_ID);
+				   	 perfil.setReference(reference);
+				   	 perfil.setListaTit(listaTit);
+				   	 perfil.setListaTec(listaTec);
+				   	 perfil.setListaExp(listaExp);			   	 
+				   	 
+				   	 perfiles.add(perfil);
+				   	System.out.println("leido perfil -->"+profile_ID);
 			 }
-//		     results.close();
-//		     results = null;
-//		     resTit.close();
-//		     resTit = null;
-//		     resTec.close();
-//		     resTec = null;
-//		     resExp.close();
-//		     resExp = null;
-//		     statement.close();
-//		     statement = null;
-//		     stTit.close();
-//		     stTit=null;
-//		     stTec.close();
-//		     stTec=null;
-//		     stExp.close();
-//		     stExp=null;
-//		     connection.close();
-//		     connection = null;
 	    }catch(SQLException e){
 	    	e.printStackTrace();
 	    }finally{
@@ -283,6 +270,243 @@ public class PerfilDAO {
 	    }
 	    return perfiles;
 	 }
+	 
+	 
+	 /**
+	  * Modificación método de obtener todos los perfiles que cumplen alguna condición
+	  * para Titulación, Tecnología y Experiencia
+	  */
+	 
+	 public Collection<Perfil> leerPerfiles(String strPerfil, String strTitu, String strTecn, String strExpe){
+		   Collection<Perfil> perfiles = new ArrayList<Perfil>();
+		   int profile_ID;
+		   String pdf;
+		   String fotografia;
+		   String direccion;
+		   String localidad;
+		   String provincia;
+		   String pais;
+		   int cont_MeGusta;
+		   String user_ID;
+		   String reference;
+		   ArrayList<Integer> listaTit;
+		   ArrayList<Integer> listaTec;
+		   ArrayList<Experiencia> listaExp;
+		  ArrayList<Integer> listaPerfiles=new ArrayList<Integer>();
+		  ArrayList<Integer> listaAux=new ArrayList<Integer>();		   
+		   Perfil perfil = null;
+		   try{
+			   getConnection();
+			   strQuery="";
+			   stTit = connection.createStatement();//Se podría eliminar sin afectar al funcionamiento ????? Parece que no
+			   stTec = connection.createStatement();//Idem
+			   stExp = connection.createStatement();//Idem
+			   statement = connection.createStatement();
+			  // results = statement.executeQuery("SELECT * FROM Perfil " + strPerfil);
+			   //System.out.println("En PerfilDAO.leerPerfiles. Claúsula --> "+ "SELECT * FROM Perfil " + strPerfil);
+			  
+			   if(strPerfil.equals("") && strTitu.equals("") && strTecn.equals("") && strExpe.equals("")){
+				   return null;
+			   }
+			   if(!strTitu.isEmpty()){
+				   resTit = stTit.executeQuery("SELECT * FROM Perfil_Tit "+strTitu);
+					 System.out.println("En PerfilDAO.leerPerfiles. Claúsula --> "+ "SELECT * FROM Perfil_Tit " +strTitu);
+					 while (resTit.next()){
+						 listaPerfiles.add(resTit.getInt("profile_ID"));
+					 }
+				   
+			   }
+			   if(!strTecn.isEmpty()){
+				   if(listaPerfiles.size()==0 && !strTitu.isEmpty()){
+						 return null;
+					 }
+				   
+				   resTec = stTec.executeQuery("SELECT * FROM Perfil_Tec "+ strTecn);
+					 System.out.println("En PerfilDAO.leerPerfiles. Claúsula --> "+ "SELECT * FROM Perfil_Tec " +strTecn);
+					
+					 if(listaPerfiles.size()==0){
+						 while(resTec.next()){
+							 listaPerfiles.add(resTec.getInt("profile_ID"));
+						 }
+					 }else{
+						 boolean encontrado = false;
+						while(resTec.next()){
+							 listaAux.add(resTec.getInt("profile_ID"));
+						 }
+						for(int j=0; j<listaPerfiles.size();j++){
+							 encontrado = false;
+							 for (int i=0;i<listaAux.size();i++){
+								 if(listaPerfiles.get(j)==listaAux.get(i)){
+									 encontrado =true;
+								 }
+							 }
+							 if(encontrado==false){
+								 listaPerfiles.remove(j);
+							 }
+						 }
+					 }
+			   }
+				  
+
+			   
+			   
+			   if(!strExpe.isEmpty()){
+				   if(listaPerfiles.size()==0 && (!strTitu.isEmpty() || !strTecn.isEmpty())){
+					   return null;
+				   }
+				   resExp = stExp.executeQuery("SELECT * FROM Experiencia ");// WHERE diferencia >= "+ strTecn);
+					 System.out.println("SELECT * FROM Experiencia ");
+					 
+					 if(listaPerfiles.size()==0){
+						 while(resExp.next()){
+							 if(resExp.getInt("a_Fin")-resExp.getInt("a_Inicio")>= Integer.parseInt(strExpe)){
+								 listaPerfiles.add(resExp.getInt("profile_ID"));
+							 }
+							 
+						 }
+					 }else{
+						 boolean encontrado = false;
+						while(resExp.next()){
+							if((resExp.getInt("a_Fin")-resExp.getInt("a_Inicio"))>= Integer.parseInt(strExpe)){
+								listaAux.add(resExp.getInt("profile_ID"));
+							}
+						 }
+						for(int j=0; j<listaPerfiles.size();j++){
+							 encontrado = false;
+							 for (int i=0;i<listaAux.size();i++){
+								 if(listaPerfiles.get(j)==listaAux.get(i)){
+									 encontrado =true;
+								 }
+							 }
+							 if(encontrado==false){
+								 listaPerfiles.remove(j);
+							 }
+						 }
+					 }
+				   
+			   }
+			   
+			   
+			   if(!strPerfil.equals("") && (!strTitu.isEmpty()||!strTecn.isEmpty()||!strExpe.isEmpty())){
+				   	if(listaPerfiles.size()==0){
+					   return null;
+					 }else{
+						 results = statement.executeQuery("SELECT * FROM Perfil " + strPerfil);
+						   System.out.println("En PerfilDAO.leerPerfiles. Claúsula --> "+ "SELECT * FROM Perfil " + strPerfil);
+						 boolean encontrado = false;
+						 listaAux= new ArrayList<Integer>();
+						 while(results.next()){
+							 listaAux.add(results.getInt("profile_ID"));
+						 }
+						 for(int j=0; j<listaPerfiles.size();j++){
+							 encontrado = false;
+							 for (int i=0;i<listaAux.size();i++){
+								 if(listaPerfiles.get(j)==listaAux.get(i)){
+									 encontrado =true;
+								 }
+							 }
+							 if(encontrado==false){
+								 listaPerfiles.remove(j);
+							 }
+							 bolPerfil=true;
+						 } //for
+					 }//else		   
+			   }else if(!strPerfil.equals("") && strTitu.isEmpty() && strTecn.isEmpty() && strExpe.isEmpty()){
+				   results = statement.executeQuery("SELECT * FROM Perfil " + strPerfil);
+				   System.out.println("En PerfilDAO.leerPerfiles. Claúsula --> "+ "SELECT * FROM Perfil " + strPerfil);
+				    while(results.next()){
+				    	listaPerfiles.add(results.getInt("profile_ID"));
+					}
+				   
+			   }
+			
+			   
+			  
+			   if(listaPerfiles.size()==0){
+				   return null;
+			   }else{
+				   for(int i=0;i<listaPerfiles.size();i++){
+					   System.out.println("listaPerfiles --> "+listaPerfiles.get(i));
+					   results= statement.executeQuery("SELECT * FROM Perfil where profile_ID = "+listaPerfiles.get(i));
+			   
+					   while(results.next()){						 
+						  	 profile_ID = results.getInt("profile_ID"); 
+						   	 pdf= results.getString("pdf");
+						   	 fotografia=results.getString("fotografia");
+						   	 direccion=results.getString("direccion");
+						   	 localidad=results.getString("localidad");
+						   	 provincia=results.getString("provincia");
+						   	 pais=results.getString("pais");
+						   	 cont_MeGusta = results.getInt("cont_MeGusta");
+						   	 user_ID=results.getString("user_ID");
+						   	 reference=results.getString("reference");						   	 				   	 
+						   	 listaTit= new ArrayList<Integer>();			   	 
+							 resTit = stTit.executeQuery("SELECT * FROM Perfil_Tit where profile_ID ='" +profile_ID+"'");
+						   	 while (resTit.next()){
+								 listaTit.add(resTit.getInt("titulacion_ID"));
+							 }
+						   	listaTec= new ArrayList<Integer>();			   	 
+							 resTec = stTec.executeQuery("SELECT * FROM Perfil_Tec where profile_ID ='" +profile_ID+"'");
+						   	 while (resTec.next()){
+								 listaTec.add(resTec.getInt("tecnologia_ID"));
+							 }
+						   	listaExp= new ArrayList<Experiencia>();			   	 
+							resExp = stExp.executeQuery("SELECT * FROM Experiencia where profile_ID ='" +profile_ID+"'");
+							while (resExp.next()){
+								 Experiencia exp = new Experiencia();
+								 exp.setEmpresa(resExp.getString("empresa"));
+								 exp.setCargo(resExp.getString("cargo"));
+								 exp.setA_Fin(resExp.getInt("a_Fin"));
+								 exp.setA_Inicio(resExp.getInt("a_Inicio"));
+								 exp.setExp_ID(resExp.getInt("exp_ID"));
+								 exp.setProfile_ID(resExp.getInt("profile_ID"));
+								 listaExp.add(exp);
+							 }					 
+		
+						   	 perfil=new Perfil();
+						   	 perfil.setProfile_ID(profile_ID);
+						   	 perfil.setPdf(pdf);
+						   	 perfil.setFotografia(fotografia);
+						   	 perfil.setDireccion(direccion);
+						   	 perfil.setLocalidad(localidad);
+						   	 perfil.setProvincia(provincia);
+						   	 perfil.setPais(pais);
+						   	 perfil.setCont_MeGusta(cont_MeGusta);
+						   	 perfil.setUser_ID(user_ID);
+						   	 perfil.setReference(reference);
+						   	 perfil.setListaTit(listaTit);
+						   	 perfil.setListaTec(listaTec);
+						   	 perfil.setListaExp(listaExp);
+						   	 perfiles.add(perfil);
+						   	System.out.println("leido perfil -->"+profile_ID);
+					   	}//while
+				   }//for				   
+			 }//if
+	    }catch(SQLException e){
+	    	e.printStackTrace();
+	    }finally{
+	    	cleanUp();
+	    }
+	    return perfiles;
+	 }
+	 
+	 
+	 public void eliminarPerfilesUsuario(String usuario_ID){		 
+		 try{
+			 getConnection();
+			 statement=connection.createStatement();
+			 statement.executeUpdate("DELETE FROM Perfil WHERE user_ID='" + usuario_ID + "'");
+		 }catch(SQLException e){
+			 e.printStackTrace();
+		 }finally{
+			 cleanUp();
+		 }
+	 }
+
+	 
+	 
+	 
+	 
 	 
 	 private void cleanUp(){
 		 // nos aseguramos de cerrar results, statements , connections...

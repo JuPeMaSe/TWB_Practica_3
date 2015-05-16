@@ -21,12 +21,11 @@
   	
 <!-- 		<h1>Página crear perfil.Saludos desde Github</h1> -->
 <!-- 		<p>Aquí habrá que mostrar el formulario para rellenarlo.</p> -->
-	<h1>Formulario de registro</h1>
 	<h1>Crea tu perfil</h1>
 			<!-- el action tendrá que ir hacia processCrear -->
 			<html:form action="/processCrear" enctype="multipartform-data">
 			
-			
+			<fieldset>
 				<table>
 				
 				<tr>
@@ -359,17 +358,14 @@
 						<td><html:file property="fotografia" /></td>
 						<td><html:errors property="fotografia" /></td>
 					</tr>
-
-
-					<tr>
-						<td><html:submit>Submit</html:submit></td>
-					</tr>
 				</table>
-
-
+			</fieldset>
+				<p></p>
+				<html:submit>Seguir</html:submit>
+				<p></p>
 			</html:form>
 
-
+		<p></p>
 
 		<html:link action="home"><bean:message key="tohome.link" /></html:link>
 	</div>

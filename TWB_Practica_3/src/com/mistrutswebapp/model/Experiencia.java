@@ -7,8 +7,10 @@ public class Experiencia implements Serializable{
 	int exp_ID;
 	String empresa;
 	String cargo;
-	String a_Inicio;
-	String a_Fin;
+	int a_Inicio;
+	int a_Fin;
+	String strA_Inicio;
+	String strA_Fin;
 	int profile_ID;
 	
 	public Experiencia(){
@@ -57,32 +59,63 @@ public class Experiencia implements Serializable{
 		this.cargo = cargo;
 	}
 
+	
 	/**
 	 * @return the a_Inicio
 	 */
-	public String getA_Inicio() {
+	public int getA_Inicio() {
 		return a_Inicio;
 	}
 
 	/**
 	 * @param a_Inicio the a_Inicio to set
 	 */
-	public void setA_Inicio(String a_Inicio) {
+	public void setA_Inicio(int a_Inicio) {
 		this.a_Inicio = a_Inicio;
 	}
 
 	/**
 	 * @return the a_Fin
 	 */
-	public String getA_Fin() {
+	public int getA_Fin() {
 		return a_Fin;
 	}
 
 	/**
 	 * @param a_Fin the a_Fin to set
 	 */
-	public void setA_Fin(String a_Fin) {
+	public void setA_Fin(int a_Fin) {
 		this.a_Fin = a_Fin;
+	}
+
+	/**
+	 * @return the strA_Inicio
+	 */
+	public String getStrA_Inicio() {
+		return (""+a_Inicio);
+	}
+
+	/**
+	 * @param strA_Inicio the strA_Inicio to set
+	 */
+	public void setStrA_Inicio(String strA_Inicio) {
+		this.strA_Inicio = strA_Inicio;
+		this.a_Inicio=Integer.parseInt(strA_Inicio);
+	}
+
+	/**
+	 * @return the strA_Fin
+	 */
+	public String getStrA_Fin() {
+		return (""+a_Fin);
+	}
+
+	/**
+	 * @param strA_Fin the strA_Fin to set
+	 */
+	public void setStrA_Fin(String strA_Fin) {
+		this.strA_Fin = strA_Fin;
+		this.a_Fin=Integer.parseInt(strA_Fin);
 	}
 
 	/**

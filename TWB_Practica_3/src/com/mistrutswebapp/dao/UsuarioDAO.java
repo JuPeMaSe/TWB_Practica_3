@@ -126,6 +126,20 @@ public class UsuarioDAO {
 		return usuarios;
 	}
 	
+	public void eliminarUsuario(String usuario_ID){
+		try{
+			getConnection();
+			statement = connection.createStatement();
+			statement.executeUpdate("DELETE FROM Usuario WHERE user_ID ='" + usuario_ID + "'" );			
+		}catch(SQLException e){
+			e.printStackTrace();			
+		}finally{
+			cleanUp();
+			
+		}
+	}
+
+	
 	
 	
 	private void getConnection(){
@@ -142,6 +156,9 @@ public class UsuarioDAO {
 			}
 		}
 	 }
+	
+	
+	
 	
 	
 	private void cleanUp(){

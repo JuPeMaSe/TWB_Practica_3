@@ -34,14 +34,7 @@ public class CreaBDAction extends Action {
           Statement  st   = null;  
           String     sql  = null;  
           ResultSet  rst1 = null;  
-            
-//          try {  
-//              // Cargamos el controlador JDBC  
-//              Class.forName("org.hsqldb.jdbcDriver");  
-//          } catch (Exception ex){  
-//              log.error("Se ha producido un error al cargar el controlador JDBC"+ ex.getMessage());  
-//              return mapping.findForward("error");  
-//          }              
+        
 //          // Nos conectamos a la base de datos creandola en caso de que no exista   
 //          conn = DriverManager.getConnection("jdbc:hsqldb:mem:memoriadb");  
 //          // Creamos la tabla sobre la que trabajaremos  +
@@ -52,9 +45,6 @@ public class CreaBDAction extends Action {
                  
               // pido una conexion
               con=ds.getConnection();
-              //System.out.println(con);
-			  log.info("In LoginAction despues de connection");
-			  // try {  
               st  = con.createStatement();  
               //Creamos la tabla Usuario
               sql = "CREATE TABLE Usuario(" +
@@ -67,7 +57,6 @@ public class CreaBDAction extends Action {
               		"	email VARCHAR(60)," +
               		"	userType VARCHAR(3));";
               st.executeUpdate(sql);
-            //  log.info("In LoginAction despues de crear tabla Usuario");
               //Creamos la tabla Perfil
               sql="CREATE TABLE Perfil(" +
               		//"	profile_ID INTEGER NOT NULL PRIMARY KEY," +
@@ -82,32 +71,27 @@ public class CreaBDAction extends Action {
               		"	cont_MeGusta INTEGER," +
               		"	user_ID VARCHAR(30)," +
               		"	reference VARCHAR(40)" +
-              		//" PRIMARY KEY (profile_ID)"+
               		//"   FOREIGN KEY (user_ID) REFERENCES Usuario(user_ID)"+
               		");";
               st.executeUpdate(sql);
-             // log.info("In LoginAction despues de crear tabla Perfil");
              // Creamos la table Tecnologia
              sql = "CREATE TABLE Tecnologia(	" +
               		"tecnologia_ID INTEGER NOT NULL PRIMARY KEY," +
               		"	nombre_Tec VARCHAR(50)" +
               		");";
               st.executeUpdate(sql);
-              //log.info("In LoginAction despues de crear tabla Tecnologia");
               //Creamos la tabla Perfil-Tec
              sql= "CREATE TABLE Perfil_Tec(" +
               		"	tecnologia_ID INTEGER," +
               		"	profile_ID INTEGER" +
               		");";
               st.executeUpdate(sql);
-              //log.info("In LoginAction despues de crear tabla Perfil_Tec");
               //Creamos la tabla Titulacion
               sql="CREATE TABLE Titulacion(" +
               		"	titulacion_ID INTEGER NOT NULL PRIMARY KEY," +
               		"	nombre_Tit VARCHAR(50)" +
               		");";
               st.executeUpdate(sql);
-              //log.info("In LoginAction despues de crear tabla Titulación");
               //Creamos la tabla Perfil_Tit
               sql="CREATE TABLE Perfil_Tit(" +
               		"	titulacion_ID INTEGER," +
@@ -125,13 +109,36 @@ public class CreaBDAction extends Action {
               		"	profile_ID INTEGER" +
               		");";
               st.executeUpdate(sql);
-              //log.info("In LoginAction despues de crear tabla Experiencia");
-              
               //Borramos los usuarios que existiesen en la tabla Usuario  
               st.executeUpdate("DELETE FROM Usuario");  
 //           // Varios usuarios de prueba  
               st.executeUpdate("INSERT INTO Usuario (user_ID, password, nombre, apellidos, tfno, email, userType) " +
-              		"VALUES ('admin', 'admin',  'Juan Pedro', 'Marquez Sevilla','', '','adm')");
+              		"VALUES ('admin', 'admin',  'JP', 'MS','', '','adm')");
+              
+              st.executeUpdate("INSERT INTO Usuario (user_ID, password, nombre, apellidos, tfno, email, userType) " +
+                		"VALUES ('jpms', '4367',  'Juan Pedro', 'Marquez Sevilla','', '','usu')");
+              
+              st.executeUpdate("INSERT INTO Perfil (direccion,	localidad, provincia, pais,	cont_MeGusta,user_ID) "+
+            		  "VALUES('Plaza de la Villa, 1','Torreperogil','Jaen','ES' ,0,'jpms')");
+              
+              st.executeUpdate("INSERT INTO Perfil_Tit (titulacion_ID, profile_ID)"+
+            		  "VALUES(2,1)");
+              st.executeUpdate("INSERT INTO Perfil_Tec (tecnologia_ID, profile_ID)"+
+            		  "VALUES(3,1)");
+              st.executeUpdate("INSERT INTO Experiencia (empresa, cargo, a_Inicio, a_Fin, profile_ID) "+
+            		  "VALUES('Dragados','Jefe de obra',1995,2015,1)");
+              
+              st.executeUpdate("INSERT INTO Perfil (direccion,	localidad, provincia, pais,	cont_MeGusta,user_ID) "+
+            		  "VALUES('Sor Angela','Ubeda','Jaen','ES' ,0,'jpms')");
+              
+              st.executeUpdate("INSERT INTO Perfil_Tit (titulacion_ID, profile_ID)"+
+            		  "VALUES(3,2)");
+              st.executeUpdate("INSERT INTO Perfil_Tit (titulacion_ID, profile_ID)"+
+            		  "VALUES(1,2)");
+              st.executeUpdate("INSERT INTO Perfil_Tec (tecnologia_ID, profile_ID)"+
+            		  "VALUES(1,2)");
+              
+              
 //              //st.executeUpdate("INSERT INTO Usuario (User_ID, Password, Nombre) VALUES ('jpms', '4367',  'Juan Pedro')");
 //              st.executeUpdate("INSERT INTO Usuario (user_ID, password, nombre) VALUES ('ja', '5367',  'Jose Angel')");  
 //      			st.executeUpdate("INSERT INTO Usuario (user_ID, password, nombre) VALUES ('jj', '6367',  'Juan Jose')");
@@ -158,16 +165,16 @@ public class CreaBDAction extends Action {
               st.executeUpdate("INSERT INTO Tecnologia (tecnologia_ID, nombre_Tec) " +
                     "VALUES (4,'Struts')");
 	// Mostramos por pantalla todos los usuarios de la tabla  
-            rst1 = st.executeQuery("SELECT * FROM Usuario");  
-            while (rst1.next()){  
-                log.info("In CreaBDAction --> Tabla Usuario: "+ rst1.getString("user_ID") + " " + rst1.getString("password") + " " + rst1.getString("nombre"));
-                  
-            }  
+//            rst1 = st.executeQuery("SELECT * FROM Usuario");  
+//            while (rst1.next()){  
+//                log.info("In CreaBDAction --> Tabla Usuario: "+ rst1.getString("user_ID") + " " + rst1.getString("password") + " " + rst1.getString("nombre"));
+//                  
+//            }  
             
             //Creamos la listaTitulaciones con scope=session
             rst1 = st.executeQuery("SELECT * FROM Titulacion");
             ArrayList<Titulacion> listaTitulaciones = new ArrayList<Titulacion>();
-            log.info("In CreaBDAction --> ");
+           // log.info("In CreaBDAction --> ");
             while (rst1.next()){ 
             	Titulacion tit = new Titulacion();
             	int ID = rst1.getInt("titulacion_ID");
@@ -175,14 +182,14 @@ public class CreaBDAction extends Action {
             	tit.setTitulacion_ID(ID);
             	tit.setNombre_Tit(nom);
             	listaTitulaciones.add(tit);
-                log.info("Tabla Titulación: "+	ID + " "+nom);  
+              //  log.info("Tabla Titulación: "+	ID + " "+nom);  
             }
             sesion.setAttribute("listaTitulaciones",listaTitulaciones);
             
             //Creamos la listaTecnologias con scope=session
             rst1 = st.executeQuery("SELECT * FROM Tecnologia");
             ArrayList<Tecnologia> listaTecnologias = new ArrayList<Tecnologia>();
-            log.info("In CreaBDAction --> ");
+           // log.info("In CreaBDAction --> ");
             while (rst1.next()){ 
             	Tecnologia tec = new Tecnologia();
             	int ID = rst1.getInt("tecnologia_ID");
@@ -190,26 +197,19 @@ public class CreaBDAction extends Action {
             	tec.setTecnologia_ID(ID);
             	tec.setNombre_Tec(nom);
             	listaTecnologias.add(tec);
-                log.info("Tabla Tecnología: "+	ID + " "+nom);  
+             //   log.info("Tabla Tecnología: "+	ID + " "+nom);  
             }
             sesion.setAttribute("listaTecnologias",listaTecnologias);
-      
-
-            
+           
             
               // Liberamos recursos y cerramos la conexion  
              st.close();  
               con.close();  
           } catch (Exception ex){  
               log.error("BD no creada por --> "+ ex.getMessage());
-          }finally{  
-        	  
-        
           }
           log.info("In CreaBDAction --> Base de datos creada");
-          
           return mapping.findForward("Ok");
-          
 	 }
 
 }

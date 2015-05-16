@@ -22,11 +22,11 @@ public class ConsultaBean extends ValidatorForm implements Serializable {
 	private boolean chkProvincia;
 	private boolean chkPais;
 	
-	private String tecnologia_ID;
+	private String tecn_ID;
 	private String nombre_Tec;
 	private boolean chkTecnologia;
 	
-	private String titulacion_ID;
+	private String titu_ID;
 	private String nombre_Tit;
 	private boolean chkTitulacion;
 	
@@ -73,14 +73,14 @@ public class ConsultaBean extends ValidatorForm implements Serializable {
 	/**
 	 * @return the tecnologia_ID
 	 */
-	public String getTecnologia_ID() {
-		return tecnologia_ID;
+	public String getTecn_ID() {
+		return tecn_ID;
 	}
 	/**
 	 * @param tecnologia_ID the tecnologia_ID to set
 	 */
-	public void setTecnologia_ID(String tecnologia_ID) {
-		this.tecnologia_ID = tecnologia_ID;
+	public void setTecn_ID(String tecn_ID) {
+		this.tecn_ID = tecn_ID;
 	}
 	/**
 	 * @return the nombre_Tec
@@ -97,14 +97,14 @@ public class ConsultaBean extends ValidatorForm implements Serializable {
 	/**
 	 * @return the titulacion_ID
 	 */
-	public String getTitulacion_ID() {
-		return titulacion_ID;
+	public String getTitu_ID() {
+		return titu_ID;
 	}
 	/**
 	 * @param titulacion_ID the titulacion_ID to set
 	 */
-	public void setTitulacion_ID(String titulacion_ID) {
-		this.titulacion_ID = titulacion_ID;
+	public void setTitu_ID(String titu_ID) {
+		this.titu_ID = titu_ID;
 	}
 	/**
 	 * @return the nombre_Tit

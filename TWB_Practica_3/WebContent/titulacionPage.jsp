@@ -32,32 +32,8 @@
 		
 <!-- 		<h1>Página crear perfil.Saludos desde Github</h1> -->
 <!-- 		<p>Aquí habrá que mostrar el formulario para rellenarlo.</p> -->
-	  <h1>Formulario de registro</h1>
-	  
-	  <table border="0">
-					<tr>
-						<td>Dirección</td>
-						<td><jsp:getProperty name="perfilBean" property="direccion"/></td>
-					</tr>
-					<tr>
-						<td>Provincia</td>
-						<td><jsp:getProperty name="perfilBean" property="provincia"/></td>
-					</tr>
-					<tr>
-						<td>Pais</td>
-						<td><jsp:getProperty name="perfilBean" property="pais"/></td>
-					</tr>
-					<tr>
-						<td>Pdf</td>
-						<td><jsp:getProperty name="perfilBean" property="pdf"/></td>
-					</tr>
-					<tr>
-						<td>Fotografía</td>
-						<td><jsp:getProperty name="perfilBean" property="fotografia"/></td>
-					</tr>
-				
-				</table>
-<h1>Añade tus titulaciones</h1>
+
+<h1>Añade tus titulaciones al perfil</h1>
 	
 			<!-- el action tendrá que ir hacia processCrear -->
 			<html:form action="/processTitulacion" enctype="multipartform-data">
@@ -85,12 +61,40 @@
 				
 				
 			 </fieldset>
-				<td><html:submit>Submit</html:submit></td>
+			 	<p></p>
+				<html:button property="atras" onclick="parent.location='crearPage.jsp'">Atras</html:button> <html:submit>Seguir</html:submit>
+				<p></p>
 			</html:form>
 
 
 
 		<html:link action="home"><bean:message key="tohome.link" /></html:link>
+		
+		  <fieldset>
+	  		<table border="0">
+					<tr>
+						<td>Dirección</td>
+						<td><jsp:getProperty name="perfilBean" property="direccion"/></td>
+					</tr>
+					<tr>
+						<td>Provincia</td>
+						<td><jsp:getProperty name="perfilBean" property="provincia"/></td>
+					</tr>
+					<tr>
+						<td>Pais</td>
+						<td><jsp:getProperty name="perfilBean" property="pais"/></td>
+					</tr>
+					<tr>
+						<td>Pdf</td>
+						<td><jsp:getProperty name="perfilBean" property="pdf"/></td>
+					</tr>
+					<tr>
+						<td>Fotografía</td>
+						<td><jsp:getProperty name="perfilBean" property="fotografia"/></td>
+					</tr>
+				
+				</table>
+			</fieldset>
 	</div>
 	<jsp:directive.include file="footer.jsp" />
 </body>

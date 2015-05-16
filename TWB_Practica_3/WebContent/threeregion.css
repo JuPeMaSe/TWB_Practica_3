@@ -42,8 +42,10 @@ a:link {
 a:visited {
 	color: blue
 }
+
 th{
-	color:blue
+	text-align:left;
+	color:blue;
 }
 
 .a {

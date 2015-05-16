@@ -10,6 +10,7 @@
 <link href="threeregion.css" rel="stylesheet" type="text/css" />
 <jsp:useBean id="loginBean" class= "com.mistrutswebapp.beans.LoginBean" scope="session"></jsp:useBean>
 <title>Logout</title>
+<META HTTP-EQUIV="REFRESH" CONTENT="2;URL=homePage.jsp"></META>
 </head>
 <body>
 	<jsp:directive.include file="header.jsp" />
@@ -19,13 +20,14 @@
 	    	<jsp:forward page="homePage.jsp"></jsp:forward>
 	    </logic:empty>
   		<logic:notEmpty name="loginBean" property="user_ID">  
-  			<p>Hasta la próxima <bean:write name="loginBean" property="user_ID"/></p>	
+  			<h3>Sesión terminada >>>>>  <bean:write name="loginBean" property="user_ID"/></h3>	
   	<%--  	<% session.invalidate(); %> --%>
   	<%-- <%session.removeAttribute("perfilBean"); %>
   	<%session.removeAttribute("loginBean"); %>  --%>  	
 		  	<jsp:scriptlet>
 		  		session.removeAttribute("perfilBean"); 
 		  		session.removeAttribute("loginBean");
+		  		session.removeAttribute("listaPerfiles");
 		  	</jsp:scriptlet>
 	    </logic:notEmpty>
 	    

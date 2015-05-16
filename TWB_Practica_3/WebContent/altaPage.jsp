@@ -22,10 +22,11 @@
 	 	 
 	<!-- <div id="content"> --> 
 	  	
-	 	<h1>Página de Alta</h1>
-		<p>Aquí hay que desarrollar el formulario de alta de usuario.OkJuan</p>
+	 	<h1>Alta de Usuario</h1>
+		<p>Rellene los datos del formulario para darse de alta</p>
 		
 		<html:form action="/processAlta"> 
+	<fieldset>	
 	<table>
 				<tr>
 					<td>User_ID:</td>
@@ -37,11 +38,12 @@
 					<td><html:password property="password"/></td>
 					<td><html:errors property="password" /></td>
 				</tr>
-<!-- 				Repetimos la contraseña para validar? -->
-<!-- 				<tr> -->
-<!-- 					<td><label for="password2">Repita la Contraseña:</label></td> -->
-<!-- 					<td><input type="password" name="password2" value="" /></td> -->
-<!--  				</tr> -->
+ 				<!-- Repetimos la contraseña para validar -->
+				<tr>
+					<td>Confirme la contraseña:</td>
+					<td><html:password property="password2"/></td>
+					<td><html:errors property="password2" /></td>
+				</tr>
 				 <tr>
 					<td>Nombre</td>
 					<td><html:text property="nombre"/></td>
@@ -76,14 +78,15 @@
 					<td><html:errors property="userType"/></td>
 				</tr>
 				<tr>
-					<td><html:submit>Submit</html:submit></td>
+					<td></td><td><html:submit>Seguir</html:submit></td>
 				</tr>
 			</table>
+			</fieldset>
 
 
  	</html:form>
 	
-		
+		<p></p>
 		
 		 <html:link action="home"><bean:message key="tohome.link" /></html:link>
 	<!-- </div> -->

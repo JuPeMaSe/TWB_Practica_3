@@ -116,17 +116,38 @@ public class ModelFacade {
 	}
 	
 	/**
-	 * Añade una tecnología a un perfil
+	 * Modificación del método getPerfiles
 	 */
-	public static void linkTecToPerfil (){
+
+	public static Collection<Perfil> getPerfiles(String strPerfil, String strTitu, String strTecn, String strExpe){
+		 if(strPerfil == null){
+			  strPerfil = new String();
+		  }
+		 if(strTitu == null){
+			  strTitu = new String();
+		  }
+		 if(strTecn == null){
+			  strTecn = new String();
+		  }
+		 if(strExpe == null){
+			  strExpe = new String();
+		  }
+		  PerfilDAO pdao = new PerfilDAO();
+		  Collection<Perfil> perfilCollection = pdao.leerPerfiles(strPerfil, strTitu, strTecn, strExpe);
+		  return perfilCollection;
 		
 	}
 	
-	/**
-	 * Obtiene una lista de Tecnologías
-	 */
-	public static Collection<Tecnologia> getTecnologias(){
-		return null;
-		
+	public static void eliminarPerfilesUsuario(String user_ID){
+		PerfilDAO pdao= new PerfilDAO();
+		pdao.eliminarPerfilesUsuario(user_ID);
 	}
+	
+	public static void eliminarUsuario(String user_ID){
+		UsuarioDAO udao = new UsuarioDAO();
+		udao.eliminarUsuario(user_ID);
+	}
+
+	
+	
 }

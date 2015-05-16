@@ -23,13 +23,14 @@
 		
 		<h1>Página de Consulta</h1>
 		<html:form action="/processConsulta"> 
+		<fieldset>
 			<table>
 				
 				<tr>
 					<td><html:checkbox property="chkPais"/></td>
-					<td><label for="pais">País:</label></td> 
+					<th><label for="pais">País:</label></th> 
 <!-- 						<td><html:text property="pais" /></td> -->
-					<td><html:select property="pais">
+					<td align="left"><html:select property="pais">
 				 		<html:option value="ES">España</html:option>  
 					  	<html:option value="AF"> Afganistán </html:option>
 					  	<html:option value="AL"> Albania </html:option>
@@ -41,55 +42,63 @@
 				</tr>
 				<tr>
 					<td><html:checkbox property="chkProvincia"></html:checkbox></td>
-					<td><label for="provincia">Provincia:</label></td>
-					<td><html:text property="provincia" /></td>
+					<th><label for="provincia">Provincia:</label></th>
+					<td align="left"><html:text property="provincia" /></td>
 					<td><html:errors property="provincia" /></td>
 				</tr>
 				<tr>
 					<td><html:checkbox property="chkLocalidad"></html:checkbox></td>
-					<td><label for="localidad">Localidad:</label></td>
-					<td><html:text property="localidad" /></td>
+					<th><label for="localidad">Localidad:</label></th>
+					<td align="left"><html:text property="localidad" /></td>
 					<td><html:errors property="localidad" /></td>
 				</tr>
 				<tr>
 				 	<td><html:checkbox property="chkTecnologia"></html:checkbox></td>
-					<td><label for="nombre_Tec">Tecnología:</label></td>
-					<td><html:select property="nombre_Tec">
+					<th><label for="tecn_ID">Tecnología:</label></th>
+					<td align="left"><html:select property="tecn_ID">
 					 		<c:forEach var="tecn"  items="${listaTecnologias}" >
-					 		<c:set var="tecn_ID" scope="page" value= "${tecn.tecnologia_ID}"/>
+					 		<c:set var="tecn_ID" scope="request" value= "${tecn.tecnologia_ID}"/>
 					 		<html:option value="${tecn_ID}">${tecn.nombre_Tec}</html:option>					 
 							</c:forEach> 
 					 	</html:select></td>  
-					<td><html:errors property="nombre_Tec" /></td>
+					<td><html:errors property="tecn_ID" /></td>
 				</tr>
 				<tr>
 					<td><html:checkbox property="chkTitulacion"></html:checkbox></td>
-					<td><label for="nombre_Tit">Titulación:</label></td>
+					<th><label for="titu_ID">Titulación:</label></th>
 				<!-- 	<td><html:text property="nombre_Tit" /></td> -->
-					<td><html:select property="nombre_Tit">
+					<td align="left"><html:select property="titu_ID">
 				 		 <c:forEach var="titu"  items="${listaTitulaciones}" >
-					 		<c:set var="titu_ID" scope="page" value= "${titu.titulacion_ID}"/>
+					 		<c:set var="titu_ID" scope="request" value= "${titu.titulacion_ID}"/>
 					 		<html:option value="${titu_ID}">${titu.nombre_Tit}</html:option>					 
 					 	</c:forEach> 
 				 		</html:select></td>  
-					<td><html:errors property="nombre_Tit" /></td>
+					<td><html:errors property="titu_ID" /></td>
 				</tr>
 				<tr>
 					<td><html:checkbox property="chkExperiencia"></html:checkbox></td>
-					<td><label for="a_Experiencia">Años de experiencia:</label></td>
-					<td><html:text property="a_Experiencia" /></td>
+					<th><label for="a_Experiencia">Años de experiencia:</label></th>
+					<td align="left"><html:text property="a_Experiencia" /></td>
 					<td><html:errors property="a_Experiencia" /></td>
 				</tr>
 					
-				<tr>
-					<td></td>
-					<td><html:submit>Submit</html:submit></td>
-				</tr>
+				
 			</table>
+			</fieldset>
+			<p></p>					
+			<html:submit>Consultar</html:submit>
+			<p></p>
 		</html:form>
 		
 		<html:link action="home"><bean:message key="tohome.link" /></html:link>
 	</div>
+	<fieldset>
+		Para hacer una consulta:
+		<ol>
+			<li>Marque la casilla de chequeo y elija el valor que desea</li>
+			<li>Después pulse el botón "Consultar"</li>
+		</ol>  
+	</fieldset>	
 	<jsp:directive.include file="footer.jsp" />
 </body>
 </html:html>

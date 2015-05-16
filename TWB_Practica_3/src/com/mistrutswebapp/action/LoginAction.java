@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.mistrutswebapp.beans.LoginBean;
+import com.mistrutswebapp.model.ModelFacade;
+import com.mistrutswebapp.model.Perfil;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -18,6 +20,7 @@ import org.apache.commons.logging.LogFactory;
 import javax.naming.*;
 import javax.sql.DataSource;
 import java.sql.*;
+import java.util.ArrayList;
 
 
 public class LoginAction extends Action
@@ -55,6 +58,9 @@ public class LoginAction extends Action
 	        	 if((rst1.getString("User_ID")).equals(id) && rst1.getString("Password").equals(contras))
 	        	 {
 	        		 log.info("In LoginAction --> usuario encontrado en BD");
+	        		 ArrayList<Perfil> listaPerfiles = new ArrayList<Perfil>();
+	       			listaPerfiles = (ArrayList<Perfil>)ModelFacade.getPerfiles("WHERE user_ID = '"+id + "'");
+	       			session.setAttribute("listaPerfiles", listaPerfiles);
 	        		 session.setAttribute("loginBean", loginBean);
 	        		 return mapping.findForward("found");
 	        	 }

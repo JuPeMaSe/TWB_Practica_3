@@ -24,6 +24,9 @@ public class ConsultaAction extends Action{
 	 private String cond = " WHERE ";
 	 private String strPerfil = "";
 	 private String strUser="";
+	 private String strTecn="";
+	 private String strTitu="";
+	 private String strExpe="";
 	 
 	 
 	 public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response){
@@ -33,7 +36,9 @@ public class ConsultaAction extends Action{
 		 cond = " WHERE ";
 		 strPerfil="";
 		 strUser="";
-		 
+		 strTitu="";
+		 strTecn="";
+		 strExpe="";
 //		 if (log.isInfoEnabled()){
 //	    	log.info("In ConsultaAction");
 //	    }	
@@ -50,27 +55,32 @@ public class ConsultaAction extends Action{
 			 strPerfil+= cond + " localidad = '"+cB.getLocalidad()+"' ";
 			 cond = " AND ";
 		 }
-//		 if(cB.isChkTitulacion()){
-//			 strPerfil+= cond + " titulacion_ID = '"+cB.getTitulacion_ID()+"' ";
-//			 cond = " AND ";
-//		 }
-//		 if(cB.isChkExperiencia()){
-//			 strPerfil+= cond + " experiencia = '"+cB.getA_Experiencia();
-//			 cond = " AND ";
-//		 }
-		
- 		listaPerfiles = (ArrayList<Perfil>)ModelFacade.getPerfiles(strPerfil);		
- 		if(listaPerfiles.isEmpty()){
+		 if(cB.isChkTitulacion()){
+			 strTitu=  " WHERE titulacion_ID = "+cB.getTitu_ID();
+			 //cond = " AND ";
+		 }
+		 if(cB.isChkTecnologia()){
+			 strTecn=  " WHERE tecnologia_ID = "+cB.getTecn_ID();
+			// cond = " AND ";
+		 }
+		 if(cB.isChkExperiencia()){
+			 strExpe= cB.getA_Experiencia();
+			// cond = " AND ";
+		 }
+ 		//listaPerfiles = (ArrayList<Perfil>)ModelFacade.getPerfiles(strPerfil);
+		 listaPerfiles = (ArrayList<Perfil>)ModelFacade.getPerfiles(strPerfil, strTitu, strTecn, strExpe);
+ 		if(listaPerfiles==null || listaPerfiles.isEmpty()){
  			strUser="";
- 			return mapping.findForward("notfound");
+ 			sesion.setAttribute("listaPerfiles", listaPerfiles);
+ 			//return mapping.findForward("notfound");
  		}else{
  			sesion.setAttribute("listaPerfiles", listaPerfiles);
  			strUser= " WHERE user_ID = '" +listaPerfiles.get(0).getUser_ID()+ "' ";
- 			listaUsuarios = (ArrayList<Usuario>)ModelFacade.getUsuarios(strUser);
- 			sesion.setAttribute("listaUsuarios", listaUsuarios);
- 			return mapping.findForward("succes");
+// 			listaUsuarios = (ArrayList<Usuario>)ModelFacade.getUsuarios(strUser);
+// 			sesion.setAttribute("listaUsuarios", listaUsuarios);
+ 		//	return mapping.findForward("succes");
  		}
  		
-	    
+ 		return mapping.findForward("succes");
 	 }
 }

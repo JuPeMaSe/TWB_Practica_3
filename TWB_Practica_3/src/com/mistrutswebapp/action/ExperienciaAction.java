@@ -39,22 +39,31 @@ public class ExperienciaAction extends Action{
 		String a_FinValues[] = request.getParameterValues("a_Fin_var");
 		
 		ArrayList<Experiencia> listaExp = new ArrayList<Experiencia>();		
-		for (int i =0; i< empresaValues.length;i ++){
-			Experiencia experiencia = new Experiencia();			
-			experiencia.setEmpresa(empresaValues[i]);
-			//System.out.println("En ExperienciaAction --> empresValues nº " +i+" "+ empresaValues [i]);
-			experiencia.setCargo(cargoValues[i]);
-			//System.out.println("En ExperienciaAction --> cargoValues nº "+i+" " + cargoValues [i]);
-			experiencia.setA_Inicio(a_InicioValues[i]);
-			//System.out.println("En ExperienciaAction --> a_InicioValues nº "+i+" " + a_InicioValues [i]);
-			experiencia.setA_Fin(a_FinValues[i]);
-			//System.out.println("En ExperienciaAction --> a_FinValues nº "+i+" " + a_FinValues [i]);
+		//for (int i =0; i< empresaValues.length;i ++){
+//			Experiencia experiencia = new Experiencia();			
+//			experiencia.setEmpresa(empresaValues[i]);
+//			//System.out.println("En ExperienciaAction --> empresValues nº " +i+" "+ empresaValues [i]);
+//			experiencia.setCargo(cargoValues[i]);
+//			//System.out.println("En ExperienciaAction --> cargoValues nº "+i+" " + cargoValues [i]);
+//			experiencia.setA_Inicio(Integer.parseInt(a_InicioValues[i]));
+//			//System.out.println("En ExperienciaAction --> a_InicioValues nº "+i+" " + a_InicioValues [i]);
+//			experiencia.setA_Fin(Integer.parseInt(a_FinValues[i]));
+//			//System.out.println("En ExperienciaAction --> a_FinValues nº "+i+" " + a_FinValues [i]);
+		if(!experienciaBean.getEmpresa().isEmpty()){
+			Experiencia experiencia = new Experiencia();
+			experiencia.setEmpresa(experienciaBean.getEmpresa());
+			experiencia.setCargo(experienciaBean.getCargo());
+			experiencia.setA_Inicio(experienciaBean.getA_Inicio());
+			experiencia.setA_Fin(experienciaBean.getA_Fin());
+			
 			listaExp.add(experiencia);
+		}
 			//System.out.println("En ExperienciaAction --> Añadida experiencia nº " + (i));
-		}	
-		
-		perfilBean = (PerfilBean)sesion.getAttribute("perfilBean");
-		perfilBean.setListaExp(listaExp);
+		//}	
+		if(!listaExp.isEmpty()){
+			perfilBean = (PerfilBean)sesion.getAttribute("perfilBean");
+			perfilBean.setListaExp(listaExp);
+		}
 		
 		
 		return mapping.findForward("succes");

@@ -20,8 +20,10 @@ import com.mistrutswebapp.model.Usuario;
 public class UsuarioBean extends ValidatorForm implements Serializable{
 	private String user_ID;
 	private String password;
+	private String password2;
 	private String nombre;
 	private String apellidos;
+	
 	//private Date fe_Nac; //hay que revisar tipo
 	private String tfno;
 	private String email;
@@ -58,6 +60,20 @@ public class UsuarioBean extends ValidatorForm implements Serializable{
 	 */
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	/**
+	 * @return the password2
+	 */
+	public String getPassword2() {
+		return password2;
+	}
+
+	/**
+	 * @param password2 the password2 to set
+	 */
+	public void setPassword2(String password2) {
+		this.password2 = password2;
 	}
 
 	/**
@@ -165,6 +181,12 @@ public class UsuarioBean extends ValidatorForm implements Serializable{
 		}
 		if(password == null || password.equals("")){
 			errors.add("password", new ActionMessage("error.password"));
+		}
+		if(password2 == null || password2.equals("")){
+			errors.add("password2", new ActionMessage("error.password"));
+		}
+		if(!password.equals(password2)){
+			errors.add("password", new ActionMessage("error.password.diferente"));
 		}
 		if(nombre == null || nombre.equals("")){
 			errors.add("nombre", new ActionMessage("error.nombre"));

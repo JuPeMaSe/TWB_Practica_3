@@ -4,6 +4,7 @@
    xmlns:html="http://struts.apache.org/tags-html" 	
     xmlns:bean="http://struts.apache.org/tags-bean"	
      xmlns:c="http://java.sun.com/jstl/core_rt"
+     xmlns:fn="http://java.sun.com/jsp/jstl/functions"
    version="2.0">
 <jsp:directive.page import="java.sql.Date"/>
 <jsp:directive.page contentType="text/html"/>   
@@ -17,11 +18,32 @@
 	<link href="threeregion.css" rel="stylesheet" type="text/css" />
 	<jsp:useBean id="loginBean" class= "com.mistrutswebapp.beans.LoginBean" scope="session"></jsp:useBean>
 	<title>Alta de usuario</title>
+	
+	<script languaje="javascript" type="text/javascript">
+		function bttnMostrar(variable){
+			alert(variable);
+			var varAccion= document.getElementByName("mostrar");
+			//varAccion.setAttribute("value",""+variable);
+			//request.setAttribute("value", variable);
+			request.setAttribute("variable", variable);
+// 			var requestAction=document.createElement('request');
+		
+// 			requestAction.setAttribute("name",variable);
+			
+// 			document.forms[resultadoConsulta].submit();
+			
+// 	  		txtAction.type='text';
+// 	  		txtAction.setAttribute("name","txtProfile_ID");
+			
+		}
+	
+	</script>
 </head>
 <body>
 	<jsp:directive.include file="header.jsp" />
 	 	 
 	<!-- <div id="content"> --> 
+	<html:form action="/mostrarPerfilSelected" enctype="multipartform-data">
 	 	<h1>Resultado de la Consulta</h1>
 	 	
 	 	
@@ -42,10 +64,14 @@
 	 		</fieldset>
 	 	
 	 	</c:forEach> -->
-	 	
-	 	
+	<c:choose>
+	<c:when test="${empty listaPerfiles}">
+	 		<h3> Ninguna coincidencia encontrada para su consulta</h3>
+	</c:when>
+	<c:otherwise>	 	
 		<c:forEach var="perfil" items="${listaPerfiles}">
-			<fieldset><legend>Perfil del usuario: ${perfil.user_ID }</legend>
+			<fieldset><legend>Perfil del usuario: ${perfil.user_ID } </legend>
+			<!--<html:button property="mostrar" onclick="parent.location='mostrarPerfilSeleccionado.jsp'">Mostrar Perfil</html:button>-->
 			<table><tr><td>
 				<fieldset><legend>Perfil</legend>	
 					<table border="1">
@@ -78,7 +104,12 @@
  				<fieldset><legend>Titulaciones: </legend>
  					<table>
  						<c:forEach var="titu" items="${perfil.listaTit}">
- 							<tr><td>titulacion_ID</td><td>${titu}</td></tr>
+ 							<!-- <tr><td>titulacion_ID</td><td>${titu}</td></tr>  -->
+ 							<c:forEach var="titula" items="${listaTitulaciones}">
+	 							<c:if test="${titula.titulacion_ID == titu}">
+	 								<tr><td>Titulación: </td><td>${titula.nombre_Tit}</td></tr>
+	 							</c:if>
+	 						</c:forEach>
  						</c:forEach>
  					</table>
  				</fieldset> 				
@@ -110,17 +141,36 @@
 	 			<fieldset><legend>Tecnologías: </legend>
 	 				<table>
 	 					<c:forEach var="tecn" items="${perfil.listaTec}">
-	 						<tr><td>tecnologia_ID</td><td>${tecn}</td></tr>
+	 						<!-- <tr><td>tecnologia_ID</td><td>${tecn}</td></tr>  -->
+	 						<c:forEach var="tecnol" items="${listaTecnologias}">
+	 							<c:if test="${tecnol.tecnologia_ID == tecn}">
+	 								<tr><td>Tecnología: </td><td>${tecnol.nombre_Tec}</td></tr>
+	 							</c:if>
+	 						</c:forEach>
 	 					</c:forEach>
 	 				</table>
 	 			</fieldset>
 	 			</td></tr>
- 			</table> 					
+ 			</table> 
+ 			
+ 				<!--  <p align="center"><html:button property="bttnMostrar" onclick="parent.location='mostrarPerfilSeleccionado.jsp'">Mostrar Perfil</html:button></p>-->
+ 				<!--<html:submit property="mostrar" value="Mostrar Perfil: ${perfil.profile_ID }" onclick="bttnMostrar(${perfil.profile_ID })"></html:submit>-->
+ 				<p align="center"><html:submit property="mostrar" value="Mostrar Perfil: ${perfil.profile_ID}"></html:submit></p>
+ 			<!-- 	<html:submit property="accion" value="${perfil.profile_ID }"></html:submit>
+ 				<html:submit property="accion" value="Me gusta"></html:submit>
+ 				<html:submit property="accion" value="borrar"></html:submit>	 -->	
+ 						
  			</fieldset>
  					
 							 
 		</c:forEach> 
-		
+	</c:otherwise>
+	</c:choose>
+	</html:form>
+	<!-- <html:text property="var_Profile"></html:text> -->
+		<p></p>
+		<p align="center"><html:button property="atras" onclick="parent.location='consultaPage.jsp'">Nueva Consulta</html:button></p>
+		<p align="center"><html:link action="home"><bean:message key="tohome.link" /></html:link> </p>
 		
 		
 	<jsp:directive.include file="footer.jsp" />

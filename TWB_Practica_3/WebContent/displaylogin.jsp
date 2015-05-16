@@ -14,6 +14,7 @@
  	<link href="threeregion.css" rel="stylesheet" type="text/css" />
  	<jsp:useBean id="loginBean" class= "com.mistrutswebapp.beans.LoginBean" scope="session"></jsp:useBean>
 	<title>Login Correcto</title>
+		<META HTTP-EQUIV="REFRESH" CONTENT="2;URL=homePage.jsp"></META> 
 </head>
 <body>
 	<jsp:directive.include file="header.jsp" />

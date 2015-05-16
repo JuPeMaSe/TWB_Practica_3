@@ -50,7 +50,7 @@
 			<table><tr><td>
 				<fieldset><legend>Perfil</legend>	
 					<table border="1">
-						<tr><th>pofile_ID</th><th>dirección</th><th>localidad</th><th>provincia</th><th>pais</th>
+						<tr><th>profile_ID</th><th>dirección</th><th>localidad</th><th>provincia</th><th>pais</th>
 						<th>Me gusta</th><th>pdf(url)</th><th>fotografia</th><th>user_ID</th></tr>
 	 		<!-- 			<tr><td>profile_ID</td><td>${perfil.profile_ID}</td><td> </td>
 	 						<td>dirección</td><td>${perfil.direccion}</td></tr>
@@ -79,7 +79,11 @@
  				<fieldset><legend>Titulaciones: </legend>
  					<table>
  						<c:forEach var="titu" items="${perfil.listaTit}">
- 							<tr><td>titulacion_ID</td><td>${titu}</td></tr>
+ 							<c:forEach var="titula" items="${listaTitulaciones}">
+	 							<c:if test="${titula.titulacion_ID == titu}">
+	 								<tr><td>Titulación: </td><td>${titula.nombre_Tit}</td></tr>
+	 							</c:if>
+	 						</c:forEach>
  						</c:forEach>
  					</table>
  				</fieldset> 				
@@ -111,7 +115,11 @@
 	 			<fieldset><legend>Tecnologías: </legend>
 	 				<table>
 	 					<c:forEach var="tecn" items="${perfil.listaTec}">
-	 						<tr><td>tecnologia_ID</td><td>${tecn}</td></tr>
+	 						<c:forEach var="tecnol" items="${listaTecnologias}">
+	 							<c:if test="${tecnol.tecnologia_ID == tecn}">
+	 								<tr><td>Tecnología: </td><td>${tecnol.nombre_Tec}</td></tr>
+	 							</c:if>
+	 						</c:forEach>
 	 					</c:forEach>
 	 				</table>
 	 			</fieldset>

@@ -28,8 +28,9 @@
  	 
  	<div id="content">
    		
-		<h1>Formulario de registro</h1>
-		<html:form action="/processGrabar" enctype="multipartform-data">
+	<h1>Formulario de registro</h1>
+	<html:form action="/processGrabar" enctype="multipartform-data">
+	<fieldset>
 	  <table border="0">
 					<tr>
 						<td>Dirección</td>
@@ -53,18 +54,20 @@
 					</tr>
 					<jsp:setProperty name="titulacionBean" property="titulacion_var" param="titulacion_var" /> 
 					<c:forEach var="titu" items="${titulacionBean.titulacion_var}">
-						<tr>
-							<td>Titulacion</td>
-							<td><c:out value="${titu}"/></td>
-						</tr>
+						<c:forEach var="titula" items="${listaTitulaciones}">
+	 						<c:if test="${titula.titulacion_ID == titu}">
+	 							<tr><td>Titulación: </td><td>${titula.nombre_Tit}</td></tr>
+	 						</c:if>
+	 					</c:forEach>
 					</c:forEach>
 					
 					<jsp:setProperty name="tecnologiaBean" property="tecnologia_var" param="tecnologia_var"/>
 					<c:forEach var="tecn" items="${tecnologiaBean.tecnologia_var}" >
-						<tr>
-							<td>Tecnología</td>
-							<td><c:out value="${tecn}" /></td>
-						</tr>
+						<c:forEach var="tecnol" items="${listaTecnologias}">
+	 						<c:if test="${tecnol.tecnologia_ID == tecn}">
+	 							<tr><td>Tecnología: </td><td>${tecnol.nombre_Tec}</td></tr>
+	 						</c:if>
+	 					</c:forEach>
 					</c:forEach>
 					<jsp:setProperty name="perfilBean" property="listaExp" param="listaExp"/>
 					<c:forEach var="expe" items="${perfilBean.listaExp}">
@@ -85,11 +88,12 @@
 						<td>Año de Finalización</td>
 						<td><c:out value="${expe.a_Fin}"/></td>
 					</tr>
-					<tr>
-						<td><html:submit>Submit</html:submit></td>
-					</tr>
+					
 					</c:forEach>
+					
 				</table>
+			</fieldset>
+				<html:button property="atras" onclick="parent.location='experienciaPage.jsp'">Atras</html:button><html:submit>Terminar</html:submit>
 		</html:form>
 		
 		

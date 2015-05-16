@@ -27,8 +27,8 @@
 	    <h1>LinkUNEDin</h1>
 	    <h3>Página de inicio del portal</h3>	    
 	    <p>Este portal se ha creado para aquellos profesionales que decidan compartir con nosotros su currículo, así como, permitir una mejor entrada en el mercado laboral</p>
-	    <p><html:link action="creaBD.do">Crear base de datos automática </html:link>(Crea la estructura de la base de datos para las pruebas).</p>
-	    <p> Es la primera acción a realizar antes de utilizar las demás, para evitar errores por no haberse creado ninguna Base de Datos</p>
+	   <!--  <p><html:link action="creaBD.do">Crear base de datos automática </html:link>(Crea la estructura de la base de datos para las pruebas).</p>
+	    <p> Es la primera acción a realizar antes de utilizar las demás, para evitar errores por no haberse creado ninguna Base de Datos</p> -->
 	    
 	    <!-- Opción de consulta -->
 	    <logic:equal name="administrarBean" property="adConsultar" value="false">
@@ -74,9 +74,16 @@
 	    <logic:equal name="administrarBean" property="adCrearPerfil" value="false">
 	    <p class="hp"><html:link action="fromhomecrear.do">Crear un perfil</html:link></p>
 	    </logic:equal>
+	    
+	    <!-- Opción administrar web -->
+        <logic:present name="loginBean">	    
 	    <logic:equal name="administrarBean" property="adCrearPerfil" value="true">
 	    	<p class="hp"><strong>Crear un perfil deshabilitada por el administrador</strong></p>
 	    </logic:equal>
+	      </logic:present>
+        <logic:notPresent name="loginBean" property="user_ID">   
+            <p><strong>Para acceder a la función Administrar web, iniciar sesión con: usuario = admin contraseña = admin</strong></p>
+        </logic:notPresent>
 	    
 	    <logic:equal name="loginBean" property="user_ID" value="admin">
 	    	<p class="hp"><html:link action="fromhomeadministrar.do">Administrar web</html:link></p>
