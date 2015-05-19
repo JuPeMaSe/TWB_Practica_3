@@ -14,22 +14,31 @@ import org.apache.struts.action.ActionForm;
 import org.apache.struts.action.ActionForward;
 import org.apache.struts.action.ActionMapping;
 
+import com.mistrutswebapp.model.ModelFacade;
+import com.mistrutswebapp.model.Perfil;
 import com.mistrutswebapp.model.Tecnologia;
 import com.mistrutswebapp.model.Titulacion;
+import com.mistrutswebapp.model.Usuario;
 
 import java.sql.*;  
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.TreeMap;
 
 public class CreaBDAction extends Action {
 	 private static Log log = LogFactory.getLog(LoginAction.class);
-
+	 HttpSession sesion =null;
+	 
 	 public ActionForward execute(ActionMapping mapping, ActionForm form, HttpServletRequest request, HttpServletResponse response)
 	 { 
-		  if (log.isInfoEnabled())
-		  { 
-		   log.info("In CreaBDAction");
-		  }
-		  HttpSession sesion = request.getSession();
+//		  if (log.isInfoEnabled())
+//		  { 
+//		   log.info("In CreaBDAction");
+//		  }
+		  sesion=request.getSession();
 		  Connection con = null;  
           Statement  st   = null;  
           String     sql  = null;  
@@ -110,26 +119,52 @@ public class CreaBDAction extends Action {
               		");";
               st.executeUpdate(sql);
               //Borramos los usuarios que existiesen en la tabla Usuario  
-              st.executeUpdate("DELETE FROM Usuario");  
-//           // Varios usuarios de prueba  
+              st.executeUpdate("DELETE FROM Usuario"); 
+              st.executeUpdate("DELETE FROM Perfil");
+              st.executeUpdate("DELETE FROM Perfil_Tit");
+              st.executeUpdate("DELETE FROM Perfil_Tec");
+              st.executeUpdate("DELETE FROM Experiencia");
+           // Varios usuarios de prueba con sus perfiles 
               st.executeUpdate("INSERT INTO Usuario (user_ID, password, nombre, apellidos, tfno, email, userType) " +
-              		"VALUES ('admin', 'admin',  'JP', 'MS','', '','adm')");
+              		"VALUES ('admin', 'admin',  'JP', 'MS','', '','adm')");              
+              st.executeUpdate("INSERT INTO Usuario (user_ID, password, nombre, apellidos, tfno, email, userType) " +
+                		"VALUES ('jpms', '123',  'Juan Pedro', 'Marquez Sevilla','', '','usu')");
+              st.executeUpdate("INSERT INTO Usuario (user_ID, password, nombre, apellidos, tfno, email, userType) " +
+                      "VALUES ('lperez', '123',  'Luis', 'Perez Gomez','123456789', 'lperez@ejemplo.com','sis')");
+              st.executeUpdate("INSERT INTO Usuario (user_ID, password, nombre, apellidos, tfno, email, userType) " +
+                      "VALUES ('agarrido', '123',  'Ana', 'Garrido Almansa','234567890', 'agarrido@ejemplo.com','sis')");
+              st.executeUpdate("INSERT INTO Usuario (user_ID, password, nombre, apellidos, tfno, email, userType) " +
+                      "VALUES ('ecastedo', '123',  'Estela', 'Castedo Sanz','345678901', 'ecastedo@ejemplo.com','sis')");
+              st.executeUpdate("INSERT INTO Usuario (user_ID, password, nombre, apellidos, tfno, email, userType) " +
+                      "VALUES ('fsanchez', '123',  'Francisco', 'Sanchez Murrieta','456789012', 'fsanchez@ejemplo.com','sis')");
+              st.executeUpdate("INSERT INTO Usuario (user_ID, password, nombre, apellidos, tfno, email, userType) " +
+                      "VALUES ('mmanero', '123',  'Miguel', 'Manero Haro','567890123', 'mmanero@ejemplo.com','sis')");
               
-              st.executeUpdate("INSERT INTO Usuario (user_ID, password, nombre, apellidos, tfno, email, userType) " +
-                		"VALUES ('jpms', '4367',  'Juan Pedro', 'Marquez Sevilla','', '','usu')");
+             
               
               st.executeUpdate("INSERT INTO Perfil (direccion,	localidad, provincia, pais,	cont_MeGusta,user_ID) "+
-            		  "VALUES('Plaza de la Villa, 1','Torreperogil','Jaen','ES' ,0,'jpms')");
+            		  "VALUES('Plaza de la Villa, 1','Ubeda','Jaen','ES' ,0,'jpms')");
+              
+              st.executeUpdate("INSERT INTO Perfil (pdf, fotografia, direccion, localidad, provincia, pais, user_ID, reference) " +
+                      "VALUES ('',  '', 'Gran Via','Oviedo', 'Asturias','ES', 'lperez', '')");
+              st.executeUpdate("INSERT INTO Perfil (pdf, fotografia, direccion, localidad, provincia, pais, user_ID, reference) " +
+                        "VALUES ('',  '', 'Avda. las acacias','Valencia', 'Valencia','ES', 'agarrido', '')");
+              st.executeUpdate("INSERT INTO Perfil (pdf, fotografia, direccion, localidad, provincia, pais, user_ID, reference) " +
+                      "VALUES ('',  '', 'Calle los lirios','Barcelona', 'Barcelona','ES', 'ecastedo', '')");
+              st.executeUpdate("INSERT INTO Perfil (pdf, fotografia, direccion, localidad, provincia, pais, user_ID, reference) " +
+                      "VALUES ('',  '', 'Calle Santander','Vigo', 'Galicia','ES', 'fsanchez', '')");
+              st.executeUpdate("INSERT INTO Perfil (pdf, fotografia, direccion, localidad, provincia, pais, user_ID, reference) " +
+                      "VALUES ('',  '', 'Avda. los pinos','Malaga', 'Andalucia','ES', 'mmanero', '')");
+              st.executeUpdate("INSERT INTO Perfil (pdf, fotografia, direccion, localidad, provincia, pais, user_ID, reference) " +
+                        "VALUES ('',  '', 'Calle Corregidor','Granada', 'Andalucia','ES', 'mmanero', '')");
+              
               
               st.executeUpdate("INSERT INTO Perfil_Tit (titulacion_ID, profile_ID)"+
             		  "VALUES(2,1)");
               st.executeUpdate("INSERT INTO Perfil_Tec (tecnologia_ID, profile_ID)"+
             		  "VALUES(3,1)");
               st.executeUpdate("INSERT INTO Experiencia (empresa, cargo, a_Inicio, a_Fin, profile_ID) "+
-            		  "VALUES('Dragados','Jefe de obra',1995,2015,1)");
-              
-              st.executeUpdate("INSERT INTO Perfil (direccion,	localidad, provincia, pais,	cont_MeGusta,user_ID) "+
-            		  "VALUES('Sor Angela','Ubeda','Jaen','ES' ,0,'jpms')");
+            		  "VALUES('Dragados','Jefe de obra',1995,2015,1)");       
               
               st.executeUpdate("INSERT INTO Perfil_Tit (titulacion_ID, profile_ID)"+
             		  "VALUES(3,2)");
@@ -137,11 +172,34 @@ public class CreaBDAction extends Action {
             		  "VALUES(1,2)");
               st.executeUpdate("INSERT INTO Perfil_Tec (tecnologia_ID, profile_ID)"+
             		  "VALUES(1,2)");
+              st.executeUpdate("INSERT INTO Experiencia (empresa, cargo, a_Inicio, a_Fin, profile_ID) "+
+            		  "VALUES('AgroQuimica','Director RR.HH',1995,1998,2)");
+              
+              st.executeUpdate("INSERT INTO Perfil_Tit (titulacion_ID, profile_ID)"+
+            		  "VALUES(2,3)");
+              st.executeUpdate("INSERT INTO Perfil_Tit (titulacion_ID, profile_ID)"+
+            		  "VALUES(1,3)");
+              st.executeUpdate("INSERT INTO Perfil_Tec (tecnologia_ID, profile_ID)"+
+            		  "VALUES(4,3)");
+
+              
+              st.executeUpdate("INSERT INTO Perfil_Tit (titulacion_ID, profile_ID)"+
+            		  "VALUES(3,4)");
+              st.executeUpdate("INSERT INTO Perfil_Tec (tecnologia_ID, profile_ID)"+
+            		  "VALUES(1,4)");
+              st.executeUpdate("INSERT INTO Experiencia (empresa, cargo, a_Inicio, a_Fin, profile_ID) "+
+            		  "VALUES('UPSA','Jefe Proyecto',1990,2010,4)");
               
               
-//              //st.executeUpdate("INSERT INTO Usuario (User_ID, Password, Nombre) VALUES ('jpms', '4367',  'Juan Pedro')");
-//              st.executeUpdate("INSERT INTO Usuario (user_ID, password, nombre) VALUES ('ja', '5367',  'Jose Angel')");  
-//      			st.executeUpdate("INSERT INTO Usuario (user_ID, password, nombre) VALUES ('jj', '6367',  'Juan Jose')");
+              st.executeUpdate("INSERT INTO Perfil_Tit (titulacion_ID, profile_ID)"+
+            		  "VALUES(2,6)");
+              st.executeUpdate("INSERT INTO Perfil_Tit (titulacion_ID, profile_ID)"+
+            		  "VALUES(4,6)");
+              st.executeUpdate("INSERT INTO Perfil_Tec (tecnologia_ID, profile_ID)"+
+            		  "VALUES(1,6)");
+              st.executeUpdate("INSERT INTO Experiencia (empresa, cargo, a_Inicio, a_Fin, profile_ID) "+
+            		  "VALUES('Bankia','Presidente',1960,1980,6)");
+              
               //Introducimos varias titulaciones
               st.executeUpdate("INSERT INTO Titulacion (titulacion_ID,nombre_Tit) " +
               		"VALUES (0,'Sin titulación')");
@@ -164,6 +222,10 @@ public class CreaBDAction extends Action {
                 	"VALUES (3,'SQL')");
               st.executeUpdate("INSERT INTO Tecnologia (tecnologia_ID, nombre_Tec) " +
                     "VALUES (4,'Struts')");
+              
+              //crear la lista de países
+              crearListaPaises();
+              
 	// Mostramos por pantalla todos los usuarios de la tabla  
 //            rst1 = st.executeQuery("SELECT * FROM Usuario");  
 //            while (rst1.next()){  
@@ -201,7 +263,10 @@ public class CreaBDAction extends Action {
             }
             sesion.setAttribute("listaTecnologias",listaTecnologias);
            
-            
+            ArrayList<Perfil> listaPerfiles= (ArrayList<Perfil>)ModelFacade.getPerfiles("");
+            sesion.setAttribute("listaPerfiles",listaPerfiles);
+            ArrayList<Usuario> listaUsuarios= (ArrayList<Usuario>)ModelFacade.getUsuarios("");
+            sesion.setAttribute("listaUsuarios",listaUsuarios);
               // Liberamos recursos y cerramos la conexion  
              st.close();  
               con.close();  
@@ -211,5 +276,300 @@ public class CreaBDAction extends Action {
           log.info("In CreaBDAction --> Base de datos creada");
           return mapping.findForward("Ok");
 	 }
+
+	private void crearListaPaises() {
+		Map<String,String> listaPaises=new LinkedHashMap<String,String>();
+		listaPaises.put("ES","España");
+		listaPaises.put("AF","Afganistán");
+		listaPaises.put("AL","Albania");
+		listaPaises.put("DE","Alemania");
+		listaPaises.put("AN","Andorra");
+				
+		listaPaises.put("AO","Angola ");
+		listaPaises.put("AI","Anguilla ");
+		listaPaises.put("AQ","Antártida ");
+		listaPaises.put("AG","Antigua y Barbuda ");
+		listaPaises.put("AN","Antillas Holandesas ");
+				
+		listaPaises.put("SA","Arabia Saudí ");
+		listaPaises.put("DZ","Argelia ");
+		listaPaises.put("AR","Argentina ");
+		listaPaises.put("AM","Armenia ");
+		listaPaises.put("AW","Aruba ");
+				
+		listaPaises.put("MK","ARY Macedonia ");
+		listaPaises.put("AU","Australia ");
+		listaPaises.put("AT","Austria ");
+		listaPaises.put("AZ","Azerbaiyán ");
+		listaPaises.put("BS","Bahamas ");
+				
+		listaPaises.put("BH","Bahréin ");
+		listaPaises.put("BD","Bangladesh ");
+		listaPaises.put("BB","Barbados ");
+		listaPaises.put("BE","Bélgica ");
+		listaPaises.put("BZ","Belice ");
+				
+		listaPaises.put("BJ","Benin ");
+		listaPaises.put("BM","Bermudas ");
+		listaPaises.put("BT","Bhután ");
+		listaPaises.put("BY","Bielorrusia ");
+		listaPaises.put("BO","Bolivia ");
+				
+		listaPaises.put("BA","Bosnia y Herzegovina ");
+		listaPaises.put("BW","Botsuana ");
+		listaPaises.put("BR","Brasil ");
+		listaPaises.put("BN","Brunéi ");
+		listaPaises.put("BG","Bulgaria ");
+				
+		listaPaises.put("BF","Burkina Faso ");
+		listaPaises.put("BI","Burundi ");
+		listaPaises.put("CV","Cabo Verde ");
+		listaPaises.put("KH","Camboya ");
+		listaPaises.put("CM","Camerún ");
+				
+		listaPaises.put("CA","Canadá ");
+		listaPaises.put("TD","Chad ");
+		listaPaises.put("CL","Chile ");
+		listaPaises.put("CN","China ");
+		listaPaises.put("CY","Chipre ");
+				
+		listaPaises.put("VA","Ciudad del Vaticano ");
+		listaPaises.put("CO","Colombia ");
+		listaPaises.put("KM","Comoras ");
+		listaPaises.put("CG","Congo ");
+		listaPaises.put("KP","Corea del Norte ");
+				
+		listaPaises.put("KR","Corea del Sur ");
+		listaPaises.put("CI","Costa de Marfil ");
+		listaPaises.put("CR","Costa Rica ");
+		listaPaises.put("HR","Croacia ");
+		listaPaises.put("CU","Cuba ");
+				
+		listaPaises.put("DK","Dinamarca ");
+		listaPaises.put("DM","Dominica ");
+		listaPaises.put("EC","Ecuador ");
+		listaPaises.put("EG","Egipto ");
+		listaPaises.put("SV","El Salvador ");
+				
+		listaPaises.put("AE","Emiratos Árabes Unidos ");
+		listaPaises.put("ER","Eritrea ");
+		listaPaises.put("SK","Eslovaquia ");
+		listaPaises.put("SI","Eslovenia "); 
+				
+		listaPaises.put("US","Estados Unidos ");
+		listaPaises.put("EE","Estonia ");
+		listaPaises.put("ET","Etiopía ");
+		listaPaises.put("PH","Filipinas ");
+		listaPaises.put("FI","Finlandia ");
+				
+		listaPaises.put("FJ","Fiyi ");
+		listaPaises.put("FR","Francia ");
+		listaPaises.put("GA","Gabón ");
+		listaPaises.put("GM","Gambia ");
+		listaPaises.put("GE","Georgia ");
+				
+		listaPaises.put("GH","Ghana ");
+		listaPaises.put("GI","Gibraltar ");
+		listaPaises.put("GD","Granada ");
+		listaPaises.put("GR","Grecia ");
+		listaPaises.put("GL","Groenlandia ");
+				
+		listaPaises.put("GP","Guadalupe ");
+		listaPaises.put("GU","Guam ");
+		listaPaises.put("GT","Guatemala ");
+		listaPaises.put("GF","Guayana Francesa ");
+		listaPaises.put("GN","Guinea ");
+				
+		listaPaises.put("GQ","Guinea Ecuatorial ");
+		listaPaises.put("GW","Guinea-Bissau ");
+		listaPaises.put("GY","Guyana ");
+		listaPaises.put("HT","Haití ");
+		listaPaises.put("HN","Honduras ");
+				
+		listaPaises.put("HK","Hong Kong ");
+		listaPaises.put("HU","Hungría ");
+		listaPaises.put("IN","India ");
+		listaPaises.put("ID","Indonesia ");
+		listaPaises.put("IR","Irán ");
+				
+		listaPaises.put("IQ","Iraq ");
+		listaPaises.put("IE","Irlanda ");
+		listaPaises.put("BV","Isla Bouvet ");
+		listaPaises.put("CX","Isla de Navidad ");
+		listaPaises.put("NF","Isla Norfolk ");
+				
+		listaPaises.put("IS","Islandia ");
+		listaPaises.put("KY","Islas Caimán ");
+		listaPaises.put("CC","Islas Cocos ");
+		listaPaises.put("CK","Islas Cook ");
+		listaPaises.put("FO","Islas Feroe ");
+				
+		listaPaises.put("GS","Islas Georgias del Sur y Sandwich del Sur ");
+		listaPaises.put("AX","Islas Gland ");
+		listaPaises.put("HM","Islas Heard y McDonald ");
+		listaPaises.put("FK","Islas Malvinas ");
+		listaPaises.put("MP","Islas Marianas del Norte ");
+				
+		listaPaises.put("MH","Islas Marshall ");
+		listaPaises.put("PN","Islas Pitcairn ");
+		listaPaises.put("SB","Islas Salomón ");
+		listaPaises.put("TC","Islas Turcas y Caicos ");
+		listaPaises.put("UM","Islas ultramarinas de Estados Unidos ");
+				
+		listaPaises.put("VG","Islas Vírgenes Británicas ");
+		listaPaises.put("VI","Islas Vírgenes de los Estados Unidos ");
+		listaPaises.put("IL","Israel ");
+		listaPaises.put("IT","Italia ");
+		listaPaises.put("JM","Jamaica ");
+				
+		listaPaises.put("JP","Japón ");
+		listaPaises.put("JO","Jordania ");
+		listaPaises.put("KZ","Kazajstán ");
+		listaPaises.put("KE","Kenia ");
+		listaPaises.put("KG","Kirguistán ");
+				
+		listaPaises.put("KI","Kiribati ");
+		listaPaises.put("KW","Kuwait ");
+		listaPaises.put("LA","Laos ");
+		listaPaises.put("LS","Lesotho ");
+		listaPaises.put("LV","Letonia ");
+				
+		listaPaises.put("LB","Líbano ");
+		listaPaises.put("LR","Liberia ");
+		listaPaises.put("LY","Libia ");
+		listaPaises.put("LI","Liechtenstein ");
+		listaPaises.put("LT","Lituania ");
+				
+		listaPaises.put("LU","Luxemburgo ");
+		listaPaises.put("MO","Macao ");
+		listaPaises.put("MG","Madagascar ");
+		listaPaises.put("MY","Malasia ");
+		listaPaises.put("MW","Malawi ");
+				
+		listaPaises.put("MV","Maldivas ");
+		listaPaises.put("ML","Malí ");
+		listaPaises.put("MT","Malta ");
+		listaPaises.put("MA","Marruecos ");
+		listaPaises.put("MQ","Martinica ");
+				
+		listaPaises.put("MU","Mauricio ");
+		listaPaises.put("MR","Mauritania ");
+		listaPaises.put("YT","Mayotte ");
+		listaPaises.put("MX","México ");
+		listaPaises.put("FM","Micronesia ");
+				
+		listaPaises.put("MD","Moldavia ");
+		listaPaises.put("MC","Mónaco ");
+		listaPaises.put("MN","Mongolia ");
+		listaPaises.put("MS","Montserrat ");
+		listaPaises.put("MZ","Mozambique ");
+				
+		listaPaises.put("MM","Myanmar ");
+		listaPaises.put("NA","Namibia ");
+		listaPaises.put("NR","Nauru ");
+		listaPaises.put("NP","Nepal ");
+		listaPaises.put("NI","Nicaragua ");
+				
+		listaPaises.put("NE","Níger ");
+		listaPaises.put("NG","Nigeria ");
+		listaPaises.put("NU","Niue ");
+		listaPaises.put("NO","Noruega ");
+		listaPaises.put("NC","Nueva Caledonia ");
+				
+		listaPaises.put("NZ","Nueva Zelanda ");
+		listaPaises.put("OM","Omán ");
+		listaPaises.put("NL","Países Bajos ");
+		listaPaises.put("PK","Pakistán ");
+		listaPaises.put("PW","Palau ");
+				
+		listaPaises.put("PS","Palestina ");
+		listaPaises.put("PA","Panamá ");
+		listaPaises.put("PG","Papúa Nueva Guinea ");
+		listaPaises.put("PY","Paraguay ");
+		listaPaises.put("PE","Perú ");
+				
+		listaPaises.put("PF","Polinesia Francesa ");
+		listaPaises.put("PL","Polonia ");
+		listaPaises.put("PT","Portugal ");
+		listaPaises.put("PR","Puerto Rico ");
+		listaPaises.put("QA","Qatar ");
+				
+		listaPaises.put("GB","Reino Unido ");
+		listaPaises.put("CF","República Centroafricana ");
+		listaPaises.put("CZ","República Checa ");
+		listaPaises.put("CD","República Democrática del Congo ");
+		listaPaises.put("DO","República Dominicana ");
+				
+		listaPaises.put("RE","Reunión ");
+		listaPaises.put("RW","Ruanda ");
+		listaPaises.put("RO","Rumania ");
+		listaPaises.put("RU","Rusia ");
+		listaPaises.put("EH","Sahara Occidental ");
+				
+		listaPaises.put("WS","Samoa ");
+		listaPaises.put("AS","Samoa Americana ");
+		listaPaises.put("KN","San Cristóbal y Nevis ");
+		listaPaises.put("SM","San Marino ");
+		listaPaises.put("PM","San Pedro y Miquelón ");
+				
+		listaPaises.put("VC","San Vicente y las Granadinas ");
+		listaPaises.put("SH","Santa Helena ");
+		listaPaises.put("LC","Santa Lucía ");
+		listaPaises.put("ST","Santo Tomé y Príncipe ");
+		listaPaises.put("SN","Senegal ");
+				
+		listaPaises.put("CS","Serbia y Montenegro ");
+		listaPaises.put("SC","Seychelles ");
+		listaPaises.put("SL","Sierra Leona ");
+		listaPaises.put("SG","Singapur ");
+		listaPaises.put("SY","Siria ");
+				
+		listaPaises.put("SO","Somalia ");
+		listaPaises.put("LK","Sri Lanka ");
+		listaPaises.put("SZ","Suazilandia ");
+		listaPaises.put("ZA","Sudáfrica ");
+		listaPaises.put("SD","Sudán ");
+				
+		listaPaises.put("SE","Suecia ");
+		listaPaises.put("CH","Suiza ");
+		listaPaises.put("SR","Surinam ");
+		listaPaises.put("SJ","Svalbard y Jan Mayen ");
+		listaPaises.put("TH","Tailandia ");
+				
+		listaPaises.put("TW","Taiwán ");
+		listaPaises.put("TZ","Tanzania ");
+		listaPaises.put("TJ","Tayikistán ");
+		listaPaises.put("IO","Territorio Británico del Océano índico ");
+		listaPaises.put("TF","Territorios Australes Franceses ");
+				
+		listaPaises.put("TL","Timor Oriental ");
+		listaPaises.put("TG","Togo ");
+		listaPaises.put("TK","Tokelau ");
+		listaPaises.put("TO","Tonga ");
+		listaPaises.put("TT","Trinidad y Tobago ");
+				
+		listaPaises.put("TN","Túnez ");
+		listaPaises.put("TM","Turkmenistán ");
+		listaPaises.put("TR","Turquía ");
+		listaPaises.put("TV","Tuvalu ");
+		listaPaises.put("UA","Ucrania ");
+				
+		listaPaises.put("UG","Uganda ");
+		listaPaises.put("UY","Uruguay ");
+		listaPaises.put("UZ","Uzbekistán ");
+		listaPaises.put("VU","Vanuatu ");
+		listaPaises.put("VE","Venezuela ");
+				
+		listaPaises.put("VN","Vietnam ");
+		listaPaises.put("WF","Wallis y Futuna ");
+		listaPaises.put("YE","Yemen ");
+		listaPaises.put("DJ","Yibuti ");
+		listaPaises.put("ZM","Zambia ");
+				
+		listaPaises.put("ZW","Zimbabue ");
+
+		sesion.setAttribute("listaPaises",listaPaises);
+		
+	}
 
 }

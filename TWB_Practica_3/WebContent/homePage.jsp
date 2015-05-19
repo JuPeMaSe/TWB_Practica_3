@@ -75,18 +75,15 @@
 	    <p class="hp"><html:link action="fromhomecrear.do">Crear un perfil</html:link></p>
 	    </logic:equal>
 	    
-	    <!-- Opción administrar web -->
-        <logic:present name="loginBean">	    
-	    <logic:equal name="administrarBean" property="adCrearPerfil" value="true">
-	    	<p class="hp"><strong>Crear un perfil deshabilitada por el administrador</strong></p>
-	    </logic:equal>
-	      </logic:present>
-        <logic:notPresent name="loginBean" property="user_ID">   
+	    <!-- Opciones del administrador -->
+	   
+	    <logic:notPresent name="loginBean" property="user_ID">  
             <p><strong>Para acceder a la función Administrar web, iniciar sesión con: usuario = admin contraseña = admin</strong></p>
-        </logic:notPresent>
-	    
-	    <logic:equal name="loginBean" property="user_ID" value="admin">
-	    	<p class="hp"><html:link action="fromhomeadministrar.do">Administrar web</html:link></p>
+           <!--  <p><strong>Para acceder a la función Eliminar Usuarios, iniciar sesión con: usuario = admin contraseña = admin</strong></p>   -->
+        </logic:notPresent>      
+	    <logic:equal name="loginBean" property="user_ID" value="admin">    	
+	    	<p class="hp"><html:link page="/administrarPage.jsp">Administrar web</html:link></p>
+	    	<!-- <p class="hp"><html:link page="/eliminarUsuariosPage.jsp">Eliminar Usuarios</html:link></p> -->
 	    </logic:equal>
 	    
 	    <p class="hp"><html:link action="mostrarBD.do">Mostrar Base de Datos</html:link></p>

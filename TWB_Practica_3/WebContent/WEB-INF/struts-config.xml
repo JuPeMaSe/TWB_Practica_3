@@ -15,6 +15,8 @@
  		<form-bean name="resultadoConsultaBean" type="com.mistrutswebapp.beans.ResultadoConsultaBean" />
  		<form-bean name="mostrarPerfilCreadoBean" type="com.mistrutswebapp.beans.MostrarPerfilCreadoBean" />
  		<form-bean name="administrarBean" type="com.mistrutswebapp.beans.AdministrarBean" />
+ 		<form-bean name="eliminarUsuariosBean" type="com.mistrutswebapp.beans.EliminarUsuariosBean" /> 
+ 		<form-bean name="eliminarPerfilesBean" type="com.mistrutswebapp.beans.EliminarPerfilesBean" /> 					
  	</form-beans>
 	<global-forwards type="org.apache.struts.action.ActionForward">
 		<forward name="home" path="/homePage.jsp" redirect="false"/>
@@ -27,30 +29,35 @@
 			input="/homePage.jsp">
 			<forward name="noRegistrado" path="/altaPage.jsp" />
 			<forward name="registrado" path="/displaylogin.jsp" />
+			<forward name="admin" path= "/displaylogin.jsp"/>
 		</action>
 		<action path="/fromhomebaja"  
 			type= "com.mistrutswebapp.action.PageHomeAction" 
 			input="/homePage.jsp">
 			<forward name="noRegistrado" path="/loginform.jsp" />
 			<forward name="registrado" path="/bajaPage.jsp" />
+			<forward name="admin" path= "/eliminarUsuariosPage.jsp"/> 			
 		</action>
 		<action path="/fromhomemodificar" 
 			type= "com.mistrutswebapp.action.PageHomeAction" 
 			input="/homePage.jsp">
 			<forward name="noRegistrado" path="/loginform.jsp" />
 			<forward name="registrado" path="/modificarPage.jsp" />
+			<forward name="admin" path= "/modificarPage.jsp"/>
 		</action>
 		<action path="/fromhomeeliminar" 
 			type= "com.mistrutswebapp.action.PageHomeAction" 
 			input="/homePage.jsp">
 			<forward name="noRegistrado" path="/loginform.jsp" />
 			<forward name="registrado" path="/eliminarPage.jsp" />
+			<forward name="admin" path= "/eliminarPage.jsp"/>
 		</action>
 		<action path="/fromhomecrear" 
 			type= "com.mistrutswebapp.action.PageHomeAction" 
 			input="/homePage.jsp">
 			<forward name="noRegistrado" path="/loginform.jsp" />
 			<forward name="registrado" path="/crearPage.jsp" />
+			<forward name="admin" path= "/crearPage.jsp"/>
 		</action>
 		<action path="/fromhomeadministrar" 
 			type= "com.mistrutswebapp.action.PageHomeAction" 
@@ -156,6 +163,20 @@
  		<action path="/processBaja"
  		    type="com.mistrutswebapp.action.BajaAction">
 			<forward name="sucess" path="/bajaConfirmada.jsp"/> 		    
+ 		</action>
+ 		<action path="/processEliminarUsuarios"
+ 			type="com.mistrutswebapp.action.EliminarUsuariosAction"
+ 			name="eliminarUsuariosBean"
+ 			scope="request"> 
+ 			<forward name="success" path= "/usuariosEliminadosAdministrador.jsp"/>			 			 			
+ 		</action>
+ 		<action path="/processEliminarPerfiles"
+ 			type="com.mistrutswebapp.action.EliminarPerfilAction"
+ 			name="eliminarPerfilesBean"
+ 			scope="request"
+ 			input="/eliminarPage.jsp"> 	
+ 			<forward name="Ok" path= "/homePage.jsp"/> 
+			<!-- <forward name="error" path= "/notfound.jsp"/>  -->		
  		</action>
 	</action-mappings>	
  	<message-resources parameter="ApplicationResources" />

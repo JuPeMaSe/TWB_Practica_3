@@ -20,11 +20,11 @@
  	 
 	<div id="content"> 
 	  	<h1>Página de Baja</h1>
-	  	
-	  	<html:link action="processBaja">Confirmar la baja de usuario</html:link><br />
-	  	<html:link action="home">Cancelar y volver a Home</html:link>
-	  	
-		<html:link action="home"><bean:message key="tohome.link" /></html:link>
+	  	<h3>El usuario -- <bean:write name="loginBean" property="user_ID"/> -- va ha ser dado de baja.</h3>
+	  	<p>Esta operación no se puede deshacer.</p>
+	  	<p>Se eliminarán todos los perfiles asociados con este usuario. </p>
+	  	<h3>Si desea continuar con la baja pulse <html:link action="processBaja">aquí para confirmar</html:link> la baja de usuario</h3>
+	  	<h4>Pulse <html:link action="home">aquí para Cancelar</html:link> y volver a la página de inicio</h4>
 	</div>
 	<jsp:directive.include file="footer.jsp" />
 </body>

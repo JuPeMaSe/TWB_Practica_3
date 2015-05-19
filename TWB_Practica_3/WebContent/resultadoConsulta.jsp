@@ -72,7 +72,8 @@
 		<c:forEach var="perfil" items="${listaPerfiles}">
 			<fieldset><legend>Perfil del usuario: ${perfil.user_ID } </legend>
 			<!--<html:button property="mostrar" onclick="parent.location='mostrarPerfilSeleccionado.jsp'">Mostrar Perfil</html:button>-->
-			<table><tr><td>
+			<table>
+			<tr><td>
 				<fieldset><legend>Perfil</legend>	
 					<table border="1">
 						<tr><th>profile_ID</th><th>dirección</th><th>localidad</th><th>provincia</th><th>pais</th>
@@ -115,8 +116,9 @@
  				</fieldset> 				
  				
  				</td></tr>
- 			</table>
- 			<table><tr><td> 				
+ 			<!-- </table> -->
+ 			<!-- <table> -->
+ 			<tr><td> 				
  				<fieldset><legend>Experiencia: </legend>
  					<c:forEach var="expe" items="${perfil.listaExp}">
  						<table border="1">
@@ -151,14 +153,21 @@
 	 				</table>
 	 			</fieldset>
 	 			</td></tr>
+	 			
+	 			<tr align="center">
+	 			<td colspan="2">
+	 			<table>
+	 				<td><html:submit property="mostrar" value="Mostrar Perfil: ${perfil.profile_ID}"></html:submit> </td>
+	 				<td><html:submit property="accion" value="Me gusta: ${perfil.profile_ID}"></html:submit></td>
+	 			</table>
+	 			</td>
+	 			</tr>
  			</table> 
  			
  				<!--  <p align="center"><html:button property="bttnMostrar" onclick="parent.location='mostrarPerfilSeleccionado.jsp'">Mostrar Perfil</html:button></p>-->
  				<!--<html:submit property="mostrar" value="Mostrar Perfil: ${perfil.profile_ID }" onclick="bttnMostrar(${perfil.profile_ID })"></html:submit>-->
- 				<p align="center"><html:submit property="mostrar" value="Mostrar Perfil: ${perfil.profile_ID}"></html:submit></p>
- 			<!-- 	<html:submit property="accion" value="${perfil.profile_ID }"></html:submit>
- 				<html:submit property="accion" value="Me gusta"></html:submit>
- 				<html:submit property="accion" value="borrar"></html:submit>	 -->	
+ 				<!-- 	<html:submit property="accion" value="${perfil.profile_ID }"></html:submit> -->
+ 				<!-- <html:submit property="accion" value="borrar"></html:submit>	 -->	
  						
  			</fieldset>
  					

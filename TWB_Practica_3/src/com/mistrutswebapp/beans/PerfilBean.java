@@ -16,7 +16,7 @@ import com.mistrutswebapp.model.Experiencia;
 public class PerfilBean extends ValidatorForm implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
-	//private int profile_ID;
+	private int profile_ID;
 	private String pdf; //a cambiar el tipo para almacenar pdf
 	private String fotografia;//a cambiar el tipo para almacenar jpeg, bmp...
 	private String direccion;
@@ -37,20 +37,20 @@ public class PerfilBean extends ValidatorForm implements Serializable {
 		listaExp=new ArrayList<Experiencia>();
 	}
 	
-//	
-//	/**
-//	 * @return the profile_ID
-//	 */
-//	public int getProfile_ID() {
-//		return profile_ID;
-//	}
-//
-//	/**
-//	 * @param profile_ID the profile_ID to set
-//	 */
-//	public void setProfile_ID(int profile_ID) {
-//		this.profile_ID = profile_ID;
-//	}
+	
+	/**
+	 * @return the profile_ID
+	 */
+	public int getProfile_ID() {
+		return profile_ID;
+	}
+
+	/**
+	 * @param profile_ID the profile_ID to set
+	 */
+	public void setProfile_ID(int profile_ID) {
+		this.profile_ID = profile_ID;
+	}
 
 	
 	/**

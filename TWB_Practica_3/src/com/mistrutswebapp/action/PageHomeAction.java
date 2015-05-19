@@ -28,20 +28,19 @@ public class PageHomeAction extends Action
 	
 	  
 
-	if (loginBean.getUser_ID() == null)
-	{
+	if (loginBean.getUser_ID() == null){
 		log.info("In PageHomeAction: usuario no registrado");
 		return mapping.findForward("noRegistrado");
-	}
-	else
-	{
+	}else{
 //		ArrayList<Perfil> listaPerfiles = new ArrayList<Perfil>();;
 //		listaPerfiles = (ArrayList<Perfil>)ModelFacade.getPerfiles("");
 //		sesion.setAttribute("listaPerfiles", listaPerfiles);
-		
 		log.info("In PageHomeAction: usuario registrado: "+loginBean.getUser_ID());
-		return mapping.findForward("registrado");
-	}
-	  
+		if(loginBean.getUser_ID().equals("admin")){
+			return mapping.findForward("admin");
+		}else{
+			return mapping.findForward("registrado");
+		}		
+	}	  
   }
 }

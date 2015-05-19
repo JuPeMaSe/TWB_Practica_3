@@ -43,6 +43,7 @@ public class AltaAction extends Action {
 
 	    usuarioBean = (UsuarioBean)form;
 		 HttpSession session= request.getSession();
+		 session.setAttribute("usuarioBean",usuarioBean);
 //
 //		if (usuarioBean.getUser_ID() == null)
 //		{
@@ -53,7 +54,7 @@ public class AltaAction extends Action {
 //		{
 			//addUsuario();
 			ModelFacade.crearUsuario(usuarioBean);
-			compruebaAltaBD(); //método a eliminar en el definitivo. Sólo muestra por log el alta realizada
+			//compruebaAltaBD(); //método a eliminar en el definitivo. Sólo muestra por log el alta realizada
 			log.info("In AltaAction: usuario registrado: "+usuarioBean.getUser_ID());
 			//pasamos la información al loginBean
 			LoginBean loginBean = (LoginBean)session.getAttribute("loginBean");
@@ -64,49 +65,49 @@ public class AltaAction extends Action {
 		  
 	  }
 
-	  //método a eliminar. Lo uso como prueba para comprobar el alta en la BD
-	 private void compruebaAltaBD() {
-		 try{
-             // hago el lookup del pool de conexiones
-             Context ctx=new InitialContext();
-             DataSource ds=(DataSource)ctx.lookup("java:comp/env/jdbc/ConexionHSQLDS");
-                
-             // pido una conexion
-             Connection con=ds.getConnection();
-			 // log.info("In AltaAction despues de connection--> cerrada? =="+con.isClosed());
-	         Statement st  = con.createStatement(); 
-	         //log.info("In AltaAction despues de statement--> st cerrado? =="+st.isClosed());
-			// Mostramos por pantalla todos los usuarios de la tabla  
-	         ResultSet rst1 = st.executeQuery("SELECT * FROM Usuario");
-	        // log.info("In AltaAction despues de ResultSet");
-	         while (rst1.next()){  
-	             log.info("In AltaAction --> "+ rst1.getString("user_ID") + " " + rst1.getString("password") + " " + rst1.getString("nombre") );  
-	         }  
-	         st.close();  
-	         con.close();  
-	     } catch (Exception ex){  
-	         log.error("BD no creada por --> "+ ex.getMessage());
-	     }
-	}
-
-//	//Este método habría que meterlo en la clase modelfacade 
-//	private void addUsuario() {
-//		Usuario usuario =new Usuario();
-//		try{
-//			PropertyUtils.copyProperties(usuario, usuarioBean);
-//			//log.info("copy propertues usuario apellidos== "+ usuario.getApellidos());
-//		}catch(IllegalAccessException e){
-//		    log.error(e.getMessage());
-//		   // return null;
-//		}catch(java.lang.reflect.InvocationTargetException e){
-//			log.error(e.getMessage());
-//		    //return null;
-//		}catch(NoSuchMethodException e){
-//			log.error(e.getMessage());
-//		    //return null;
-//		}
-//		UsuarioDAO usuarioDAO = new UsuarioDAO();
-//		usuarioDAO.crearUsuario(usuario);
+//	  //método a eliminar. Lo uso como prueba para comprobar el alta en la BD
+//	 private void compruebaAltaBD() {
+//		 try{
+//             // hago el lookup del pool de conexiones
+//             Context ctx=new InitialContext();
+//             DataSource ds=(DataSource)ctx.lookup("java:comp/env/jdbc/ConexionHSQLDS");
+//                
+//             // pido una conexion
+//             Connection con=ds.getConnection();
+//			 // log.info("In AltaAction despues de connection--> cerrada? =="+con.isClosed());
+//	         Statement st  = con.createStatement(); 
+//	         //log.info("In AltaAction despues de statement--> st cerrado? =="+st.isClosed());
+//			// Mostramos por pantalla todos los usuarios de la tabla  
+//	         ResultSet rst1 = st.executeQuery("SELECT * FROM Usuario");
+//	        // log.info("In AltaAction despues de ResultSet");
+//	         while (rst1.next()){  
+//	             log.info("In AltaAction --> "+ rst1.getString("user_ID") + " " + rst1.getString("password") + " " + rst1.getString("nombre") );  
+//	         }  
+//	         st.close();  
+//	         con.close();  
+//	     } catch (Exception ex){  
+//	         log.error("BD no creada por --> "+ ex.getMessage());
+//	     }
 //	}
+//
+////	//Este método habría que meterlo en la clase modelfacade 
+////	private void addUsuario() {
+////		Usuario usuario =new Usuario();
+////		try{
+////			PropertyUtils.copyProperties(usuario, usuarioBean);
+////			//log.info("copy propertues usuario apellidos== "+ usuario.getApellidos());
+////		}catch(IllegalAccessException e){
+////		    log.error(e.getMessage());
+////		   // return null;
+////		}catch(java.lang.reflect.InvocationTargetException e){
+////			log.error(e.getMessage());
+////		    //return null;
+////		}catch(NoSuchMethodException e){
+////			log.error(e.getMessage());
+////		    //return null;
+////		}
+////		UsuarioDAO usuarioDAO = new UsuarioDAO();
+////		usuarioDAO.crearUsuario(usuario);
+////	}
 
 }

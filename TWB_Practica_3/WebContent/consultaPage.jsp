@@ -30,13 +30,13 @@
 					<td><html:checkbox property="chkPais"/></td>
 					<th><label for="pais">País:</label></th> 
 <!-- 						<td><html:text property="pais" /></td> -->
-					<td align="left"><html:select property="pais">
-				 		<html:option value="ES">España</html:option>  
-					  	<html:option value="AF"> Afganistán </html:option>
-					  	<html:option value="AL"> Albania </html:option>
-					  	<html:option value="DE"> Alemania </html:option>
-					  	<html:option value="AD"> Andorra </html:option>
-					  	</html:select></td>					
+					<td align="left">
+					<html:select property="pais">
+						<c:forEach var="lP" items="${listaPaises}">
+							<html:option value="${lP.key}">${lP.value}</html:option> 					
+						</c:forEach>
+					 </html:select>
+					 </td>					
 					<td><html:errors property="pais" /></td>
 					
 				</tr>

@@ -15,6 +15,7 @@ import com.mistrutswebapp.beans.ExperienciaBean;
 import com.mistrutswebapp.beans.PerfilBean;
 import com.mistrutswebapp.beans.TecnologiaBean;
 import com.mistrutswebapp.beans.TitulacionBean;
+import com.mistrutswebapp.beans.UsuarioBean;
 import com.mistrutswebapp.model.ModelFacade;
 import com.mistrutswebapp.model.Perfil;
 
@@ -26,12 +27,14 @@ public class MostrarPerfilCreadoAction extends Action {
 		TitulacionBean titulacionBean;
 		TecnologiaBean tecnologiaBean;
 		ExperienciaBean experienciaBean;
+		UsuarioBean usuarioBean;
 		
 		HttpSession sesion = request.getSession();
 		perfilBean = (PerfilBean) sesion.getAttribute("perfilBean");
 		titulacionBean= (TitulacionBean) sesion.getAttribute("titulacionBean");
 		tecnologiaBean = (TecnologiaBean) sesion.getAttribute("tecnologiaBean");
 		experienciaBean=(ExperienciaBean) sesion.getAttribute("experienciaBean");
+		usuarioBean=(UsuarioBean)sesion.getAttribute("usuarioBean");
 		
 		ArrayList<Integer> listaTit= new ArrayList<Integer>();
 		//System.out.println("En MostrarPerfilCreado: titulacion--> "+titulacionBean.getTitulacion_ID()+titulacionBean.getNombre_Tit());
@@ -49,7 +52,7 @@ public class MostrarPerfilCreadoAction extends Action {
 			System.out.println("En MostrarPerfilCreado: perfilBean.listaTecnologia.item --> "+listaTec.get(i));
 		}
 			
-		
+		//ModelFacade.crearUsuario(usuarioBean);
 		ModelFacade.crearPerfil(perfilBean);
 		
 			ArrayList<Perfil> listaPerfiles = new ArrayList<Perfil>();;

@@ -143,11 +143,22 @@ public class ModelFacade {
 		pdao.eliminarPerfilesUsuario(user_ID);
 	}
 	
+	public static void eliminarPerfil(int profile_ID){		 
+		 PerfilDAO pdao = new PerfilDAO();
+		 pdao.eliminarPerfil(profile_ID);
+		 
+		 
+		 }
+	
+	
 	public static void eliminarUsuario(String user_ID){
 		UsuarioDAO udao = new UsuarioDAO();
 		udao.eliminarUsuario(user_ID);
 	}
 
-	
+	public static void addMegusta(int intProfile_ID){
+		PerfilDAO pdao= new PerfilDAO();
+		pdao.addMegusta(intProfile_ID);
+	}
 	
 }

@@ -51,6 +51,10 @@ public class PerfilDAO {
 	
 	private static final String INSERT_STATEMENT_EXPERIENCIA = "INSERT INTO Experiencia " +
 			"(empresa, cargo, a_Inicio, a_Fin, profile_ID) VALUES (?,?,?,?,?)";
+	
+	
+	//private static final String DELETE_STATEMENT_PERFIL="DELETE * FROM PERFIL where profile_ID='usuario''";
+
 
 	private void getConnection(){
 		if(connection == null){
@@ -196,7 +200,7 @@ public class PerfilDAO {
 			   stExp = connection.createStatement();//Idem
 			   statement = connection.createStatement();
 			   results = statement.executeQuery("SELECT * FROM Perfil " + whereClause);
-			   System.out.println("En PerfilDAO.leerPerfiles. Claúsula --> "+ "SELECT * FROM Perfil " + whereClause);
+//			   System.out.println("En PerfilDAO.leerPerfiles. Claúsula --> "+ "SELECT * FROM Perfil " + whereClause);
 			   int profile_ID;
 			   String pdf;
 			   String fotografia;
@@ -261,7 +265,7 @@ public class PerfilDAO {
 				   	 perfil.setListaExp(listaExp);			   	 
 				   	 
 				   	 perfiles.add(perfil);
-				   	System.out.println("leido perfil -->"+profile_ID);
+//				   	System.out.println("leido perfil -->"+profile_ID);
 			 }
 	    }catch(SQLException e){
 	    	e.printStackTrace();
@@ -310,7 +314,7 @@ public class PerfilDAO {
 			   }
 			   if(!strTitu.isEmpty()){
 				   resTit = stTit.executeQuery("SELECT * FROM Perfil_Tit "+strTitu);
-					 System.out.println("En PerfilDAO.leerPerfiles. Claúsula --> "+ "SELECT * FROM Perfil_Tit " +strTitu);
+//					 System.out.println("En PerfilDAO.leerPerfiles. Claúsula --> "+ "SELECT * FROM Perfil_Tit " +strTitu);
 					 while (resTit.next()){
 						 listaPerfiles.add(resTit.getInt("profile_ID"));
 					 }
@@ -322,7 +326,7 @@ public class PerfilDAO {
 					 }
 				   
 				   resTec = stTec.executeQuery("SELECT * FROM Perfil_Tec "+ strTecn);
-					 System.out.println("En PerfilDAO.leerPerfiles. Claúsula --> "+ "SELECT * FROM Perfil_Tec " +strTecn);
+//					 System.out.println("En PerfilDAO.leerPerfiles. Claúsula --> "+ "SELECT * FROM Perfil_Tec " +strTecn);
 					
 					 if(listaPerfiles.size()==0){
 						 while(resTec.next()){
@@ -355,7 +359,7 @@ public class PerfilDAO {
 					   return null;
 				   }
 				   resExp = stExp.executeQuery("SELECT * FROM Experiencia ");// WHERE diferencia >= "+ strTecn);
-					 System.out.println("SELECT * FROM Experiencia ");
+//					 System.out.println("SELECT * FROM Experiencia ");
 					 
 					 if(listaPerfiles.size()==0){
 						 while(resExp.next()){
@@ -392,7 +396,7 @@ public class PerfilDAO {
 					   return null;
 					 }else{
 						 results = statement.executeQuery("SELECT * FROM Perfil " + strPerfil);
-						   System.out.println("En PerfilDAO.leerPerfiles. Claúsula --> "+ "SELECT * FROM Perfil " + strPerfil);
+//						   System.out.println("En PerfilDAO.leerPerfiles. Claúsula --> "+ "SELECT * FROM Perfil " + strPerfil);
 						 boolean encontrado = false;
 						 listaAux= new ArrayList<Integer>();
 						 while(results.next()){
@@ -413,7 +417,7 @@ public class PerfilDAO {
 					 }//else		   
 			   }else if(!strPerfil.equals("") && strTitu.isEmpty() && strTecn.isEmpty() && strExpe.isEmpty()){
 				   results = statement.executeQuery("SELECT * FROM Perfil " + strPerfil);
-				   System.out.println("En PerfilDAO.leerPerfiles. Claúsula --> "+ "SELECT * FROM Perfil " + strPerfil);
+//				   System.out.println("En PerfilDAO.leerPerfiles. Claúsula --> "+ "SELECT * FROM Perfil " + strPerfil);
 				    while(results.next()){
 				    	listaPerfiles.add(results.getInt("profile_ID"));
 					}
@@ -426,7 +430,7 @@ public class PerfilDAO {
 				   return null;
 			   }else{
 				   for(int i=0;i<listaPerfiles.size();i++){
-					   System.out.println("listaPerfiles --> "+listaPerfiles.get(i));
+//					   System.out.println("listaPerfiles --> "+listaPerfiles.get(i));
 					   results= statement.executeQuery("SELECT * FROM Perfil where profile_ID = "+listaPerfiles.get(i));
 			   
 					   while(results.next()){						 
@@ -478,7 +482,7 @@ public class PerfilDAO {
 						   	 perfil.setListaTec(listaTec);
 						   	 perfil.setListaExp(listaExp);
 						   	 perfiles.add(perfil);
-						   	System.out.println("leido perfil -->"+profile_ID);
+//						   	System.out.println("leido perfil -->"+profile_ID);
 					   	}//while
 				   }//for				   
 			 }//if
@@ -504,6 +508,38 @@ public class PerfilDAO {
 	 }
 
 	 
+	 
+	 public void eliminarPerfil(int profile_ID){
+		 try{
+			getConnection();
+		    prepStatement = connection.prepareStatement("DELETE FROM Perfil WHERE profile_ID = "+ profile_ID);
+		     prepStatement.executeUpdate();
+		 }catch(SQLException e){
+			 System.out.println("error eliminarPerfil:SQL Exception -->"+e.getMessage());
+			 e.printStackTrace();
+		 }finally{
+			cleanUp();
+		 }
+	}
+
+	 
+	 
+	 
+	 public void addMegusta(int intProfile_ID){
+		 try{
+			 getConnection();
+			 statement=connection.createStatement();
+			 ResultSet rs = statement.executeQuery("SELECT * from PERFIL WHERE profile_ID = " + intProfile_ID);
+			 rs.next();
+			 int contador=rs.getInt("cont_MeGusta");
+			 contador+=1;
+			 statement.executeUpdate("UPDATE Perfil SET cont_MeGusta = "+ contador +" WHERE profile_ID = " + intProfile_ID);
+		 }catch(SQLException e){
+			 e.printStackTrace();
+		 }finally{
+			 cleanUp();
+		 }
+	 }
 	 
 	 
 	 
